@@ -23,6 +23,7 @@ public struct BaseIllustrations {
                             .frame(width: 200, height: 2)
                     }
                 }
+                // TODO: add and use use .hide(when:) trait
 //                .debugOverlay(.hairline)
 
                 let openBrace = Text("{")
