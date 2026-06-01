@@ -2,12 +2,17 @@
 # layout: post
 title:  "Overlay as a Visual Debugging Tool"
 permalink: /:year/:month/:day/:slug
+excerpt: >
+  One of the most fundamental tools for adding a visual indicator for an specific view is the handy `border` modifier, which will draw a border around any view.
+  An `overlay` can also be used TO add all sorts of visual information, without impacting the original layout of the views we are debugging.
 ---
 
 Overlay as a Visual Debugging Tool
 ==================================
 
-If you have been working anytime using SwiftUI, you have probably come to a situation where a view is laying out in an unexpected manner, some padding looks off, or the alignments are misbehaving. One of the most fundamental tools for adding a visual indicator for an specific view is the handy ``border`` modifier, which will draw a border around any view in the hierarchy.
+If you have been working anytime using SwiftUI, you have probably come to a situation where a view is laying out in an unexpected manner, some padding looks off, or the alignments are misbehaving.
+
+One of the most fundamental tools for adding a visual indicator for an specific view is the handy ``border`` modifier, which will draw a border around any view.
 
 The ``border`` modifier works well for visual debugging for two reasons: it adds a visual indicator, and it does it without modify the layout of the owner view. This orthogonality is important for a debugging tool: it modifies one aspect (adding a visual adornment) while NOT modifying another aspect (the layout of the views). This two functionalities are also present in another operator that turns out is extremely versatile: `overlay`.
 
