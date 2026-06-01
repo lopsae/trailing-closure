@@ -71,4 +71,56 @@ struct OverlayAsDebugTool {
         }
     }
 
+
+    @Test func overlayAsBorder() throws {
+        try storage.renderAndStore(
+            "overlay-as-debug-tool", "overlay-as-border",
+            colorSchemes: [.light]
+        ) {
+            DocumentationIllustration(height: 160) {
+                HStack(spacing: .zero) {
+                    Circle().fill(.gray.tertiary)
+
+                    Capsule()
+                    .fill(.teal.secondary)
+                    .frame(width: 200, height: 100)
+                    .overlay(alignment: .trailing) { // Border this view.
+                        Rectangle()
+                        .strokeBorder(.red.secondary, lineWidth: 2)
+                    }
+
+                    Circle().fill(.gray.tertiary)
+                }
+                .padding(.horizontal)
+            }
+        }
+    }
+
+
+    @Test func overlayAsGeometry() throws {
+        try storage.renderAndStore(
+            "overlay-as-debug-tool", "overlay-as-geometry",
+            colorSchemes: [.light]
+        ) {
+            DocumentationIllustration(height: 160) {
+                HStack(spacing: .zero) {
+                    Circle().fill(.gray.tertiary)
+
+                    Capsule()
+                    .fill(.teal.secondary)
+                    .frame(width: 200, height: 100)
+                    .overlay(alignment: .bottom) { // Print geometry of this view.
+                        GeometryReader { geometry in
+                            Text("size: \(geometry.size.debugDescription)")
+                            .font(.caption.monospacedDigit())
+                        }
+                    }
+
+                    Circle().fill(.gray.tertiary)
+                }
+                .padding(.horizontal)
+            }
+        }
+    }
+
 }
