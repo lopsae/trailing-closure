@@ -12,7 +12,13 @@
 
   },
   "testTargets" : [
-
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "Renders",
+        "name" : "Renders"
+      }
+    }
   ],
   "version" : 1
 }

@@ -8,26 +8,14 @@ import PreviewUtilities
 import SwiftUI
 
 
-struct BaseIllustrations {
+public struct BaseIllustrations {
 
-    @ViewBuilder
-    static var nameIllustration: some View {
+    public static var nameIllustration: DocumentationIllustration {
         DocumentationIllustration(height: 160) {
             Text("trailing { closure }")
                 .font(.title)
         }
     }
-
-}
-
-
-// MARK: - PreviewContent
-
-
-@MainActor
-private struct PreviewContent {
-
-    static let layout: PreviewTrait<Preview.ViewTraits> = .iPhoneProSizeLayout
 
 }
 
