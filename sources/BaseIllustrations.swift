@@ -12,8 +12,38 @@ public struct BaseIllustrations {
 
     public static var nameIllustration: DocumentationIllustration {
         DocumentationIllustration(height: 160) {
-            Text("trailing { closure }")
-                .font(.title)
+            let showAlignmentGuides = false
+
+            ZStack(alignment: .center) {
+                Text("closure")
+                .font(.title.monospaced())
+                .overlay(alignment: .centerFirstTextBaseline) {
+                    if showAlignmentGuides {
+                        Rectangle().fill(.red.secondary)
+                            .frame(width: 200, height: 2)
+                    }
+                }
+//                .debugOverlay(.hairline)
+
+                let openBrace = Text("{")
+                .font(.system(.title, design: .monospaced))
+
+                Text("trailing \(openBrace)")
+                .font(.system(.title, design: .serif).italic())
+                .overlay(alignment: .centerFirstTextBaseline) {
+                    if showAlignmentGuides {
+                        Rectangle().fill(.red.secondary)
+                            .frame(width: 200, height: 2)
+                    }
+                }
+                .alignmentGuide(.center, moveTo: .trailing, offsetBy: 58 + 10)
+                .alignmentGuide(.center, moveTo: .bottom, offsetBy: -2)
+
+                Text("}")
+                .font(.title.monospaced())
+                .alignmentGuide(.center, moveTo: .trailing, offsetBy: -75 - 10)
+                .alignmentGuide(.center, moveTo: .top, offsetBy: -3)
+            }
         }
     }
 
