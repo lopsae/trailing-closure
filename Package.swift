@@ -17,7 +17,7 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(path: "../preview-utilities")
+        .package(url: "https://github.com/lopsae/preview-utilities.git", branch: "feature/documentation-second-batch")
     ],
     targets: [
         .target(
