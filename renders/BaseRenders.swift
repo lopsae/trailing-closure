@@ -3,4 +3,9 @@
 //  Created by Maic Lopez Saenz.
 //
 
-import Foundation
+import SwiftUI
+
+
+struct BaseRenders {
+    
+}

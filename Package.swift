@@ -13,7 +13,7 @@ let package = Package(
     products: [
         .library(
             name: "TrailingClosureIllustrations",
-            targets: ["Illustrations"]
+            targets: ["TrailingClosureIllustrations"]
         ),
     ],
     dependencies: [
@@ -21,12 +21,15 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "Illustrations",
+            name: "TrailingClosureIllustrations",
+            dependencies: [
+                .product(name: "PreviewUtilities", package: "preview-utilities")
+            ],
             path: "sources"
         ),
         .testTarget(
             name: "Renders",
-            dependencies: ["Illustrations"],
+            dependencies: ["TrailingClosureIllustrations"],
             path: "renders",
             exclude: [
                 "Renders.xctestplan",
