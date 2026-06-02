@@ -1,5 +1,6 @@
 ---
 layout: post
+date: 2026-05-28 14:30:00 -0700
 title: "Overlay as a Visual Debugging Tool"
 categories: [SwiftUI]
 tags: [swiftui, debugging, overlay, layout]
