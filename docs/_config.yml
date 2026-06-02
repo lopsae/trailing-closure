@@ -22,6 +22,11 @@ toc: true
 
 paginate: 10
 
+collections:
+  tabs:
+    output: true
+    sort_by: order
+
 plugins:
   - jekyll-paginate
   - jekyll-redirect-from
