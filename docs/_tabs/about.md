@@ -1,6 +1,8 @@
 ---
-layout: about
+layout: page
 icon: fas fa-address-card
+title: "About"
+permalink: /about
 order: 4
 ---
 
