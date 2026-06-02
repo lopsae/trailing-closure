@@ -1,12 +1,42 @@
-remote_theme: pages-themes/midnight@v0.2.0
+theme: jekyll-theme-chirpy
 
-plugins:
-- jekyll-remote-theme
-
+lang: en
+timezone: America/Los_Angeles
 
 title: Trailing{Closure}
-# Tagline does not seem to work.
-tagline: Explorations on Swift techologies.
-description: Explorations on Swift techologies.
+tagline: Explorations on Swift technologies.
+description: Projects, explorations, and interesting cases regarding Swift and Apple platforms.
+url: "https://trailing-closure.com"
 
-# description: Articles regarding interesting cases and techologies in Swift and Apple platforms.
+github:
+  username: lopsae
+
+social:
+  name: Maic Lopez Saenz
+  links:
+    - https://github.com/lopsae
+
+avatar: ""
+
+toc: true
+
+paginate: 10
+
+plugins:
+  - jekyll-paginate
+  - jekyll-redirect-from
+  - jekyll-seo-tag
+  - jekyll-archives
+  - jekyll-sitemap
+  - jekyll-include-cache
+
+jekyll-archives:
+  enabled:
+    - categories
+    - tags
+  layouts:
+    category: category
+    tag: tag
+  permalinks:
+    tag: /tags/:name/
+    category: /categories/:name/
