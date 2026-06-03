@@ -78,6 +78,12 @@ public struct BaseIllustrations {
                     Spacer()
                 }
 
+                VStack.maxWidth(alignment: .trailing) {
+                    Image(.stylizedM).font(.title2)
+                        .offset(x: 2.5)
+                    Spacer()
+                }
+
                 VStack.maxWidth(alignment:.trailing, spacing: 8) {
                     Spacer()
 
@@ -101,6 +107,11 @@ public struct BaseIllustrations {
                             .monospaced()
                     }
                     .font(.caption)
+                    // Alignment guide.
+//                    .overlay(alignment: .bottomTrailing) {
+//                        Rectangle().fill(.red.secondary)
+//                            .frame(width: 2, height: 200)
+//                    }
                 }
             }
             .padding()
