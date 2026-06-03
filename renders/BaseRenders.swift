@@ -23,8 +23,8 @@ struct BaseRenders {
         )
     }
 
-    @Test func simpleTraits() throws {
-        try storage.renderAndStore("examples", "simple-traits") {
+    @Test func trailingClosure() throws {
+        try storage.renderAndStore("base", "trailing-closure") {
             BaseIllustrations.nameIllustration
         }
     }
