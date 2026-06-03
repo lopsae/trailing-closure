@@ -48,6 +48,62 @@ public struct BaseIllustrations {
         }
     }
 
+
+    // International card size is (85 mm x 55 mm).
+    public static var eventCard: DocumentationIllustration {
+        DocumentationIllustration(height: 200) {
+            ZStack {
+                VStack.maxWidth(alignment:.leading) {
+                    Text("Maic Lopez Saenz")
+//                    HStack(alignment: .firstTextBaseline, spacing: 4) {
+//                        Image(systemName: "wrench.and.screwdriver.fill")
+//                        Text("Swift Developer")
+//                    }
+//                    .font(.caption)
+//
+//                    HStack(alignment: .firstTextBaseline, spacing: 4) {
+//                        Image(systemName: "envelope")
+//                        Text(verbatim: "maic@lopsae.com")
+//                    }
+//                    .font(.caption.monospaced())
+
+                    Text("Swift Developer")
+                        .font(.caption)
+                    Text(verbatim: "maic@lopsae.com")
+                        .font(.caption.monospaced())
+
+                    Spacer()
+                }
+
+                VStack.maxWidth(alignment:.trailing, spacing: 8) {
+                    Spacer()
+
+                    VStack.maxWidth(alignment:.trailing, spacing: 4) {
+                        Text("Check out")
+//                        HStack(spacing: .zero) {
+//                            Text("view")
+//                            Text(".debugOverlay()")
+//                                .debugOverlay()
+//                        }
+//                        .monospaced()
+
+                        Text(".debugOverlay()")
+                            .monospaced()
+                            .debugOverlay()
+                    }
+                    VStack.maxWidth(alignment:.trailing) {
+                        Text("and other nifty utilities")
+                        Text("in the PreviewUtilities package")
+                        Text("github:lopsae/preview-utilities")
+                            .monospaced()
+                    }
+                    .font(.caption)
+                }
+            }
+            .padding()
+        }
+    }
+
 }
 
 
@@ -56,4 +112,9 @@ public struct BaseIllustrations {
 
 #Preview("name", traits: .docsIllustration) {
     BaseIllustrations.nameIllustration
+}
+
+
+#Preview("event-card", traits: .docsIllustration) {
+    BaseIllustrations.eventCard
 }
