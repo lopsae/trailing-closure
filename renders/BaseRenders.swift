@@ -28,4 +28,16 @@ struct BaseRenders {
             BaseIllustrations.nameIllustration
         }
     }
+
+
+    @Test func eventCard() throws {
+        let resource = try IllustrationRenderer.render(
+            nameComponents: ["base", "event-card"],
+            scale: 5,
+            colorSchemes: [.light]
+        ) {
+            BaseIllustrations.eventCard
+        }
+        try storage.store(resource: resource)
+    }
 }
