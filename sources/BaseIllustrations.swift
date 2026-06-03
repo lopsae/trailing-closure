@@ -50,8 +50,11 @@ public struct BaseIllustrations {
 
 
     // International card size is (85 mm x 55 mm).
+    // Standard US card size is 3.5" x 2" (88.9 mm x 50.8 mm)
+    // iPhone 17 Pro screen width is 6.5 cm, approximately 6.185 points per mm.
+    // Standard US card with a 400pt width is (400 pt x 228.57 pt)
     public static var eventCard: DocumentationIllustration {
-        DocumentationIllustration(height: 200) {
+        DocumentationIllustration(size: [400, 229], drawsBorder: false) {
             ZStack {
                 VStack.maxWidth(alignment:.leading) {
                     Text("Maic Lopez Saenz")
