@@ -33,7 +33,7 @@ struct BaseRenders {
     @Test func eventCard() throws {
         let resource = try IllustrationRenderer.render(
             nameComponents: ["base", "event-card"],
-            scale: 5,
+            scale: 10,
             colorSchemes: [.light]
         ) {
             BaseIllustrations.eventCard

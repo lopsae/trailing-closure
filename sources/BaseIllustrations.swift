@@ -56,31 +56,21 @@ public struct BaseIllustrations {
     public static var eventCard: DocumentationIllustration {
         DocumentationIllustration(size: [400, 229], drawsBorder: false) {
             ZStack {
-                VStack.maxWidth(alignment:.leading) {
-                    Text("Maic Lopez Saenz")
-//                    HStack(alignment: .firstTextBaseline, spacing: 4) {
-//                        Image(systemName: "wrench.and.screwdriver.fill")
-//                        Text("Swift Developer")
-//                    }
-//                    .font(.caption)
-//
-//                    HStack(alignment: .firstTextBaseline, spacing: 4) {
-//                        Image(systemName: "envelope")
-//                        Text(verbatim: "maic@lopsae.com")
-//                    }
-//                    .font(.caption.monospaced())
+                VStack(alignment:.leading) {
+                    VStack.maxWidth(alignment:.leading) {
+                        Text("Maic Lopez Saenz")
+                        Text("Swift Developer")
+                            .font(.caption)
+                        Text(verbatim: "maic@lopsae.com")
+                            .font(.caption.monospaced())
+                    }
+                    .overlay(alignment: .trailing) {
+                        Image(.stylizedM)
+                            .resizable()
+                            .scaledToFit()
+                    }
 
-                    Text("Swift Developer")
-                        .font(.caption)
-                    Text(verbatim: "maic@lopsae.com")
-                        .font(.caption.monospaced())
 
-                    Spacer()
-                }
-
-                VStack.maxWidth(alignment: .trailing) {
-                    Image(.stylizedM).font(.title2)
-                        .offset(x: 2.5)
                     Spacer()
                 }
 
@@ -89,13 +79,6 @@ public struct BaseIllustrations {
 
                     VStack.maxWidth(alignment:.trailing, spacing: 4) {
                         Text("Check out")
-//                        HStack(spacing: .zero) {
-//                            Text("view")
-//                            Text(".debugOverlay()")
-//                                .debugOverlay()
-//                        }
-//                        .monospaced()
-
                         Text(".debugOverlay()")
                             .monospaced()
                             .debugOverlay()
