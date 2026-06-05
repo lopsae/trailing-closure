@@ -27,7 +27,7 @@ struct OverlayAsDebugTool {
     @Test func borderModifier() throws {
         try storage.renderAndStore(
             "overlay-as-debug-tool", "border-modifier",
-            colorSchemes: [.light]
+            usesFullComponentName: false
         ) {
             DocumentationIllustration(height: 160) {
                 HStack(spacing: .zero) {
