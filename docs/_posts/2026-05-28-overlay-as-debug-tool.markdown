@@ -23,7 +23,7 @@ HStack(spacing: .zero) {
 
     Circle().fill(.mint)
     .frame(width: 120, height: 100)
-    .border(.red.secondary, width: 2) // Highlight the frame of this view.
+    .border(.red.secondary, width: 4) // Highlight the frame of this view.
 
     Circle().fill(.teal)
     Circle().fill(.gray.tertiary)
@@ -43,7 +43,7 @@ Using an overlay we can add all sorts of visual information, without impacting t
 Layout is never modified
 ------------------------
 
-Is worth repeating the most impotant feature of this modifer: adding an `overlay` will never change the layout space the owner occupies. This means it can always be added as a **non-destructive** layout operation. At its most basic it can be used to label a view to keep track of:
+Is worth repeating the most impotant feature of this modifer: adding an `overlay` will never change the layout space the owner occupies. This means it can always be added as a **non-destructive** layout operation. At its most basic it can be used to label and keep track of a view:
 
 ```swift
 HStack(spacing: .zero) {
@@ -80,7 +80,7 @@ HStack(spacing: .zero) {
     .frame(width: 200, height: 100)
     .overlay(alignment: .trailing) { // Border this view.
         Rectangle()
-        .strokeBorder(.red.secondary, lineWidth: 2)
+        .strokeBorder(.red.secondary, lineWidth: 4)
     }
 
     Circle().fill(.gray.tertiary)
@@ -91,7 +91,8 @@ HStack(spacing: .zero) {
 ![Overlay modifier drawing the border of a Capsule view.](overlay-as-border@3x.png){: .light width="400" }
 ![Overlay modifier drawing the border of a Capsule view.](overlay-as-border~dark@3x.png){: .dark width="400" }
 
-Mix this with a geometry reader and you can print geometry information about any view! Note that since the content in `overlay` is framed to the size of the owner view (the `Capsule`), text will adapt to that available size by wrapping around:
+
+Mix this with a `GeometryReader` and it can print geometry information about any view! Note that since the content in `overlay` is framed to the size of the owner view (the `Capsule`), text will adapt to the available size by wrapping around:
 
 ```swift
 HStack(spacing: .zero) {
@@ -118,7 +119,8 @@ HStack(spacing: .zero) {
 ![Overlay modifier printing geometry information of a Capsule view.](overlay-as-geometry@3x.png){: .light width="400" }
 ![Overlay modifier printing geometry information of a Capsule view.](overlay-as-geometry~dark@3x.png){: .dark width="400" }
 
-Any content that is larger overflows while aligned to the overlay alignment. Even if the overlay content is bigger, the size of the owner view remains unchanged.
+
+Any `overlay` content that is larger that the owner view will overflow while staying aligned to the overlay alignment. Even in this cases, original layout is still unchanged, notice the `border` still highlights the just the `Capsule` frame:
 
 
 Alignment guides
