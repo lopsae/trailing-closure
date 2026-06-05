@@ -36,7 +36,7 @@ struct OverlayAsDebugTool {
 
                     Circle().fill(.mint)
                     .frame(width: 120, height: 100)
-                    .border(.red.secondary, width: 2) // Highlight the frame of this view.
+                    .border(.red.secondary, width: 4) // Highlight the frame of this view.
 
                     Circle().fill(.teal)
                     Circle().fill(.gray.tertiary)
@@ -86,7 +86,7 @@ struct OverlayAsDebugTool {
                     .frame(width: 200, height: 100)
                     .overlay(alignment: .trailing) { // Border this view.
                         Rectangle()
-                        .strokeBorder(.red.secondary, lineWidth: 2)
+                        .strokeBorder(.red.secondary, lineWidth: 4)
                     }
 
                     Circle().fill(.gray.tertiary)
