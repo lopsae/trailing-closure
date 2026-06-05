@@ -101,7 +101,7 @@ HStack(spacing: .zero) {
     Capsule()
     .fill(.teal.secondary)
     .frame(width: 200, height: 100)
-    .overlay(alignment: .bottom) { // Print geometry of this view.
+    .overlay { // Print geometry of this view.
         GeometryReader { geometry in
             Text("""
                 size: \(geometry.size.debugDescription)
@@ -121,6 +121,29 @@ HStack(spacing: .zero) {
 
 
 Any `overlay` content that is larger that the owner view will overflow while staying aligned to the overlay alignment. Even in this cases, original layout is still unchanged, notice the `border` still highlights the just the `Capsule` frame:
+
+```swift
+HStack(spacing: .zero) {
+    Circle().fill(.gray.tertiary)
+
+    Capsule()
+    .fill(.teal.secondary)
+    .frame(width: 200, height: 100)
+    .overlay(alignment: .bottomLeading) {
+        Text("A large `Capsule`")
+        .font(.largeTitle)
+        .fixedSize() // Force the label to overflow.
+    }
+    .border(.red.secondary, width: 4) // Note the frame is still just the capsule.
+
+
+    Circle().fill(.gray.tertiary)
+}
+.padding(.horizontal)
+```
+
+![An overlay label overflowing over its owner view.](overlay-overflow@3x.png){: .light width="400" }
+![An overlay label overflowing over its owner view.](overlay-overflow~dark@3x.png){: .dark width="400" }
 
 
 Alignment guides
