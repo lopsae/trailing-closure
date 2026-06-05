@@ -50,7 +50,7 @@ struct OverlayAsDebugTool {
     @Test func overlayAsLabel() throws {
         try storage.renderAndStore(
             "overlay-as-debug-tool", "overlay-as-label",
-            colorSchemes: [.light]
+            usesFullComponentName: false
         ) {
             DocumentationIllustration(height: 160) {
                 HStack(spacing: .zero) {
@@ -75,7 +75,7 @@ struct OverlayAsDebugTool {
     @Test func overlayAsBorder() throws {
         try storage.renderAndStore(
             "overlay-as-debug-tool", "overlay-as-border",
-            colorSchemes: [.light]
+            usesFullComponentName: false
         ) {
             DocumentationIllustration(height: 160) {
                 HStack(spacing: .zero) {
@@ -100,7 +100,7 @@ struct OverlayAsDebugTool {
     @Test func overlayAsGeometry() throws {
         try storage.renderAndStore(
             "overlay-as-debug-tool", "overlay-as-geometry",
-            colorSchemes: [.light]
+            usesFullComponentName: false
         ) {
             DocumentationIllustration(height: 160) {
                 HStack(spacing: .zero) {
@@ -111,7 +111,10 @@ struct OverlayAsDebugTool {
                     .frame(width: 200, height: 100)
                     .overlay(alignment: .bottom) { // Print geometry of this view.
                         GeometryReader { geometry in
-                            Text("size: \(geometry.size.debugDescription)")
+                            Text("""
+                                size: \(geometry.size.debugDescription)
+                                safeAreaInsets: \(String(describing:geometry.safeAreaInsets))
+                                """)
                             .font(.caption.monospacedDigit())
                         }
                     }
