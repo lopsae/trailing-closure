@@ -1,7 +1,7 @@
 ---
 layout: page
 icon: fas fa-address-card
-title: "About"
+title: About
 permalink: /about
 order: 4
 ---
