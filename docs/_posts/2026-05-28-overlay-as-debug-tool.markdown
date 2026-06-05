@@ -136,7 +136,6 @@ HStack(spacing: .zero) {
     }
     .border(.red.secondary, width: 4) // Note the frame is still just the capsule.
 
-
     Circle().fill(.gray.tertiary)
 }
 .padding(.horizontal)
@@ -149,9 +148,52 @@ HStack(spacing: .zero) {
 Alignment guides
 ----------------
 
-Content in an overlay is aligned using the alignment guides of the owner view. This makes it possible to add a visual indicator of any alignment the view supports.
+Alignments in an `overlay` is one of its most interesting aspects. The overlaid content is aligned to the alignment guides of the owner view. This makes it possible to use `overlay` to add a visualization of any alignment guide, specially for views that offer additional alignments like [`firstTextBaseline`](https://developer.apple.com/documentation/SwiftUI/VerticalAlignment/firstTextBaseline):
 
-This includes modified and custom alignment guides, or guides that apply to only certain views like `firstBaseLine`.
+```swift
+Text("""
+    The fence we walked between the years
+    Did balance us serene
+    """
+)
+.overlay(alignment: .centerFirstTextBaseline) {
+    Rectangle()
+    .fill(.red.secondary)
+    .frame(width: 350, height: 4)
+}
+```
+
+![A multiline text with a red indicator for its first baseline alignment guide.](first-text-baseline@3x.png){: .light width="400" }
+![A multiline text with a red indicator for its first baseline alignment guide.](first-text-baseline~dark@3x.png){: .dark width="400" }
+
+
+When views modify their alignment guides `overlay` uses that adjusted guide, so custom alignments can be easilly tracked visually. Again note that the last `border` drawn shows that the resulting frame from the `overlay` modifier is still the size of just the original `Text`:
+
+```swift
+Text("""
+    We ached and almost touched that stuff
+    Our reach was never quite enough
+    If only we had taller been
+    """
+)
+.alignmentGuide(.leading) { dimensions in
+    dimensions[.leading] + 22
+}
+.overlay(alignment: .centerLastTextBaseline) {
+    Rectangle() // Last Baseline indicator.
+    .fill(.red.secondary)
+    .frame(width: 350, height: 4)
+}
+.overlay(alignment: .leading) {
+    Rectangle() // Leading indicator.
+    .fill(.red.secondary)
+    .frame(width: 4, height: 100)
+}
+.border(.teal.tertiary, width: 2) // Note the frame is still just the text.
+```
+
+![A multiline text with red indicators for its leading and last baseline alignment guides.](multiple-alignments@3x.png){: .light width="400" }
+![A multiline text with red indicators for its leading and last baseline alignment guides.](multiple-alignments~dark@3x.png){: .dark width="400" }
 
 
 Floating content
