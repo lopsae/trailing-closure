@@ -1,0 +1,47 @@
+theme: jekyll-theme-chirpy
+
+lang: en
+timezone: America/Los_Angeles
+
+title: Trailing{Closure}
+tagline: Explorations on Swift technologies.
+description: Projects, explorations, and interesting cases regarding Swift and Apple platforms.
+url: "https://trailing-closure.com"
+
+github:
+  username: lopsae
+
+social:
+  name: Maic Lopez Saenz
+  links:
+    - https://github.com/lopsae
+
+avatar: /assets/img/avatar.png
+
+toc: true
+
+paginate: 10
+
+collections:
+  tabs:
+    output: true
+    sort_by: order
+
+plugins:
+  - jekyll-paginate
+  - jekyll-redirect-from
+  - jekyll-seo-tag
+  - jekyll-archives
+  - jekyll-sitemap
+  - jekyll-include-cache
+
+jekyll-archives:
+  enabled:
+    - categories
+    - tags
+  layouts:
+    category: category
+    tag: tag
+  permalinks:
+    tag: /tags/:name/
+    category: /categories/:name/
