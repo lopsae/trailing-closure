@@ -109,7 +109,7 @@ struct OverlayAsDebugTool {
                     Capsule()
                     .fill(.teal.secondary)
                     .frame(width: 200, height: 100)
-                    .overlay(alignment: .bottom) { // Print geometry of this view.
+                    .overlay { // Print geometry of this view.
                         GeometryReader { geometry in
                             Text("""
                                 size: \(geometry.size.debugDescription)
@@ -118,6 +118,34 @@ struct OverlayAsDebugTool {
                             .font(.caption.monospacedDigit())
                         }
                     }
+
+                    Circle().fill(.gray.tertiary)
+                }
+                .padding(.horizontal)
+            }
+        }
+    }
+
+
+    @Test func overlayOverflow() throws {
+        try storage.renderAndStore(
+            "overlay-as-debug-tool", "overlay-overflow",
+            usesFullComponentName: false
+        ) {
+            DocumentationIllustration(height: 160) {
+                HStack(spacing: .zero) {
+                    Circle().fill(.gray.tertiary)
+
+                    Capsule()
+                    .fill(.teal.secondary)
+                    .frame(width: 200, height: 100)
+                    .overlay(alignment: .bottomLeading) {
+                        Text("A large `Capsule`")
+                        .font(.largeTitle)
+                        .fixedSize() // Force the label to overflow.
+                    }
+                    .border(.red.secondary, width: 4) // Note the frame is still just the capsule.
+
 
                     Circle().fill(.gray.tertiary)
                 }
