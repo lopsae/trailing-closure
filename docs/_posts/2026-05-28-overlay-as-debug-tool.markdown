@@ -199,4 +199,58 @@ Text("""
 Floating content
 ----------------
 
-Since the content is both aligned and framed to the size of the content view, it becomes particularly easy to add visual content that is floating and attached to a view.
+And this brings us to my favorite surprise out of `overlay, product of how it handles its content and alignments: By modifying the alignment of the overlaid views it is possible to easily create floating content around the owner view. This is helpful for debugging, it allows the debug visuals to be placed anywhere, without blocking the owner view at all:
+
+```swift
+RoundedRectangle(cornerRadius: 8)
+.fill(.teal.gradient)
+.stroke(.indigo.gradient, lineWidth: 4)
+.frame(width: 100, height: 100)
+.overlay(alignment: .trailingLastTextBaseline) {
+    Text("A `RoundedRectangle`\nwith fill and stroke")
+    .fixedSize()
+    .font(.caption)
+    .padding(.horizontal, 8)
+    .alignmentGuide(.trailing) { $0[.leading] } // Floating alignment!
+}
+```
+
+![A rounded rectangle with an outer trailing floating label.](floating-content@3x.png){: .light width="400" }
+![A rounded rectangle with an outer trailing floating label.](floating-content~dark@3x.png){: .dark width="400" }
+
+
+And it is also particularly useful for creating illustrations for examples or documentation, where the example and the visual adornments for an illustration can both live in the code.
+
+```swift
+Text("""
+    In the green
+    of leaf
+    and promising
+    of peach
+    """
+)
+.font(.subheadline)
+.padding(.horizontal, 4)
+.frame(width: 160, height: 100, alignment: .trailing)
+.background {
+    RoundedRectangle(cornerRadius: 8).fill(.teal.secondary)
+}
+// Illustration adornments.
+.overlay(alignment: .trailing) {
+    HStack(spacing: 4) {
+        Rectangle()
+            .fill(.red.secondary)
+            .frame(width: 2)
+        Text("Notice `Text` multiline alignment defaults to `leading`")
+            .font(.caption)
+            .foregroundStyle(.secondary)
+            .frame(width: 100, alignment: .leading)
+    }
+    .padding(.leading, 8)
+    .alignmentGuide(.trailing) { $0[.leading] }
+}
+```
+
+![An example ilustration of a multiline text, with a note about multiline default alignment.](illustration-example@3x.png){: .light width="400" }
+![An example ilustration of a multiline text, with a note about multiline default alignment.](illustration-example~dark@3x.png){: .dark width="400" }
+_Example illustration along its own adornements._
