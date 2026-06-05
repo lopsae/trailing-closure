@@ -206,4 +206,64 @@ struct OverlayAsDebugTool {
         }
     }
 
+
+    @Test func floatingContent() throws {
+        try storage.renderAndStore(
+            "overlay-as-debug-tool", "floating-content",
+            usesFullComponentName: false
+        ) {
+            DocumentationIllustration(height: 160) {
+                RoundedRectangle(cornerRadius: 8)
+                .fill(.teal.gradient)
+                .stroke(.indigo.gradient, lineWidth: 4)
+                .frame(width: 100, height: 100)
+                .overlay(alignment: .trailingLastTextBaseline) {
+                    Text("A `RoundedRectangle`\nwith fill and stroke")
+                    .fixedSize()
+                    .font(.caption)
+                    .padding(.horizontal, 8)
+                    .alignmentGuide(.trailing) { $0[.leading] } // Floating alignment!
+                }
+            }
+        }
+    }
+
+
+    @Test func illustrationExample() throws {
+        try storage.renderAndStore(
+            "overlay-as-debug-tool", "illustration-example",
+            usesFullComponentName: false
+        ) {
+            DocumentationIllustration(height: 160) {
+                Text("""
+                    In the green
+                    of leaf
+                    and promising
+                    of peach
+                    """
+                )
+                .font(.subheadline)
+                .padding(.horizontal, 4)
+                .frame(width: 160, height: 100, alignment: .trailing)
+                .background {
+                    RoundedRectangle(cornerRadius: 8).fill(.teal.secondary)
+                }
+                // Illustration adornments.
+                .overlay(alignment: .trailing) {
+                    HStack(spacing: 4) {
+                        Rectangle()
+                            .fill(.red.secondary)
+                            .frame(width: 2)
+                        Text("Notice `Text` multiline alignment defaults to `leading`")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                            .frame(width: 100, alignment: .leading)
+                    }
+                    .padding(.leading, 8)
+                    .alignmentGuide(.trailing) { $0[.leading] }
+                }
+            }
+        }
+    }
+
 }
