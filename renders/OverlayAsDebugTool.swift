@@ -154,4 +154,56 @@ struct OverlayAsDebugTool {
         }
     }
 
+
+    @Test func firstTextBaseline() throws {
+        try storage.renderAndStore(
+            "overlay-as-debug-tool", "first-text-baseline",
+            usesFullComponentName: false
+        ) {
+            DocumentationIllustration(height: 160) {
+                Text("""
+                    The fence we walked between the years
+                    Did balance us serene
+                    """
+                )
+                .overlay(alignment: .centerFirstTextBaseline) {
+                    Rectangle()
+                    .fill(.red.secondary)
+                    .frame(width: 350, height: 4)
+                }
+            }
+        }
+    }
+
+
+    @Test func multipleAlignments() throws {
+        try storage.renderAndStore(
+            "overlay-as-debug-tool", "multiple-alignments",
+            usesFullComponentName: false
+        ) {
+            DocumentationIllustration(height: 160) {
+                Text("""
+                    We ached and almost touched that stuff
+                    Our reach was never quite enough
+                    If only we had taller been
+                    """
+                )
+                .alignmentGuide(.leading) { dimensions in
+                    dimensions[.leading] + 22
+                }
+                .overlay(alignment: .centerLastTextBaseline) {
+                    Rectangle() // Last Baseline indicator.
+                    .fill(.red.secondary)
+                    .frame(width: 350, height: 4)
+                }
+                .overlay(alignment: .leading) {
+                    Rectangle() // Leading indicator.
+                    .fill(.red.secondary)
+                    .frame(width: 4, height: 100)
+                }
+                .border(.teal.tertiary, width: 2) // Note the frame is still just the text.
+            }
+        }
+    }
+
 }
