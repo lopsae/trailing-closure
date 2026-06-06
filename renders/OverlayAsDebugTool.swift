@@ -294,4 +294,21 @@ struct OverlayAsDebugTool {
         }
     }
 
+
+    @Test func debugOverlayExample() throws {
+        try storage.renderAndStore(
+            "overlay-as-debug-tool", "debug-overlay-example",
+            usesFullComponentName: false
+        ) {
+            DocumentationIllustration(height: 160) {
+                HStack(spacing: .zero) {
+                    Text("view")
+                    Text(".debugOverlay()")
+                        .debugOverlay(.size, .alignment(.outerBottomTrailing))
+                }
+                .monospaced()
+            }
+        }
+    }
+
 }
