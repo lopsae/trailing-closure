@@ -16,7 +16,7 @@ image:
 Debugging tools
 ---------------
 
-If you have spent any time working with SwiftUI, you have probably reached a situation where a view is laying out in an unexpected manner, some padding looks off, or the alignments are misbehaving. One of the most fundamental tools for adding a **visual indicator** to a specific view is the handy [`border`](https://developer.apple.com/documentation/swiftui/view/border(_:width:)) modifier, which will draw a border around any view, handy for outlining its actual frame:
+If you have spent any time working with SwiftUI, you have probably reached a situation where a view is laying out in an unexpected manner, some padding looks off, or the alignments are misbehaving. One of the most fundamental tools for adding a visual indicator to a specific view is the handy [`border`](https://developer.apple.com/documentation/swiftui/view/border(_:width:)) modifier, which will draw a border around any view, handy for outlining its actual frame:
 
 ```swift
 HStack(spacing: .zero) {
@@ -36,16 +36,20 @@ HStack(spacing: .zero) {
 ![Border modifier outlining the frame of a Circle view.](border-modifier@3x.png){: .light width="400" }
 ![Border modifier outlining the frame of a Circle view.](border-modifier~dark@3x.png){: .dark width="400" }
 
-The `border` modifier works well for visual debugging for two reasons: it adds a visual indicator, and it **does not** modify the layout of the owner view. The original layout is kept intact both internally (the sub-views contained by the owner view), and externally (the space the owner view occupies in its parent layout). This **orthogonality** is important in a debugging tool: it modifies one aspect (adds a visual adornment) while **not** modifying another aspect (the layout of the views).
+-----
 
-The debug tool orthogonality is also present in another modifier that turns out to be extremely versatile: [`overlay`](https://developer.apple.com/documentation/swiftui/view/overlay(alignment:content:)). Most of this was found in the process of developing [PreviewUtilities](https://github.com/lopsae/preview-utilities), where I was constantly surprised by the usefulness of the `overlay` modifier. One of the main tools in this package ([`DebugOverlayModifier`](https://lopsae.com/preview-utilities/documentation/previewutilities/)) wraps a visualization of the geometry information of a view inside a handy `overlay`.
 
-Using an overlay we can add all sorts of visual information, without impacting the original layout of the views we are debugging. Here are some interesting features of `overlay` and how it can be used as a debug tool for SwiftUI views.
+The `border` modifier works well as visual debugging for two reasons: it adds a visual indicator, and it does not modify the layout of the owner view. The original layout is kept intact both internally (the sub-views contained by the owner view), and externally (the space the owner view occupies in its parent layout). This orthogonality is important in a debugging tool: it modifies one aspect (adds a visual adornment) while not modifying another aspect (the layout of the views).
+
+The debug tool orthogonality is also present in another modifier that turns out to be extremely versatile: [`overlay`](https://developer.apple.com/documentation/swiftui/view/overlay(alignment:content:)). Using it we can add all sorts of visual information without impacting the original layout of the views we are debugging. Here are some interesting features of `overlay` and how it can be used as a debug tool for SwiftUI views.
+
+-----
+
 
 Layout is never modified
 ------------------------
 
-It is worth repeating the most important feature of this modifier: adding an `overlay` will never change the layout space the owner occupies. This means it can always be added as a **non-destructive** layout operation. At its most basic it can be used to label and keep track of a view:
+It is worth repeating the most important feature of this modifier: adding an `overlay` will never change the layout space the owner view occupies. This means it can always be added as a non-destructive layout operation. At its most basic it can be used to label and keep track of a view:
 
 ```swift
 HStack(spacing: .zero) {
@@ -66,6 +70,8 @@ HStack(spacing: .zero) {
 
 ![Overlay modifier labeling a Capsule view.](overlay-as-label@3x.png){: .light width="400" }
 ![Overlay modifier labeling a Capsule view.](overlay-as-label~dark@3x.png){: .dark width="400" }
+
+-----
 
 
 Overlay content size
@@ -92,6 +98,8 @@ HStack(spacing: .zero) {
 
 ![Overlay modifier drawing the border of a Capsule view.](overlay-as-border@3x.png){: .light width="400" }
 ![Overlay modifier drawing the border of a Capsule view.](overlay-as-border~dark@3x.png){: .dark width="400" }
+
+-----
 
 
 Mix this with a `GeometryReader` and it can print geometry information about any view! Note that since the content in `overlay` is framed to the size of the owner view (the `Capsule`), text will adapt to the available size by wrapping around:
@@ -121,6 +129,8 @@ HStack(spacing: .zero) {
 ![Overlay modifier printing geometry information of a Capsule view.](overlay-as-geometry@3x.png){: .light width="400" }
 ![Overlay modifier printing geometry information of a Capsule view.](overlay-as-geometry~dark@3x.png){: .dark width="400" }
 
+-----
+
 
 Any `overlay` content that is larger than the owner view will overflow while staying aligned to the overlay alignment. Even in these cases the original layout is still unchanged, notice the `border` still highlights only the `Capsule` frame:
 
@@ -146,6 +156,8 @@ HStack(spacing: .zero) {
 ![An overlay label overflowing over its owner view.](overlay-overflow@3x.png){: .light width="400" }
 ![An overlay label overflowing over its owner view.](overlay-overflow~dark@3x.png){: .dark width="400" }
 
+-----
+
 
 Alignment guides
 ----------------
@@ -167,6 +179,8 @@ Text("""
 
 ![A multiline text with a red indicator for its first baseline alignment guide.](first-text-baseline@3x.png){: .light width="400" }
 ![A multiline text with a red indicator for its first baseline alignment guide.](first-text-baseline~dark@3x.png){: .dark width="400" }
+
+-----
 
 
 When views modify their alignment guides `overlay` uses that adjusted guide, so custom alignments can be easily tracked visually. Again note that the last `border` drawn shows that the resulting frame from the `overlay` modifier is still the size of just the original `Text`:
@@ -197,6 +211,8 @@ Text("""
 ![A multiline text with red indicators for its leading and last baseline alignment guides.](multiple-alignments@3x.png){: .light width="400" }
 ![A multiline text with red indicators for its leading and last baseline alignment guides.](multiple-alignments~dark@3x.png){: .dark width="400" }
 
+-----
+
 
 Floating content
 ----------------
@@ -219,6 +235,8 @@ RoundedRectangle(cornerRadius: 8)
 
 ![A rounded rectangle with an outer trailing floating label.](floating-content@3x.png){: .light width="400" }
 ![A rounded rectangle with an outer trailing floating label.](floating-content~dark@3x.png){: .dark width="400" }
+
+-----
 
 
 Floating content is particularly useful for creating illustrations for examples or documentation, where the example and the visual adornments can both live in the code.
@@ -256,3 +274,31 @@ Text("""
 ![An example illustration of a multiline text, with a note about multiline default alignment.](illustration-example@3x.png){: .light width="400" }
 ![An example illustration of a multiline text, with a note about multiline default alignment.](illustration-example~dark@3x.png){: .dark width="400" }
 _Example illustration along its own adornments._
+
+-----
+
+
+Debug Overlay
+-------------
+
+All these features of ended up as the basis for implementing [`DebugOverlayModifier`](https://lopsae.com/preview-utilities/documentation/previewutilities/), one of the main tools in the [PreviewUtilities package](https://github.com/lopsae/preview-utilities). Use it to quickly add on your previews or runtime a visual to asses the geometry information of any view, without messing with the layout. I have found it a fantastic tool, and it gave me a deep appreciation of the power of a humble `overlay`.
+
+```swift
+HStack(spacing: .zero) {
+    Text("view")
+    Text(".debugOverlay()")
+        .debugOverlay(.size, .alignment(.outerBottomTrailing))
+}
+.monospaced()
+```
+
+![The text view.debugOverlay() where the modifier is higlighted with a debug overlay.](debug-overlay-example@3x.png){: .light width="400" }
+![The text view.debugOverlay() where the modifier is higlighted with a debug overlay.](debug-overlay-example~dark@3x.png){: .dark width="400" }
+
+-----
+
+<p style="display: block; margin-block-start: 2em; text-align: center; padding: 0; color: #6d6c6c;">
+<i class="fas fa-ruler-combined"></i>
+<br/>
+<em style="font-style: normal; font-size: 70%">Visually debugging since 2003, when Macromedia Flash MX was released</em>
+</p>
