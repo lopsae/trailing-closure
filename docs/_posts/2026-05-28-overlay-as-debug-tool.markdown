@@ -199,7 +199,7 @@ Text("""
 Floating content
 ----------------
 
-And this brings us to my favorite surprise out of `overlay`, a product of how it handles its content and alignments: By modifying the alignment of the overlaid views it is possible to easily create floating content around the owner view. This is helpful for debugging, it allows the debug visuals to be placed anywhere without blocking the owner view at all:
+And this brings us to my favorite surprise out of `overlay`, a product of how it handles its content and alignments: By modifying the alignment of the overlaid content it is possible to create floating content around the owner view. Debug visuals can then _float_ outside of the debugged view, without blocking it at all:
 
 ```swift
 RoundedRectangle(cornerRadius: 8)
@@ -219,7 +219,7 @@ RoundedRectangle(cornerRadius: 8)
 ![A rounded rectangle with an outer trailing floating label.](floating-content~dark@3x.png){: .dark width="400" }
 
 
-And it is also particularly useful for creating illustrations for examples or documentation, where the example and the visual adornments can both live in the code.
+Floating content is also particularly useful for creating illustrations for examples or documentation, where the example and the visual adornments can both live in the code.
 
 ```swift
 Text("""
