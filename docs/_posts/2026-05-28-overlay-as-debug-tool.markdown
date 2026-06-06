@@ -9,6 +9,8 @@ toc: true
 media_subpath: /assets/img/overlay-as-debug-tool/
 description: >
   The overlay modifier can add all sorts of visual information to a view, without impacting its layout. Here are some examples of its versatility as a debugging tool.
+image:
+  path: header@3x.png
 ---
 
 Debugging tools
@@ -219,7 +221,7 @@ RoundedRectangle(cornerRadius: 8)
 ![A rounded rectangle with an outer trailing floating label.](floating-content~dark@3x.png){: .dark width="400" }
 
 
-Floating content is also particularly useful for creating illustrations for examples or documentation, where the example and the visual adornments can both live in the code.
+Floating content is particularly useful for creating illustrations for examples or documentation, where the example and the visual adornments can both live in the code.
 
 ```swift
 Text("""
