@@ -24,6 +24,34 @@ struct OverlayAsDebugTool {
     }
 
 
+    @Test func header() throws {
+        try storage.renderAndStore(
+            "overlay-as-debug-tool", "header",
+            usesFullComponentName: false
+        ) {
+            DocumentationIllustration(size: [600 , 315], drawsBorder: false) {
+                RoundedRectangle(cornerRadius: 8)
+                .fill(.teal.gradient)
+                .frame(width: 360, height: 200)
+                // Illustration adornments.
+                .overlay(alignment: .trailing) {
+                    HStack(alignment: .top, spacing: 4) {
+                        Rectangle()
+                            .fill(.red.secondary)
+                            .frame(width: 2)
+                        Text("Debugging Caption")
+                            .font(.caption)
+                            .foregroundStyle(.tertiary)
+                            .frame(width: 100, alignment: .leading)
+                    }
+                    .padding(.leading, 8)
+                    .alignmentGuide(.trailing) { $0[.leading] }
+                }
+            }
+        }
+    }
+
+
     @Test func borderModifier() throws {
         try storage.renderAndStore(
             "overlay-as-debug-tool", "border-modifier",
