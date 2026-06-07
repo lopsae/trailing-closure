@@ -311,15 +311,16 @@ HStack(spacing: .zero) {
 .monospaced()
 ```
 
-![The text view.debugOverlay() where the modifier is higlighted with a debug overlay.](debug-overlay-example@3x.png){: .light width="400" }
-![The text view.debugOverlay() where the modifier is higlighted with a debug overlay.](debug-overlay-example~dark@3x.png){: .dark width="400" }
+{% include color-scheme-img.md
+  alt="The text view.debugOverlay() where the modifier is highlighted with a debug overlay."
+  name="debug-overlay-example"
+%}
 
-Use it to quickly add on your previews or runtime a visual to asses the geometry information of any view, without messing with the layout. I have found it a fantastic tool, and it gave me a deep appreciation of the power of a humble `overlay`.
+Use it to quickly add on your previews or runtime a visual to asses the geometry of any view, without messing with the layout. I have found it a fantastic tool, and it gave me a playful appreciation of the power of a humble `overlay`.
 
 -----
 
-<p style="display: block; margin-block-start: 2em; text-align: center; padding: 0; color: #6d6c6c;">
-<i class="fas fa-ruler-combined"></i>
-<br/>
-<em style="font-style: normal; font-size: 70%">Visually debugging since 2003, when Macromedia Flash MX was released</em>
-</p>
+{% include end-caption.md
+  icon="fas fa-ruler-combined"
+  text="Visually debugging since 2003, when Macromedia Flash MX was released."
+%}
