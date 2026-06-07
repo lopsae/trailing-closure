@@ -33,8 +33,10 @@ HStack(spacing: .zero) {
 .padding(.horizontal)
 ```
 
-![Border modifier outlining the frame of a Circle view.](border-modifier@3x.png){: .light width="400" }
-![Border modifier outlining the frame of a Circle view.](border-modifier~dark@3x.png){: .dark width="400" }
+{% include color-scheme-img.md
+  alt="Border modifier outlining the frame of a Circle view."
+  name="border-modifier"
+%}
 
 -----
 
@@ -68,8 +70,10 @@ HStack(spacing: .zero) {
 .padding(.horizontal)
 ```
 
-![Overlay modifier labeling a Capsule view.](overlay-as-label@3x.png){: .light width="400" }
-![Overlay modifier labeling a Capsule view.](overlay-as-label~dark@3x.png){: .dark width="400" }
+{% include color-scheme-img.md
+  alt="Overlay modifier labeling a Capsule view."
+  name="overlay-as-label"
+%}
 
 -----
 
@@ -96,8 +100,10 @@ HStack(spacing: .zero) {
 .padding(.horizontal)
 ```
 
-![Overlay modifier drawing the border of a Capsule view.](overlay-as-border@3x.png){: .light width="400" }
-![Overlay modifier drawing the border of a Capsule view.](overlay-as-border~dark@3x.png){: .dark width="400" }
+{% include color-scheme-img.md
+  alt="Overlay modifier drawing the border of a Capsule view."
+  name="overlay-as-border"
+%}
 
 -----
 
@@ -126,8 +132,10 @@ HStack(spacing: .zero) {
 .padding(.horizontal)
 ```
 
-![Overlay modifier printing geometry information of a Capsule view.](overlay-as-geometry@3x.png){: .light width="400" }
-![Overlay modifier printing geometry information of a Capsule view.](overlay-as-geometry~dark@3x.png){: .dark width="400" }
+{% include color-scheme-img.md
+  alt="Overlay modifier printing geometry information of a Capsule view."
+  name="overlay-as-geometry"
+%}
 
 -----
 
@@ -153,8 +161,10 @@ HStack(spacing: .zero) {
 .padding(.horizontal)
 ```
 
-![An overlay label overflowing over its owner view.](overlay-overflow@3x.png){: .light width="400" }
-![An overlay label overflowing over its owner view.](overlay-overflow~dark@3x.png){: .dark width="400" }
+{% include color-scheme-img.md
+  alt="An overlay label overflowing over its owner view."
+  name="overlay-overflow"
+%}
 
 -----
 
@@ -177,8 +187,10 @@ Text("""
 }
 ```
 
-![A multiline text with a red indicator for its first baseline alignment guide.](first-text-baseline@3x.png){: .light width="400" }
-![A multiline text with a red indicator for its first baseline alignment guide.](first-text-baseline~dark@3x.png){: .dark width="400" }
+{% include color-scheme-img.md
+  alt="A multiline text with a red indicator for its first baseline alignment guide."
+  name="first-text-baseline"
+%}
 
 -----
 
@@ -208,8 +220,10 @@ Text("""
 .border(.teal.tertiary, width: 2) // Note the frame is still just the text.
 ```
 
-![A multiline text with red indicators for its leading and last baseline alignment guides.](multiple-alignments@3x.png){: .light width="400" }
-![A multiline text with red indicators for its leading and last baseline alignment guides.](multiple-alignments~dark@3x.png){: .dark width="400" }
+{% include color-scheme-img.md
+  alt="A multiline text with red indicators for its leading and last baseline alignment guides."
+  name="multiple-alignments"
+%}
 
 -----
 
@@ -233,8 +247,10 @@ RoundedRectangle(cornerRadius: 8)
 }
 ```
 
-![A rounded rectangle with an outer trailing floating label.](floating-content@3x.png){: .light width="400" }
-![A rounded rectangle with an outer trailing floating label.](floating-content~dark@3x.png){: .dark width="400" }
+{% include color-scheme-img.md
+  alt="A rounded rectangle with an outer trailing floating label."
+  name="floating-content"
+%}
 
 -----
 
@@ -271,8 +287,10 @@ Text("""
 }
 ```
 
-![An example illustration of a multiline text, with a note about multiline default alignment.](illustration-example@3x.png){: .light width="400" }
-![An example illustration of a multiline text, with a note about multiline default alignment.](illustration-example~dark@3x.png){: .dark width="400" }
+{% include color-scheme-img.md
+  alt="An example illustration of a multiline text, with a note about multiline default alignment."
+  name="illustration-example"
+%}
 _Example illustration along its own adornments._
 
 -----
