@@ -299,7 +299,7 @@ _Example illustration along its own adornments._
 Debug Overlay
 -------------
 
-All these `overlay` features ended up as the basis for implementing [`DebugOverlayModifier`](https://lopsae.com/preview-utilities/documentation/previewutilities/), one of the main tools in the [PreviewUtilities](https://github.com/lopsae/preview-utilities) package:
+All these `overlay` features became the basis for implementing [`DebugOverlayModifier`](https://lopsae.com/preview-utilities/documentation/previewutilities/), one of the main tools in the [PreviewUtilities](https://github.com/lopsae/preview-utilities) package. This modifier wraps a visualization of the view's geometry all in a handy `overlay`, all ready to display with a single line:
 
 ```swift
 // import PreviewUtilities
@@ -316,7 +316,7 @@ HStack(spacing: .zero) {
   name="debug-overlay-example"
 %}
 
-Use it to quickly add on your previews or runtime a visual to asses the geometry of any view, without messing with the layout. I have found it a fantastic tool, and it gave me a playful appreciation of the power of a humble `overlay`.
+Use it to quickly add on your previews (or runtime) a visual to asses the geometry of any view, without messing with the layout. I have found it a fantastic tool, and it gave me a playful appreciation of the power of a humble `overlay`.
 
 -----
 
