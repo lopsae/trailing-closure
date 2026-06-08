@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+set -v
+
+# Copies all rendered illustrations to the site repository.
+# Run from this repository root.
+
+rsync --archive --verbose --include='*/' --include='*.png' --exclude='*' ./illustrations/ ../trailing-closure/docs/assets/img/
