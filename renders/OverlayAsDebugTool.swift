@@ -20,7 +20,11 @@ struct OverlayAsDebugTool {
             filePath: #filePath,
             droppingComponents: 2, // filename, renders
             appendingComponents: ["illustrations"]
-        )
+        ) {
+            // onImageStored
+            cgImage, filename in
+            Attachment.record(cgImage, named: filename, as: .png)
+        }
     }
 
 

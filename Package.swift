@@ -29,7 +29,9 @@ let package = Package(
         ),
         .testTarget(
             name: "Renders",
-            dependencies: ["TrailingClosureIllustrations"],
+            dependencies: [
+                "TrailingClosureIllustrations"
+            ],
             path: "renders",
             exclude: [
                 "Renders.xctestplan",
