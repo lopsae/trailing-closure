@@ -10,7 +10,7 @@ import SwiftUI
 
 public struct BaseIllustrations {
 
-    // MARK: nameIllustration
+    // MARK: Name Illustration
 
     public static var nameIllustration: DocumentationIllustration {
         DocumentationIllustration(height: 160) {
@@ -52,7 +52,7 @@ public struct BaseIllustrations {
 
 
     
-    // MARK: eventCard
+    // MARK: Event Card
 
     // International card size is (85 mm x 55 mm).
     // Standard US card size is 3.5" x 2" (88.9 mm x 50.8 mm)
@@ -95,12 +95,8 @@ public struct BaseIllustrations {
                             .monospaced()
                     }
                     .font(.caption)
-                    // Alignment guide.
-//                    .overlay(alignment: .bottomTrailing) {
-//                        Rectangle().fill(.red.secondary)
-//                            .frame(width: 2, height: 200)
-//                    }
                 }
+                .debugAlignmentGuide(horizontal: .trailing, .extendLength(20))
             }
             .padding()
         }
@@ -214,12 +210,12 @@ public struct BaseIllustrations {
 // MARK: - Previews
 
 
-#Preview("name", traits: .docsIllustration) {
+#Preview("Name", traits: .docsIllustration) {
     BaseIllustrations.nameIllustration
 }
 
 
-#Preview("event-card", traits: .docsIllustration) {
+#Preview("Event Card", traits: .docsIllustration) {
     BaseIllustrations.eventCard
 }
 
