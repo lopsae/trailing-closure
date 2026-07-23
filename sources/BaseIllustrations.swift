@@ -104,103 +104,11 @@ public struct BaseIllustrations {
 
     // MARK: experiments
 
-    // For "The Intricacies of glass circle buttons"
+
     public static var experiments: DocumentationIllustration {
-        DocumentationIllustration(height: 600) {
-            Button(
-                "Glass Regular",
-                systemImage: "envelope.badge.shield.half.filled",
-                action: {}
-            )
-            .buttonStyle(.glass)
-
-            Button(
-                "Glass Prominent",
-                systemImage: "envelope.badge.shield.half.filled",
-                action: {}
-            )
-            .buttonStyle(.glassProminent)
-
-            Button(
-                "Capsule",
-                systemImage: "envelope.badge.shield.half.filled",
-                action: {}
-            )
-            .buttonBorderShape(.capsule)
-            .buttonStyle(.glassProminent)
-
-            Button(
-                "Glass Prominent",
-                systemImage: "envelope.badge.shield.half.filled",
-                action: {}
-            )
-            .labelStyle(.iconOnly)
-            .buttonBorderShape(.capsule)
-            .buttonStyle(.glassProminent)
-
-            Button(
-                "Glass Prominent",
-                systemImage: "envelope.badge.shield.half.filled",
-                action: {}
-            )
-            .labelStyle(.iconOnly)
-            .buttonBorderShape(.circle)
-            .buttonStyle(.glassProminent)
-
-            Button(
-                "Glass Prominent",
-                systemImage: "envelope.badge.shield.half.filled",
-                action: {}
-            )
-            .labelStyle(.iconOnly)
-            .buttonStyle(.plain)
-            .padding(8)
-            .debugOverlay(.hairline)
-            .glassEffect(.regular.interactive())
-
-            Button(
-                "Glass Prominent",
-                systemImage: "envelope.badge.shield.half.filled",
-                action: {}
-            )
-            .labelStyle(.iconOnly)
-            .buttonStyle(.plain)
-            .frame(squareOf: 15, alignment: .centerLastTextBaseline)
-            .frame(squareOf: 44, alignment: .center)
-            .debugOverlay(.hairline)
-            .glassEffect(.regular.interactive())
-
-            HStack(alignment: .firstTextBaseline) {
-                Label("Label", systemImage: "circle")
-
-                Button(
-                    "Glass Prominent",
-                    systemImage: "envelope.badge.shield.half.filled",
-                    action: {}
-                )
-                .font(.title)
-                .labelStyle(.iconOnly)
-                .buttonStyle(.plain)
-                .frame(squareOf: 15, alignment: .centerLastTextBaseline)
-                .frame(squareOf: 44, alignment: .center)
-                .debugOverlay(.hairline)
-                .glassEffect(.regular.interactive())
-
-                Button(
-                    "Glass Prominent",
-                    systemImage: "envelope.badge.shield.half.filled",
-                    action: {}
-                )
-                .font(.title)
-                .labelStyle(.iconOnly)
-                .buttonStyle(.plain)
-//                .frame(squareOf: 15, alignment: .centerLastTextBaseline)
-                .frame(squareOf: 44, alignment: .center)
-                .debugOverlay(.hairline)
-                .glassEffect(.regular.interactive())
-            }
-
-            
+        DocumentationIllustration(height: 300) {
+            Text("for quick experiments...")
+            .font(.system(.title, design: .serif).italic())
         }
     }
 
@@ -220,6 +128,6 @@ public struct BaseIllustrations {
 }
 
 
-#Preview("Button Experiments", traits: .docsIllustration) {
+#Preview("Experiments", traits: .docsIllustration) {
     BaseIllustrations.experiments
 }
