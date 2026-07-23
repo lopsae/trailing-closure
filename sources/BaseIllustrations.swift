@@ -25,8 +25,7 @@ public struct BaseIllustrations {
                             .frame(width: 200, height: 2)
                     }
                 }
-                // TODO: add and use use .hide(when:) trait
-//                .debugOverlay(.hairline)
+                .debugOverlay(.hairline, .visible(false))
 
                 let openBrace = Text("{")
                 .font(.system(.title, design: .monospaced))
@@ -105,6 +104,7 @@ public struct BaseIllustrations {
 
     // MARK: experiments
 
+    // For "The Intricacies of glass circle buttons"
     public static var experiments: DocumentationIllustration {
         DocumentationIllustration(height: 600) {
             Button(
