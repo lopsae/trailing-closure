@@ -104,6 +104,203 @@ import SwiftUI
 }
 
 
+struct GlassCirclePaddingStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .labelStyle(.iconOnly)
+            .font(.title)
+            .border(.red)
+            .padding()
+            .border(.green)
+            .opacity(configuration.isPressed ? 0.5 : 1)
+            .glassEffect(.regular.interactive(), in: .circle)
+    }
+}
+
+#Preview("GlassCirclePaddingStyle", traits: .background(MeshGradient.wallOfIceAndFire.opacity(0.5))) {
+    Button("Envelope", systemImage: "envelope.badge.shield.half.filled", action: {})
+    .buttonStyle(GlassCirclePaddingStyle())
+
+    Button("Star", systemImage: "star", action: {})
+    .buttonStyle(GlassCirclePaddingStyle())
+
+    HStack(alignment: .firstTextBaseline) {
+        Button("Envelope", systemImage: "envelope.badge.shield.half.filled", action: {})
+        .buttonStyle(GlassCirclePaddingStyle())
+
+        Button("Star", systemImage: "star", action: {})
+        .buttonStyle(GlassCirclePaddingStyle())
+
+        Label("Label", systemImage: "circle")
+            .debugAlignmentGuide(vertical: .firstTextBaseline, .extendLength(200), .anchor(.trailing))
+    }
+
+}
+
+
+struct GlassCircleFramedStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .labelStyle(.iconOnly)
+            .font(.title)
+            .frame(squareOf: 36)
+            .border(.red)
+            .padding()
+            .border(.green)
+            .opacity(configuration.isPressed ? 0.5 : 1)
+            .glassEffect(.regular.interactive(), in: .circle)
+    }
+}
+
+
+#Preview("GlassCircleFramedStyle", traits: .background(MeshGradient.wallOfIceAndFire.opacity(0.5))) {
+    HStack(alignment: .firstTextBaseline) {
+        Button("Star", systemImage: "star", action: {})
+            .buttonStyle(GlassCircleFramedStyle())
+
+        Button("Envelope", systemImage: "envelope.badge.shield.half.filled", action: {})
+            .buttonStyle(GlassCircleFramedStyle())
+
+        Label("FirstBaseline", systemImage: "app.grid")
+            .debugAlignmentGuide(vertical: .firstTextBaseline, .extendLength(150), .anchor(.trailing))
+    }
+}
+
+
+struct GlassCircleBaselinedStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        Image(systemName: "circle")
+        .font(.title)
+        .opacity(0.0)
+        .overlay(alignment: .centerFirstTextBaseline) {
+            configuration.label
+            .labelStyle(.iconOnly)
+            .font(.title)
+        }
+        .border(.red)
+        .frame(squareOf: 60)
+        .border(.green)
+        .opacity(configuration.isPressed ? 0.5 : 1)
+        .glassEffect(.regular.interactive(), in: .circle)
+    }
+}
+
+
+#Preview("GlassCircleBaselinedStyle", traits: .background(MeshGradient.wallOfIceAndFire.opacity(0.5))) {
+    HStack(alignment: .firstTextBaseline) {
+        Button("Star", systemImage: "star", action: {})
+            .buttonStyle(GlassCircleBaselinedStyle())
+
+        Button("Envelope", systemImage: "envelope.badge.shield.half.filled", action: {})
+            .buttonStyle(GlassCircleBaselinedStyle())
+
+        Label("FirstBaseline", systemImage: "circle")
+            .debugAlignmentGuide(vertical: .firstTextBaseline, .extendLength(150), .anchor(.trailing))
+    }
+}
+
+
+struct BaselineFramed: LabelStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        Image(systemName: "circle")
+        .font(.title)
+        .opacity(0.5)
+        .overlay(alignment: .centerFirstTextBaseline) {
+            configuration.icon
+            .font(.title)
+        }
+        .border(.red)
+        .frame(squareOf: 60)
+        .border(.green)
+    }
+}
+
+#Preview("BaselineFramed", traits: .background(MeshGradient.wallOfIceAndFire.opacity(0.5))) {
+    VStack {
+        Label("Title 1", systemImage: "star")
+            .glassEffect()
+        Label("Title 2", systemImage: "square")
+        Label("Title 3", systemImage: "circle")
+
+    }
+    .labelStyle(BaselineFramed())
+}
+
+
+struct GlassCircleLabelBaselineStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+        .labelStyle(BaselineFramed())
+        .opacity(configuration.isPressed ? 0.5 : 1)
+        .glassEffect(.regular.interactive(), in: .circle)
+    }
+}
+
+
+#Preview("GlassCircleLabelBaselineStyle", traits: .background(MeshGradient.wallOfIceAndFire.opacity(0.5))) {
+    @Previewable @Namespace var namespace
+    HStack(alignment: .firstTextBaseline) {
+        Button("Star", systemImage: "star", action: {})
+            .buttonStyle(GlassCircleLabelBaselineStyle())
+
+        Button("Envelope", systemImage: "envelope.badge.shield.half.filled", action: {})
+            .buttonStyle(GlassCircleLabelBaselineStyle())
+
+        Label("FirstBaseline", systemImage: "circle")
+            .debugAlignmentGuide(vertical: .firstTextBaseline, .extendLength(150), .anchor(.trailing))
+    }
+
+    HStack(alignment: .firstTextBaseline) {
+        GlassEffectContainer {
+            HStack(alignment: .firstTextBaseline) {
+                Button("Star", systemImage: "star", action: {})
+                    .labelStyle(BaselineFramed())
+                    .glassEffect(.regular.interactive())
+                    .glassEffectUnion(id: "union", namespace: namespace)
+
+                Button("Envelope", systemImage: "envelope.badge.shield.half.filled", action: {})
+                    .labelStyle(BaselineFramed())
+                    .buttonStyle(.plain)
+                    .glassEffect(.regular.interactive())
+                    .glassEffectUnion(id: "union", namespace: namespace)
+            }
+        }
+
+        Label("FirstBaseline", systemImage: "circle")
+            .debugAlignmentGuide(vertical: .firstTextBaseline, .extendLength(150), .anchor(.trailing))
+    }
+}
+
+
+struct GlassShapeLabelBaselineStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        let buttonShape = ButtonBorderShape.buttonBorder
+        configuration.label
+        .labelStyle(BaselineFramed())
+        .opacity(configuration.isPressed ? 0.5 : 1)
+        .glassEffect(.regular.interactive(), in: buttonShape)
+    }
+}
+
+
+#Preview("GlassShapeLabelBaselineStyle", traits: .background(MeshGradient.wallOfIceAndFire.opacity(0.5))) {
+    @Previewable @Namespace var namespace
+    HStack(alignment: .firstTextBaseline) {
+        Button("Star", systemImage: "star", action: {})
+            .buttonBorderShape(.roundedRectangle)
+            .buttonStyle(GlassShapeLabelBaselineStyle())
+
+
+        Button("Envelope", systemImage: "envelope.badge.shield.half.filled", action: {})
+            .buttonStyle(GlassShapeLabelBaselineStyle())
+            .buttonBorderShape(.roundedRectangle)
+
+        Label("FirstBaseline", systemImage: "circle")
+            .debugAlignmentGuide(vertical: .firstTextBaseline, .extendLength(150), .anchor(.trailing))
+    }
+}
+
+
 // TODO: Move to preview-utilities after it matures more.
 
 struct BackgroundPreviewModifier<Background: View>: PreviewModifier {
