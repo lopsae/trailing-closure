@@ -323,15 +323,17 @@ Use it to quickly add on your previews (or runtime) a visual to asses the geomet
 -----
 
 
+<div class="colophon" markdown="block">
+
 ## Colophon
 The code examples in this article where compiled using `Swift 6.2` through the `Apple Swift version 6.3.3` compiler.
 
-Renderings using iPhone 17 Pro Simulator with iOS 26.5, through Simulator 16.0.
+Renderings using `iPhone 17 Pro Simulator` with `iOS 26.5`, through `Simulator 16.0`.
 
-Some examples use [PreviewUtilities 0.4.0](https://github.com/lopsae/preview-utilities/releases/tag/v0.4.0).
+Some examples use [`PreviewUtilities 0.4.0`](https://github.com/lopsae/preview-utilities/releases/tag/v0.4.0).
 
+</div>
 
------
 
 {% include end-caption.md
   icon="fas fa-ruler-combined"
