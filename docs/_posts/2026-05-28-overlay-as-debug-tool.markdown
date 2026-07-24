@@ -299,7 +299,9 @@ _Example illustration along its own adornments._
 Debug Overlay
 -------------
 
-All these `overlay` features became the basis for implementing [`DebugOverlayModifier`](https://lopsae.com/preview-utilities/documentation/previewutilities/), one of the main tools in the [PreviewUtilities](https://github.com/lopsae/preview-utilities) package. This modifier wraps a visualization of the view's geometry all in a handy `overlay`, all ready to display with a single line:
+All these `overlay` features became the basis for implementing [`DebugOverlayModifier`](https://lopsae.github.io/preview-utilities/v0.4.0/documentation/previewutilities/debugoverlaymodifier), one of the main tools in the [PreviewUtilities](https://lopsae.github.io/preview-utilities/v0.4.0/documentation/previewutilities) package. This modifier wraps a visualization of the view's geometry all in a handy `overlay`, all ready to display with a single line:
+
+
 
 ```swift
 // import PreviewUtilities
@@ -326,7 +328,7 @@ The code examples in this article where compiled using `Swift 6.2` through the `
 
 Renderings using iPhone 17 Pro Simulator with iOS 26.5, through Simulator 16.0.
 
-Some examples use [Preview-Utilities 0.4.0](https://github.com/lopsae/preview-utilities/releases/tag/v0.4.0).
+Some examples use [PreviewUtilities 0.4.0](https://github.com/lopsae/preview-utilities/releases/tag/v0.4.0).
 
 
 -----
