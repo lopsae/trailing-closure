@@ -320,6 +320,17 @@ Use it to quickly add on your previews (or runtime) a visual to asses the geomet
 
 -----
 
+
+## Colophon
+The code examples in this article where compiled using `Swift 6.2` through the `Apple Swift version 6.3.3` compiler.
+
+Renderings using iPhone 17 Pro Simulator with iOS 26.5, through Simulator 16.0.
+
+Some examples use [Preview-Utilities 0.4.0](https://github.com/lopsae/preview-utilities/releases/tag/v0.4.0).
+
+
+-----
+
 {% include end-caption.md
   icon="fas fa-ruler-combined"
   text="Visually debugging since 2003, when Macromedia Flash MX was released."
