@@ -55,3 +55,8 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
+
+
+# Github deploy workflow overrides these values.
+build_date: now
+build_run_id: local
