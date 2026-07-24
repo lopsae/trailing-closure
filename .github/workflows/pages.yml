@@ -17,9 +17,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: docs
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -36,16 +33,17 @@ jobs:
         uses: actions/configure-pages@v6
 
       - name: Set build info
+        working-directory: docs
         run: |
-          echo "build_date: '$(TZ='America/Los_Angeles' date '+%Y-%m-%d %H:%M %Z')'" >> docs/_config_build.yml
-          echo "build_run_id: '${{ github.run_id }}'" >> docs/_config_build.yml
+          echo "build_date: '$(TZ='America/Los_Angeles' date '+%Y-%m-%d %H:%M %Z')'" >> _config_build.yml
+          echo "build_run_id: '${{ github.run_id }}'" >> _config_build.yml
 
       - name: Build with Jekyll
+        working-directory: docs
         run: >
           bundle exec jekyll build
           --baseurl "${{ steps.pages.outputs.base_path }}"
           --config _config.yml,_config_build.yml
-        working-directory: docs
         env:
           JEKYLL_ENV: production
 
