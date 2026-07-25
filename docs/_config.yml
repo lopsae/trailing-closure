@@ -57,6 +57,8 @@ jekyll-archives:
     category: /categories/:name/
 
 
-# Github deploy workflow overrides these values.
-build_date: now
+# Github deploy workflow overrides these values by creating a
+# _config-build.yml file.
+build_date: Local Build Day, 2026
 build_run_id: local
+build_run_number: 47

@@ -37,14 +37,15 @@ jobs:
 
       - name: Set build info
         run: |
-          echo "build_date: '$(TZ='America/Los_Angeles' date '+%Y-%m-%d %H:%M %Z')'" >> docs/_config_build.yml
-          echo "build_run_id: '${{ github.run_id }}'" >> docs/_config_build.yml
+          echo "build_date: '$(TZ='America/Los_Angeles' date '+%Y-%m-%d %H:%M %Z')'" >> docs/_config-build.yml
+          echo "build_run_id: '${{ github.run_id }}'" >> docs/_config-build.yml
+          echo "build_run_number: '${{ github.run_number }}'" >> docs/_config-build.yml
 
       - name: Build with Jekyll
         run: >
           bundle exec jekyll build
           --baseurl "${{ steps.pages.outputs.base_path }}"
-          --config _config.yml,_config_build.yml
+          --config _config.yml,_config-build.yml
         working-directory: docs
         env:
           JEKYLL_ENV: production
