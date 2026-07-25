@@ -12,18 +12,16 @@
 
 /* Original file at ~/.gem/ruby/3.4.1/gems/jekyll-theme-chirpy-7.5.0/assets/css/jekyll-theme-chirpy.scss */
 
+:is(h2, h3, h4).colophon {
+  color: var(--text-muted-color);
+  font-size: 1.2rem;
+
+  display: block;
+  margin-block-start: 2em;
+  text-align: center;
+}
+
 .colophon {
-  h2,
-  h3,
-  h4 {
-    color: var(--text-muted-color);
-    font-size: 1.2rem;
-
-    display: block;
-    margin-block-start: 2em;
-    text-align: center;
-  }
-
   p {
     color: var(--text-muted-color);
     text-align: center;
@@ -39,3 +37,4 @@
     }
   }
 }
+
