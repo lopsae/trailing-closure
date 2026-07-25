@@ -35,7 +35,7 @@ jobs:
       - name: Set build info
         working-directory: docs
         run: |
-          echo "build_date: '$(TZ='America/Los_Angeles' date '+%Y-%m-%d %H:%M %Z')'" >> _config-build.yml
+          echo "build_date: '$(TZ='America/Los_Angeles' date '+%A %B %-d, %Y, %H:%M %Z')'" >> _config-build.yml
           echo "build_run_id: '${{ github.run_id }}'" >> _config-build.yml
           echo "build_run_number: '${{ github.run_number }}'" >> _config-build.yml
 
