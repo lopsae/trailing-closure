@@ -3,9 +3,41 @@
 //  Created by Maic Lopez Saenz.
 //
 
+
+import PreviewUtilities
 import SwiftUI
 
+
 // For "The Intricacies of glass circle buttons"
+
+
+#Preview("DrawingBoard", traits: .docsIllustration) {
+    DocumentationIllustration(sizing: .regular, background: .fadedMoltenHorizon) {
+        HStack {
+            let mountainsButton = Button("Mountains", systemImage: "mountain.2", action: {})
+
+            mountainsButton
+            .buttonStyle(.glass)
+
+            mountainsButton
+            .labelStyle(.iconOnly)
+            .buttonStyle(.glass)
+
+            mountainsButton
+            .labelStyle(.iconOnly)
+            .buttonBorderShape(.circle)
+            .buttonStyle(.glass)
+        }
+        .padding(.horizontal)
+    }
+}
+
+
+extension DocumentationIllustration.Background {
+
+    static let fadedMoltenHorizon: Self = .view(PrettyMesh.moltenHorizon.rotated().opacity(0.5))
+
+}
 
 
 #Preview("Experiments", traits: .background(MeshGradient.wallOfIceAndFire)) {
