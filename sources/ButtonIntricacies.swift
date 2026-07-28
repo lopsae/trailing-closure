@@ -35,7 +35,15 @@ import SwiftUI
 
 extension DocumentationIllustration.Background {
 
-    static let fadedMoltenHorizon: Self = .view(PrettyMesh.moltenHorizon.rotated().opacity(0.5))
+    static let fadedMoltenHorizon: Self = .view(
+        PrettyMesh.moltenHorizon
+        .rotated()
+        .applying(opacities: [
+            .red:    0.8,
+            .yellow: 0.3,
+            .orange: 0.5
+        ])
+    )
 
 }
 
