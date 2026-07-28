@@ -13,7 +13,7 @@ public struct BaseIllustrations {
     // MARK: Name Illustration
 
     public static var nameIllustration: DocumentationIllustration {
-        DocumentationIllustration(height: 160) {
+        DocumentationIllustration(sizing: .regular) {
             let showAlignmentGuides = false
 
             ZStack(alignment: .center) {
