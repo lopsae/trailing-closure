@@ -1,12 +1,13 @@
 //
-//  Illustration_AppTests.swift
-//  Illustration AppTests
-//
-//  Created by Maic Lopez Saenz on 2026-07-29.
+//  Illustrations App Tests
+//  Created by Maic Lopez Saenz.
 //
 
+
+@testable import IllustrationsApp
+
 import Testing
-@testable import Illustration_App
+
 
 struct Illustration_AppTests {
 
