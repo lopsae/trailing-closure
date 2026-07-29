@@ -27,9 +27,9 @@
 			path = sources;
 			sourceTree = "<group>";
 		};
-		2D6A6A0E301ABA6D00CB152D /* Illustration AppTests */ = {
+		2D6A6A0E301ABA6D00CB152D /* illustrations */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Illustration AppTests";
+			path = illustrations;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -56,7 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				2D6A6A00301ABA6C00CB152D /* sources */,
-				2D6A6A0E301ABA6D00CB152D /* Illustration AppTests */,
+				2D6A6A0E301ABA6D00CB152D /* illustrations */,
 				2D6A69FF301ABA6C00CB152D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -109,7 +109,7 @@
 				2D6A6A0D301ABA6D00CB152D /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				2D6A6A0E301ABA6D00CB152D /* Illustration AppTests */,
+				2D6A6A0E301ABA6D00CB152D /* illustrations */,
 			);
 			name = Illustrations;
 			packageProductDependencies = (
