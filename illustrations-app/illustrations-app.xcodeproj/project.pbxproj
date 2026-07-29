@@ -24,7 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2D6A69FE301ABA6C00CB152D /* Illustration App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Illustration App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D6A69FE301ABA6C00CB152D /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D6A6A0B301ABA6D00CB152D /* Illustration AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Illustration AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D6A6A15301ABA6D00CB152D /* Illustration AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Illustration AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -85,7 +85,7 @@
 		2D6A69FF301ABA6C00CB152D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2D6A69FE301ABA6C00CB152D /* Illustration App.app */,
+				2D6A69FE301ABA6C00CB152D /* App.app */,
 				2D6A6A0B301ABA6D00CB152D /* Illustration AppTests.xctest */,
 				2D6A6A15301ABA6D00CB152D /* Illustration AppUITests.xctest */,
 			);
@@ -95,9 +95,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2D6A69FD301ABA6C00CB152D /* Illustration App */ = {
+		2D6A69FD301ABA6C00CB152D /* App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D6A6A1F301ABA6D00CB152D /* Build configuration list for PBXNativeTarget "Illustration App" */;
+			buildConfigurationList = 2D6A6A1F301ABA6D00CB152D /* Build configuration list for PBXNativeTarget "App" */;
 			buildPhases = (
 				2D6A69FA301ABA6C00CB152D /* Sources */,
 				2D6A69FB301ABA6C00CB152D /* Frameworks */,
@@ -110,11 +110,11 @@
 			fileSystemSynchronizedGroups = (
 				2D6A6A00301ABA6C00CB152D /* Illustration App */,
 			);
-			name = "Illustration App";
+			name = App;
 			packageProductDependencies = (
 			);
 			productName = "Illustration App";
-			productReference = 2D6A69FE301ABA6C00CB152D /* Illustration App.app */;
+			productReference = 2D6A69FE301ABA6C00CB152D /* App.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2D6A6A0A301ABA6D00CB152D /* Illustration AppTests */ = {
@@ -186,7 +186,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2D6A69F9301ABA6C00CB152D /* Build configuration list for PBXProject "Illustration App" */;
+			buildConfigurationList = 2D6A69F9301ABA6C00CB152D /* Build configuration list for PBXProject "illustrations-app" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -200,7 +200,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2D6A69FD301ABA6C00CB152D /* Illustration App */,
+				2D6A69FD301ABA6C00CB152D /* App */,
 				2D6A6A0A301ABA6D00CB152D /* Illustration AppTests */,
 				2D6A6A14301ABA6D00CB152D /* Illustration AppUITests */,
 			);
@@ -258,12 +258,12 @@
 /* Begin PBXTargetDependency section */
 		2D6A6A0D301ABA6D00CB152D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D6A69FD301ABA6C00CB152D /* Illustration App */;
+			target = 2D6A69FD301ABA6C00CB152D /* App */;
 			targetProxy = 2D6A6A0C301ABA6D00CB152D /* PBXContainerItemProxy */;
 		};
 		2D6A6A17301ABA6D00CB152D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D6A69FD301ABA6C00CB152D /* Illustration App */;
+			target = 2D6A69FD301ABA6C00CB152D /* App */;
 			targetProxy = 2D6A6A16301ABA6D00CB152D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -407,7 +407,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lopsae.Illustration-App";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lopsae.trailing-closure.illustrations-app";
+				PRODUCT_MODULE_NAME = IllustrationsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -438,7 +439,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lopsae.Illustration-App";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lopsae.trailing-closure.illustrations-app";
+				PRODUCT_MODULE_NAME = IllustrationsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -533,7 +535,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2D6A69F9301ABA6C00CB152D /* Build configuration list for PBXProject "Illustration App" */ = {
+		2D6A69F9301ABA6C00CB152D /* Build configuration list for PBXProject "illustrations-app" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D6A6A1D301ABA6D00CB152D /* Debug */,
@@ -542,7 +544,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D6A6A1F301ABA6D00CB152D /* Build configuration list for PBXNativeTarget "Illustration App" */ = {
+		2D6A6A1F301ABA6D00CB152D /* Build configuration list for PBXNativeTarget "App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D6A6A20301ABA6D00CB152D /* Debug */,
