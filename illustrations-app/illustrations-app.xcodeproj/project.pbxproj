@@ -30,9 +30,9 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		2D6A6A00301ABA6C00CB152D /* Illustration App */ = {
+		2D6A6A00301ABA6C00CB152D /* sources */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Illustration App";
+			path = sources;
 			sourceTree = "<group>";
 		};
 		2D6A6A0E301ABA6D00CB152D /* Illustration AppTests */ = {
@@ -75,7 +75,7 @@
 		2D6A69F5301ABA6C00CB152D = {
 			isa = PBXGroup;
 			children = (
-				2D6A6A00301ABA6C00CB152D /* Illustration App */,
+				2D6A6A00301ABA6C00CB152D /* sources */,
 				2D6A6A0E301ABA6D00CB152D /* Illustration AppTests */,
 				2D6A6A18301ABA6D00CB152D /* Illustration AppUITests */,
 				2D6A69FF301ABA6C00CB152D /* Products */,
@@ -108,7 +108,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				2D6A6A00301ABA6C00CB152D /* Illustration App */,
+				2D6A6A00301ABA6C00CB152D /* sources */,
 			);
 			name = App;
 			packageProductDependencies = (
