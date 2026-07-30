@@ -8,7 +8,7 @@ import PreviewUtilities
 import SwiftUI
 
 
-// For "The Intricacies of glass circle buttons"
+// Drawing Board for The Intricacies of Circular Buttons.
 
 
 #Preview("DrawingBoard", traits: .docsIllustration) {
@@ -35,7 +35,7 @@ import SwiftUI
 
 extension DocumentationIllustration.Background {
 
-    public static let fadedMoltenHorizon: Self = .view(
+    public static let fadedMoltenHorizon: Self = .view {
         PrettyMesh.moltenHorizon
         .rotated()
         .applying(opacities: [
@@ -43,12 +43,12 @@ extension DocumentationIllustration.Background {
             .yellow: 0.3,
             .orange: 0.5
         ])
-    )
+    }
 
 }
 
 
-#Preview("Experiments", traits: .background(MeshGradient.wallOfIceAndFire)) {
+#Preview("Experiments", traits: .background(PrettyMesh.wallOfIceAndFire)) {
     Button(
         "Glass Regular",
         systemImage: "envelope.badge.shield.half.filled",
@@ -157,7 +157,7 @@ struct GlassCirclePaddingStyle: ButtonStyle {
     }
 }
 
-#Preview("GlassCirclePaddingStyle", traits: .background(MeshGradient.wallOfIceAndFire.opacity(0.5))) {
+#Preview("GlassCirclePaddingStyle", traits: .background(PrettyMesh.wallOfIceAndFire.opacity(0.5))) {
     Button("Envelope", systemImage: "envelope.badge.shield.half.filled", action: {})
     .buttonStyle(GlassCirclePaddingStyle())
 
@@ -193,7 +193,7 @@ struct GlassCircleFramedStyle: ButtonStyle {
 }
 
 
-#Preview("GlassCircleFramedStyle", traits: .background(MeshGradient.wallOfIceAndFire.opacity(0.5))) {
+#Preview("GlassCircleFramedStyle", traits: .background(PrettyMesh.wallOfIceAndFire.opacity(0.5))) {
     HStack(alignment: .firstTextBaseline) {
         Button("Star", systemImage: "star", action: {})
             .buttonStyle(GlassCircleFramedStyle())
@@ -226,7 +226,7 @@ struct GlassCircleBaselinedStyle: ButtonStyle {
 }
 
 
-#Preview("GlassCircleBaselinedStyle", traits: .background(MeshGradient.wallOfIceAndFire.opacity(0.5))) {
+#Preview("GlassCircleBaselinedStyle", traits: .background(PrettyMesh.wallOfIceAndFire.opacity(0.5))) {
     HStack(alignment: .firstTextBaseline) {
         Button("Star", systemImage: "star", action: {})
             .buttonStyle(GlassCircleBaselinedStyle())
@@ -255,7 +255,7 @@ struct BaselineFramed: LabelStyle {
     }
 }
 
-#Preview("BaselineFramed", traits: .background(MeshGradient.wallOfIceAndFire.opacity(0.5))) {
+#Preview("BaselineFramed", traits: .background(PrettyMesh.wallOfIceAndFire.opacity(0.5))) {
     VStack {
         Label("Title 1", systemImage: "star")
             .glassEffect()
@@ -277,7 +277,7 @@ struct GlassCircleLabelBaselineStyle: ButtonStyle {
 }
 
 
-#Preview("GlassCircleLabelBaselineStyle", traits: .background(MeshGradient.wallOfIceAndFire.opacity(0.5))) {
+#Preview("GlassCircleLabelBaselineStyle", traits: .background(PrettyMesh.wallOfIceAndFire.opacity(0.5))) {
     @Previewable @Namespace var namespace
     HStack(alignment: .firstTextBaseline) {
         Button("Star", systemImage: "star", action: {})
@@ -323,7 +323,7 @@ struct GlassShapeLabelBaselineStyle: ButtonStyle {
 }
 
 
-#Preview("GlassShapeLabelBaselineStyle", traits: .background(MeshGradient.wallOfIceAndFire.opacity(0.5))) {
+#Preview("GlassShapeLabelBaselineStyle", traits: .background(PrettyMesh.wallOfIceAndFire.opacity(0.5))) {
     @Previewable @Namespace var namespace
     HStack(alignment: .firstTextBaseline) {
         Button("Star", systemImage: "star", action: {})
