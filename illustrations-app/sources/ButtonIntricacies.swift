@@ -33,21 +33,6 @@ import SwiftUI
 }
 
 
-extension DocumentationIllustration.Background {
-
-    public static let fadedMoltenHorizon: Self = .view {
-        PrettyMesh.moltenHorizon
-        .rotated()
-        .applying(opacities: [
-            .red:    0.8,
-            .yellow: 0.3,
-            .orange: 0.5
-        ])
-    }
-
-}
-
-
 #Preview("Experiments", traits: .background(PrettyMesh.wallOfIceAndFire)) {
     Button(
         "Glass Regular",
