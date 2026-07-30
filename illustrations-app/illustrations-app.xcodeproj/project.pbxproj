@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		2D6A6A4A301B0A4700CB152D /* PreviewUtilities in Frameworks */ = {isa = PBXBuildFile; productRef = 2D6A6A49301B0A4700CB152D /* PreviewUtilities */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		2D6A6A0C301ABA6D00CB152D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -39,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D6A6A4A301B0A4700CB152D /* PreviewUtilities in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +95,7 @@
 			);
 			name = App;
 			packageProductDependencies = (
+				2D6A6A49301B0A4700CB152D /* PreviewUtilities */,
 			);
 			productName = "Illustration App";
 			productReference = 2D6A69FE301ABA6C00CB152D /* App.app */;
@@ -146,6 +152,9 @@
 			);
 			mainGroup = 2D6A69F5301ABA6C00CB152D;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				2D6A6A48301B0A4700CB152D /* XCRemoteSwiftPackageReference "preview-utilities" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 2D6A69FF301ABA6C00CB152D /* Products */;
 			projectDirPath = "";
@@ -456,6 +465,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2D6A6A48301B0A4700CB152D /* XCRemoteSwiftPackageReference "preview-utilities" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lopsae/preview-utilities.git";
+			requirement = {
+				branch = "feature/debug-alignment-guide-modifier";
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2D6A6A49301B0A4700CB152D /* PreviewUtilities */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2D6A6A48301B0A4700CB152D /* XCRemoteSwiftPackageReference "preview-utilities" */;
+			productName = PreviewUtilities;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2D6A69F6301ABA6C00CB152D /* Project object */;
 }
