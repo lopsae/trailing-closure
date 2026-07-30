@@ -1,9 +1,10 @@
 //
-//  Illustration App
+//  Trailing Closure Illustration App
 //  Created by Maic Lopez Saenz.
 //
 
 
+import PreviewUtilities
 import SwiftUI
 
 
@@ -18,9 +19,6 @@ struct IllustrationsApp: App {
 struct ContentView: View {
     var body: some View {
         VStack {
-            Image(systemName: "curlybraces")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
             Text("Illustrations")
             Text("for")
                 .font(.caption.italic())
@@ -30,12 +28,17 @@ struct ContentView: View {
             let closure = Text("{closure}")
                 .font(.title.monospaced())
             Text("\(trailing) \(closure)")
+
+            DashedDivider()
+
+            Image(systemName: "curlybraces")
+                .imageScale(.large)
         }
         .padding()
     }
 }
 
+
 #Preview {
     ContentView()
 }
-
