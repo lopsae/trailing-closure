@@ -33,6 +33,27 @@ import SwiftUI
 }
 
 
+#Preview("Symbols", traits: .docsIllustration) {
+    DocumentationIllustration(sizing: .regular) {
+        HStack {
+            Image(systemName: "hourglass.badge.eye")
+            .debugAlignmentGuide(.centerFirstTextBaseline)
+            .border(.mint)
+
+            Image(systemName: "envelope.badge.shield.half.filled")
+            .debugAlignmentGuide(.centerFirstTextBaseline)
+            .border(.mint)
+
+            Image(systemName: "envelope.badge.shield.half.filled.fill")
+            .debugAlignmentGuide(.centerFirstTextBaseline)
+            .border(.mint)
+        }
+        .font(.largeTitle)
+        .padding(.horizontal)
+    }
+}
+
+
 #Preview("Experiments", traits: .background(PrettyMesh.wallOfIceAndFire)) {
     Button(
         "Glass Regular",
