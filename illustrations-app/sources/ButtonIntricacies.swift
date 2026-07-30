@@ -44,7 +44,7 @@ import SwiftUI
             .debugAlignmentGuide(.centerFirstTextBaseline)
             .border(.mint)
 
-            Image(systemName: "envelope.badge.shield.half.filled.fill")
+            Image(systemName: "lock.open.trianglebadge.exclamationmark.fill")
             .debugAlignmentGuide(.centerFirstTextBaseline)
             .border(.mint)
         }
