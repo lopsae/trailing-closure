@@ -1,16 +1,17 @@
 //
-//  TrailingClosureIllustrations
+//  Trailing Closure Illustration App
 //  Created by Maic Lopez Saenz.
 //
 
 
-import TrailingClosureIllustrations
+@testable import IllustrationsApp
 
 import PreviewUtilities
 import SwiftUI
 import Testing
 
 
+@MainActor
 struct IntricaciesOfCircularButtons {
 
     let storage: IllustrationStorage
@@ -18,7 +19,7 @@ struct IntricaciesOfCircularButtons {
     init() throws {
         self.storage = try .init(
             filePath: #filePath,
-            droppingComponents: 2, // filename, renders
+            droppingComponents: 3, // filename, illustrations, illustration-app
             appendingComponents: ["illustrations", "intricacies-of-circular-buttons"]
         ) {
             // onImageStored
@@ -55,7 +56,7 @@ struct IntricaciesOfCircularButtons {
 
 
     @Test func existingModifiers() throws {
-        try storage.renderAndStore("existing-modifiers") {
+        try storage.renderAndStore("existing-modifiers", strategy: .windowHierarchy) {
             DocumentationIllustration(sizing: .regular, background: .fadedMoltenHorizon) {
                 HStack {
                     let mountainsButton = Button("Mountains", systemImage: "mountain.2", action: {})
