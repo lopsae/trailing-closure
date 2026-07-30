@@ -60,10 +60,6 @@ struct IntricaciesOfCircularButtons {
             DocumentationIllustration(sizing: .regular, background: .fadedMoltenHorizon) {
                 HStack {
                     let mountainsButton = Button("Mountains", systemImage: "mountain.2", action: {})
-
-                    mountainsButton
-                    .buttonStyle(.bordered) // FIXME: Seems like this cannot capture glass controls!
-
                     mountainsButton
                     .labelStyle(.iconOnly)
                     .buttonStyle(.glass)
@@ -73,6 +69,34 @@ struct IntricaciesOfCircularButtons {
                     .buttonBorderShape(.circle)
                     .buttonStyle(.glass)
                 }
+                .font(.title)
+                .padding(.horizontal)
+            }
+        }
+    }
+
+
+    @Test func existingModifiersWithBorders() throws {
+        try storage.renderAndStore("existing-modifiers-with-borders", strategy: .windowHierarchy) {
+            DocumentationIllustration(sizing: .regular, background: .fadedMoltenHorizon) {
+                HStack {
+                    let mountainsButton = Button(action: {}) {
+                        Label { Text("Mountains") }
+                        icon: { Image(systemName: "mountain.2").border(.mint) }
+                    }
+
+                    mountainsButton
+                    .labelStyle(.iconOnly)
+                    .buttonStyle(.glass)
+                    .border(.pink)
+
+                    mountainsButton
+                    .labelStyle(.iconOnly)
+                    .buttonBorderShape(.circle)
+                    .buttonStyle(.glass)
+                    .border(.pink)
+                }
+                .font(.title)
                 .padding(.horizontal)
             }
         }
