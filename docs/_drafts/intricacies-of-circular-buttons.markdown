@@ -9,7 +9,7 @@ toc: true
 media_subpath: /assets/img/intricacies-of-circular-buttons/
 description: >
   Since the release of the Glass appearance in Apple platforms, circular
-  buttons have become commonplace specially in toolbars. However, creating a
+  buttons have become commonplace toolbars. However, creating a
   circular button anywhere else is not entirely straighforward.
 image:
   path: header@3x.png
@@ -18,15 +18,69 @@ image:
 Toolbar Buttons
 ---------------
 
-> TODO: Add links to pieces.
+Since iOS 26, buttons placed in the toolbars get automatically a circular glass and icon-only appearance. Outside of the toolbars, the platform APIs seem to provide all the pieces necessary to make similar circular buttons: a [`glass` button style](https://developer.apple.com/documentation/swiftui/primitivebuttonstyle/glass), the [`iconOnly` label style](https://developer.apple.com/documentation/swiftui/labelstyle/icononly), the [`circle` button border shape](https://developer.apple.com/documentation/swiftui/buttonbordershape/circle), and alternatively the [`glassEffect` modifier with a shape](https://developer.apple.com/documentation/swiftui/view/glasseffect(_:in:)). Upon using what seems the obvious combinations, the results are end up fairly different from a usable circular button:
 
-Since iOS 26 buttons placed in the toolbars get automatically a circular glass and icon-only appearance. Outside of the toolbars, the platform APIs seem to provide all the pieces necessary to make similar circular buttons: a glass button style, the icon-only label style, the circle button shape, and alternatively the glass modifier with a shape. Upon using what seems the obvious combinations, the results are end up fairly different for a usable circular button:
+```swift
+HStack {
+    let mountainsButton = Button("Mountains", systemImage: "mountain.2", action: {})
 
-> SNIPPET existing-modifiers
+    mountainsButton
+    .labelStyle(.iconOnly)
+    .buttonBorderShape(.circle)
+    .buttonStyle(.glass)
 
-Using some borders around the `Image` makes aparent that the size of the shape used for both buttons depends on the size of the image itself, with the shape fitting inside the space occupied by the button. This works well for the `Capsule` shape, the default for bordered buttons, but ends up too small for the `Circle` shape:
+    mountainsButton
+    .labelStyle(.iconOnly)
+    .glassEffect(.regular.interactive(), in: .circle)
+}
+.font(.title)
+```
 
-> SNIPPET existing-modifiers-with-borders
+{% include color-scheme-img.md
+  alt="Example of button using label style, button border shape, and button style; and another button using glass effect."
+  name="existing-modifiers"
+%}
+
+-----
+
+Using some borders around the `Image` shows that the size of the shape used for both buttons depends on the size of the image itself, with the shape fitting inside the space occupied by the button. This works well for the `capsule` shape, the default for bordered buttons, but ends up too small for the `circle` shape:
+
+```swift
+HStack {
+    let mountainsButton = Button(action: {}) {
+        Label { Text("Mountains") }
+        icon: {
+            Image(systemName: "mountain.2")
+            .border(.mint.secondary, width: 4) // Frame the symbol image.
+        }
+    }
+
+    mountainsButton
+    .labelStyle(.iconOnly)
+    .buttonBorderShape(.capsule)
+    .buttonStyle(.glass)
+    .border(.pink) // Highlight frame.
+
+    mountainsButton
+    .labelStyle(.iconOnly)
+    .buttonBorderShape(.circle)
+    .buttonStyle(.glass)
+    .border(.pink) // Highlight frame.
+
+    mountainsButton
+    .labelStyle(.iconOnly)
+    .glassEffect(.regular.interactive(), in: .circle)
+    .border(.pink) // Highlight frame.
+}
+.font(.title)
+```
+
+{% include color-scheme-img.md
+  alt="Example of button using label style, button border shape, and button style; and another button using glass effect, both with a border around the symbol view."
+  name="existing-modifiers-with-borders"
+%}
+
+-----
 
 To properly use the `Circle` shape, the button needs to occupy the space of a square which gets filled by the shape. This modification could be done by framing the `Image` view through the `Button(_: label:)` constructor that receives a view for its label, however, for a more reusable approach this is a good case for making a specialized `ButtonStyle`:
 
