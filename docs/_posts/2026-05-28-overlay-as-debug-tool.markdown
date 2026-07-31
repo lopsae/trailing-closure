@@ -16,7 +16,7 @@ image:
 Debugging tools
 ---------------
 
-If you have spent any time working with SwiftUI, you have probably reached a situation where a view is laying out in an unexpected manner, some padding looks off, or the alignments are misbehaving. One of the most fundamental tools for adding a visual indicator to a specific view is the handy [`border`](https://developer.apple.com/documentation/swiftui/view/border(_:width:)) modifier, which will draw a border around any view, handy for outlining its actual frame:
+If you have spent any time working with SwiftUI, you have probably reached a situation where a view is laying out in an unexpected manner, some padding looks off, or the alignments are misbehaving. One of the most fundamental tools for adding a visual indicator to a specific view is the handy [`border`](https://developer.apple.com/documentation/swiftui/view/border(_:width:)) modifier, which draws a border around any view outlining its actual frame:
 
 ```swift
 HStack(spacing: .zero) {
@@ -328,9 +328,9 @@ Use it to quickly add on your previews (or runtime) a visual to asses the geomet
 
 <div class="colophon" markdown="block">
 
-The code examples in this article where compiled using `Swift 6.2` through the `Apple Swift version 6.3.3` compiler.
+The code examples in this article where compiled using `Swift 6.2`.
 
-Renderings using `iPhone 17 Pro Simulator` with `iOS 26.5`, through `Simulator 16.0`.
+Renderings using `iPhone 17 Pro Simulator` with `iOS 26.5`.
 
 Some examples use [`PreviewUtilities 0.4.0`](https://github.com/lopsae/preview-utilities/releases/tag/v0.4.0).
 
