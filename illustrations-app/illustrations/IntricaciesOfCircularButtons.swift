@@ -60,17 +60,17 @@ struct IntricaciesOfCircularButtons {
             DocumentationIllustration(sizing: .regular, background: .fadedMoltenHorizon) {
                 HStack {
                     let mountainsButton = Button("Mountains", systemImage: "mountain.2", action: {})
-                    mountainsButton
-                    .labelStyle(.iconOnly)
-                    .buttonStyle(.glass)
 
                     mountainsButton
                     .labelStyle(.iconOnly)
                     .buttonBorderShape(.circle)
                     .buttonStyle(.glass)
+
+                    mountainsButton
+                    .labelStyle(.iconOnly)
+                    .glassEffect(.regular.interactive(), in: .circle)
                 }
                 .font(.title)
-                .padding(.horizontal)
             }
         }
     }
@@ -82,22 +82,97 @@ struct IntricaciesOfCircularButtons {
                 HStack {
                     let mountainsButton = Button(action: {}) {
                         Label { Text("Mountains") }
-                        icon: { Image(systemName: "mountain.2").border(.mint) }
+                        icon: { Image(systemName: "mountain.2").border(.mint.secondary, width: 4) }
                     }
-
-                    mountainsButton
-                    .labelStyle(.iconOnly)
-                    .buttonStyle(.glass)
-                    .border(.pink)
 
                     mountainsButton
                     .labelStyle(.iconOnly)
                     .buttonBorderShape(.circle)
                     .buttonStyle(.glass)
                     .border(.pink)
+
+                    mountainsButton
+                    .labelStyle(.iconOnly)
+                    .glassEffect(.regular.interactive(), in: .circle)
+                    .border(.pink)
                 }
                 .font(.title)
-                .padding(.horizontal)
+            }
+        }
+    }
+
+
+    struct FramedButtonStyle: ButtonStyle {
+        let size: CGSize
+        func makeBody(configuration: Configuration) -> some View {
+            configuration.label
+            .labelStyle(.iconOnly)
+            .frame(width: size.width, height: size.height)
+        }
+    }
+
+    @Test func framedButtonStyle() throws {
+        try storage.renderAndStore("framed-button-style", strategy: .windowHierarchy) {
+            DocumentationIllustration(sizing: .regular, background: .fadedMoltenHorizon) {
+                HStack {
+                    let size = CGSize(width: 60, height: 60)
+                    Button("Leaf", systemImage: "leaf", action: {})
+                    .buttonStyle(FramedButtonStyle(size: size))
+                    .buttonBorderShape(.circle)
+
+                    Button("Leaf", systemImage: "leaf", action: {})
+                    .buttonStyle(FramedButtonStyle(size: size))
+                    .glassEffect(.regular.interactive(), in: .circle)
+                }
+                .font(.title)
+            }
+        }
+    }
+
+
+    struct GlassFramedButtonStyle: ButtonStyle {
+        let size: CGSize
+        func makeBody(configuration: Configuration) -> some View {
+            configuration.label
+            .labelStyle(.iconOnly)
+            .frame(width: size.width, height: size.height)
+            .glassEffect(.regular.interactive(), in: .circle)
+        }
+    }
+
+
+    @Test func glassFramedButtonStyle() throws {
+        try storage.renderAndStore("glass-framed-button-style", strategy: .windowHierarchy) {
+            DocumentationIllustration(sizing: .regular, background: .fadedMoltenHorizon) {
+                HStack {
+                    Button("Fish", systemImage: "fish", action: {})
+                    Button("Hourglass", systemImage: "hourglass.badge.eye", action: {})
+                    Button("Envelope", systemImage: "envelope.badge.shield.half.filled", action: {})
+                    Button("Lock", systemImage: "lock.open.trianglebadge.exclamationmark.fill", action: {})
+                }
+                .buttonStyle(GlassFramedButtonStyle(size: .init(width: 60, height: 60)))
+                .font(.title)
+            }
+        }
+    }
+
+
+    @Test func glassFramedButtonStyleAligned() throws {
+        try storage.renderAndStore("glass-framed-button-style-aligned", strategy: .windowHierarchy) {
+            DocumentationIllustration(sizing: .regular, background: .fadedMoltenHorizon) {
+                HStack(alignment: .firstTextBaseline) {
+                    let alignmentGuideRect = Rectangle().fill(.pink.secondary).frame(width: 260, height: 2)
+                    Button("Hourglass", systemImage: "hourglass.badge.eye", action: {})
+                    Button("Envelope", systemImage: "envelope.badge.shield.half.filled", action: {})
+                    Button("Lock", systemImage: "lock.open.trianglebadge.exclamationmark.fill", action: {})
+
+                    Button("Fish", systemImage: "fish", action: {})
+                    .overlay(alignment: .topTrailing) { alignmentGuideRect }
+                    .overlay(alignment: .trailingFirstTextBaseline) { alignmentGuideRect }
+                    .overlay(alignment: .bottomTrailing) { alignmentGuideRect }
+                }
+                .buttonStyle(GlassFramedButtonStyle(size: .init(width: 60, height: 60)))
+                .font(.title)
             }
         }
     }
