@@ -43,6 +43,7 @@ HStack {
 
 -----
 
+
 Using some borders around the `Image` shows that the size of the shape used for both buttons depends on the size of the image itself, with the shape fitting inside the space occupied by the button. This works well for the `capsule` shape, the default for bordered buttons, but ends up too small for the `circle` shape:
 
 ```swift
@@ -82,21 +83,102 @@ HStack {
 
 -----
 
-To properly use the `Circle` shape, the button needs to occupy the space of a square which gets filled by the shape. This modification could be done by framing the `Image` view through the `Button(_: label:)` constructor that receives a view for its label, however, for a more reusable approach this is a good case for making a specialized `ButtonStyle`:
 
-> SNIPPETS: FramedButtonStyle
+To properly use the `Circle` shape, the button needs to occupy a square to be filled by the shape. One approach could be to frame the `Image` view through the [`Button(action:label:)` constructor](https://developer.apple.com/documentation/swiftui/button/init(action:label:)) as in the example above. However, for a more reusable approach this is a good case for making a specialized [`ButtonStyle`](https://developer.apple.com/documentation/swiftui/buttonstyle) that sets up the button with the desired configuration in a single go:
 
-Note that to make this style work, the glass effect is applied direcly to the button. The `.buttonBorderShape` modifier stops working because the style is not making use of `ButtonBorderShape`, an issue that will be revisited later:
+```swift
+struct FramedButtonStyle: ButtonStyle {
+    let length: CGFloat
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+        .labelStyle(.iconOnly)
+        .frame(width: length, height: length)
+    }
+}
+```
 
-> SNIPPET: framed-button-style
+Note that to make this style work, the glass effect is applied direcly to the button. The `buttonBorderShape` modifier stops working because the style is not making use of `ButtonBorderShape`, an issue that will be revisited later:
+
+```swift
+HStack {
+    Button("Leaf", systemImage: "leaf", action: {})
+    .buttonStyle(FramedButtonStyle(length: 60))
+    .buttonBorderShape(.circle)  // Does not work with this style!
+
+    Button("Leaf", systemImage: "leaf", action: {})
+    .buttonStyle(FramedButtonStyle(length: 60))
+    .glassEffect(.regular.interactive(), in: .circle)
+}
+.font(.title)
+```
+
+{% include color-scheme-img.md
+  alt="Two buttons using a custom style, the first one with no border shape, the second with a glass circle shape around it."
+  name="framed-button-style"
+%}
+
+-----
+
 
 This is starting to look better. The glass effect can also be applied within the button style so that all affected buttons use the same effect. This approach seems like it could be enough until the style is applied to symbols with more odd shapes:
 
-> SNIPPET:
+```swift
+struct GlassFramedButtonStyle: ButtonStyle {
+    let length: CGFloat
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+        .labelStyle(.iconOnly)
+        .frame(width: length, height: length)
+        .glassEffect(.regular.interactive(), in: .circle)
+    }
+}
+```
 
-It might be hard to notice at first, but all the symbols with badges look slightly off. Aligning all buttons to `firstBaseline` and adding some overlays to draw the alignment guides can show that glass circle is being draw in sliglty different positions:
+```swift
+HStack {
+    Button("Fish", systemImage: "fish", action: {})
+    Button("Hourglass", systemImage: "hourglass.badge.eye", action: {})
+    Button("Envelope", systemImage: "envelope.badge.shield.half.filled", action: {})
+    Button("Lock", systemImage: "lock.open.trianglebadge.exclamationmark.fill", action: {})
+}
+.buttonStyle(GlassFramedButtonStyle(length: 60))
+.font(.title)
+```
 
-> SNIPPET:
+{% include color-scheme-img.md
+  alt="Four buttons with a custom style that applies a glass circle shape around each button."
+  name="glass-framed-button-style"
+%}
+
+-----
+
+
+Upon close inspection note that all the symbols with badges look slightly off-center vertically. Aligning all buttons to `firstBaseline` (and adding some overlays to draw the alignment guides) can show that the glass circles are drawn in sliglty different positions:
+
+```swift
+HStack(alignment: .firstTextBaseline) {
+    Button("Hourglass", systemImage: "hourglass.badge.eye", action: {})
+    Button("Envelope", systemImage: "envelope.badge.shield.half.filled", action: {})
+    Button("Lock", systemImage: "lock.open.trianglebadge.exclamationmark.fill", action: {})
+
+    let alignmentGuideRect = Rectangle().fill(.pink.secondary).frame(width: 260, height: 2)
+    Button("Fish", systemImage: "fish", action: {})
+    // Alignment guide visualization.
+    .overlay(alignment: .topTrailing) { alignmentGuideRect }
+    .overlay(alignment: .trailingFirstTextBaseline) { alignmentGuideRect }
+    .overlay(alignment: .bottomTrailing) { alignmentGuideRect }
+}
+.buttonStyle(GlassFramedButtonStyle(length: 60))
+.font(.title)
+```
+
+{% include color-scheme-img.md
+  alt="Four buttons with a custom style that applies a glass circle shape around each button, and overlaid with horizontal lines to show the top, baseline, and bottom alignment guides."
+  name="glass-framed-button-style-aligned"
+%}
+
+-----
+
 
 This is one detail about buttons that I find particularly well done: All system symbols contain a text baseline alignment guide appropriate for the symbol, and buttons (and `Text` when presenting inline symbols) use it to align the symbol with the text.
 
