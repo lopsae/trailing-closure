@@ -84,7 +84,7 @@ struct IntricaciesOfCircularButtons {
                         Label { Text("Mountains") }
                         icon: {
                             Image(systemName: "mountain.2")
-                            .border(.mint.secondary, width: 4) // Frame the symbol image.
+                            .border(.mint.secondary, width: 4) // Outline symbol frame.
                         }
                     }
 
@@ -92,18 +92,18 @@ struct IntricaciesOfCircularButtons {
                     .labelStyle(.iconOnly)
                     .buttonBorderShape(.capsule)
                     .buttonStyle(.glass)
-                    .border(.pink) // Highlight frame.
+                    .border(.pink) // Outline button frame.
 
                     mountainsButton
                     .labelStyle(.iconOnly)
                     .buttonBorderShape(.circle)
                     .buttonStyle(.glass)
-                    .border(.pink) // Highlight frame.
+                    .border(.pink) // Outline button frame.
 
                     mountainsButton
                     .labelStyle(.iconOnly)
                     .glassEffect(.regular.interactive(), in: .circle)
-                    .border(.pink) // Highlight frame.
+                    .border(.pink) // Outline button frame.
                 }
                 .font(.title)
             } // Illustration
@@ -127,6 +127,7 @@ struct IntricaciesOfCircularButtons {
                     Button("Leaf", systemImage: "leaf", action: {})
                     .buttonStyle(FramedButtonStyle(length: 60))
                     .buttonBorderShape(.circle)  // Does not work with this style!
+                    .border(.pink) // But the button frame is still a square.
 
                     Button("Leaf", systemImage: "leaf", action: {})
                     .buttonStyle(FramedButtonStyle(length: 60))
@@ -154,8 +155,8 @@ struct IntricaciesOfCircularButtons {
             DocumentationIllustration(sizing: .regular, background: .fadedMoltenHorizon) {
                 HStack {
                     Button("Fish", systemImage: "fish", action: {})
-                    Button("Hourglass", systemImage: "hourglass.badge.eye", action: {})
                     Button("Envelope", systemImage: "envelope.badge.shield.half.filled", action: {})
+                    Button("Car", systemImage: "car.badge.gearshape", action: {})
                     Button("Lock", systemImage: "lock.open.trianglebadge.exclamationmark.fill", action: {})
                 }
                 .buttonStyle(GlassFramedButtonStyle(length: 60))
@@ -169,8 +170,8 @@ struct IntricaciesOfCircularButtons {
         try storage.renderAndStore("glass-framed-button-style-aligned", strategy: .windowHierarchy) {
             DocumentationIllustration(sizing: .regular, background: .fadedMoltenHorizon) {
                 HStack(alignment: .firstTextBaseline) {
-                    Button("Hourglass", systemImage: "hourglass.badge.eye", action: {})
                     Button("Envelope", systemImage: "envelope.badge.shield.half.filled", action: {})
+                    Button("Car", systemImage: "car.badge.gearshape", action: {})
                     Button("Lock", systemImage: "lock.open.trianglebadge.exclamationmark.fill", action: {})
 
                     let alignmentGuideRect = Rectangle().fill(.pink.secondary).frame(width: 260, height: 2)
