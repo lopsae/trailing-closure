@@ -4,7 +4,7 @@ layout: post
 title: "The Intricacies of Perfectly Circular Buttons"
 categories: [SwiftUI]
 tags: [swiftui, buttons]
-permalink: /:year/:month/:day/:slug
+permalink: /:year/:slug
 toc: true
 media_subpath: /assets/img/intricacies-of-circular-buttons/
 description: >
@@ -15,10 +15,10 @@ image:
   path: header@3x.png
 ---
 
-Toolbar Buttons
+Framing Buttons
 ---------------
 
-Since iOS 26, buttons placed in the toolbars get automatically a circular glass and icon-only appearance. Outside of the toolbars, the platform APIs seem to provide all the pieces necessary to make similar circular buttons: a [`glass` button style](https://developer.apple.com/documentation/swiftui/primitivebuttonstyle/glass), the [`iconOnly` label style](https://developer.apple.com/documentation/swiftui/labelstyle/icononly), the [`circle` button border shape](https://developer.apple.com/documentation/swiftui/buttonbordershape/circle), and alternatively the [`glassEffect` modifier with a shape](https://developer.apple.com/documentation/swiftui/view/glasseffect(_:in:)). Upon using what seems the obvious combinations, the results are end up fairly different from a usable circular button:
+Since iOS 26, buttons placed in the toolbars get automatically a circular glass and icon-only appearance. Outside of the toolbars, the platform APIs seem to provide all the pieces necessary to make similar circular buttons: a [`glass` button style](https://developer.apple.com/documentation/swiftui/primitivebuttonstyle/glass), the [`iconOnly` label style](https://developer.apple.com/documentation/swiftui/labelstyle/icononly), the [`circle` button border shape](https://developer.apple.com/documentation/swiftui/buttonbordershape/circle), and alternatively the [`glassEffect` modifier with a shape](https://developer.apple.com/documentation/swiftui/view/glasseffect(_:in:)). Upon using what seems the obvious combinations, the results end up far from a usable circular button:
 
 ```swift
 HStack {
@@ -52,7 +52,7 @@ HStack {
         Label { Text("Mountains") }
         icon: {
             Image(systemName: "mountain.2")
-            .border(.mint.secondary, width: 4) // Frame the symbol image.
+            .border(.mint.secondary, width: 4) // Outline symbol frame.
         }
     }
 
@@ -60,18 +60,18 @@ HStack {
     .labelStyle(.iconOnly)
     .buttonBorderShape(.capsule)
     .buttonStyle(.glass)
-    .border(.pink) // Highlight frame.
+    .border(.pink) // Outline button frame.
 
     mountainsButton
     .labelStyle(.iconOnly)
     .buttonBorderShape(.circle)
     .buttonStyle(.glass)
-    .border(.pink) // Highlight frame.
+    .border(.pink) // Outline button frame.
 
     mountainsButton
     .labelStyle(.iconOnly)
     .glassEffect(.regular.interactive(), in: .circle)
-    .border(.pink) // Highlight frame.
+    .border(.pink) // Outline button frame.
 }
 .font(.title)
 ```
@@ -84,7 +84,7 @@ HStack {
 -----
 
 
-To properly use the `Circle` shape, the button needs to occupy a square to be filled by the shape. One approach could be to frame the `Image` view through the [`Button(action:label:)` constructor](https://developer.apple.com/documentation/swiftui/button/init(action:label:)) as in the example above. However, for a more reusable approach this is a good case for making a specialized [`ButtonStyle`](https://developer.apple.com/documentation/swiftui/buttonstyle) that sets up the button with the desired configuration in a single go:
+To properly use the `circle` shape, the button size needs to be a square, which is then fully filled by the circle. One approach could be to frame the `Image` view through the [`Button(action:label:)` constructor](https://developer.apple.com/documentation/swiftui/button/init(action:label:)) as in the example above. However, for a more reusable approach this is a good case for making a [`ButtonStyle`](https://developer.apple.com/documentation/swiftui/buttonstyle) that sets up the button with the desired configuration in a single go:
 
 ```swift
 struct FramedButtonStyle: ButtonStyle {
@@ -97,13 +97,14 @@ struct FramedButtonStyle: ButtonStyle {
 }
 ```
 
-Note that to make this style work, the glass effect is applied direcly to the button. The `buttonBorderShape` modifier stops working because the style is not making use of `ButtonBorderShape`, an issue that will be revisited later:
+Note that to make this style work, the glass effect is applied direcly to the button. The `buttonBorderShape` modifier stops working because the style is not making use of `ButtonBorderShape` (an issue that will be revisited later) but the button still takes up a square that is properly filled by the glass circle:
 
 ```swift
 HStack {
     Button("Leaf", systemImage: "leaf", action: {})
     .buttonStyle(FramedButtonStyle(length: 60))
     .buttonBorderShape(.circle)  // Does not work with this style!
+    .border(.pink) // But the button frame is still a square.
 
     Button("Leaf", systemImage: "leaf", action: {})
     .buttonStyle(FramedButtonStyle(length: 60))
@@ -120,7 +121,7 @@ HStack {
 -----
 
 
-This is starting to look better. The glass effect can also be applied within the button style so that all affected buttons use the same effect. This approach seems like it could be enough until the style is applied to symbols with more odd shapes:
+This is starting to look better! The glass effect can also be applied within the button style so that all affected buttons use the same effect. This approach seems like it could be enough until the style is applied to symbols with more odd shapes:
 
 ```swift
 struct GlassFramedButtonStyle: ButtonStyle {
@@ -137,8 +138,8 @@ struct GlassFramedButtonStyle: ButtonStyle {
 ```swift
 HStack {
     Button("Fish", systemImage: "fish", action: {})
-    Button("Hourglass", systemImage: "hourglass.badge.eye", action: {})
     Button("Envelope", systemImage: "envelope.badge.shield.half.filled", action: {})
+    Button("Car", systemImage: "car.badge.gearshape", action: {})
     Button("Lock", systemImage: "lock.open.trianglebadge.exclamationmark.fill", action: {})
 }
 .buttonStyle(GlassFramedButtonStyle(length: 60))
@@ -157,8 +158,8 @@ Upon close inspection note that all the symbols with badges look slightly off-ce
 
 ```swift
 HStack(alignment: .firstTextBaseline) {
-    Button("Hourglass", systemImage: "hourglass.badge.eye", action: {})
     Button("Envelope", systemImage: "envelope.badge.shield.half.filled", action: {})
+    Button("Car", systemImage: "car.badge.gearshape", action: {})
     Button("Lock", systemImage: "lock.open.trianglebadge.exclamationmark.fill", action: {})
 
     let alignmentGuideRect = Rectangle().fill(.pink.secondary).frame(width: 260, height: 2)
