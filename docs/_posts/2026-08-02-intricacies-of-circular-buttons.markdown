@@ -1,6 +1,6 @@
 ---
 layout: post
-# date: 2026-05-28 14:30:00 -0700
+date: 2026-08-02 1:30:00 -0700
 title: "The Intricacies of Perfectly Circular Buttons"
 categories: [SwiftUI]
 tags: [swiftui, buttons, overlay, alignments]
@@ -9,7 +9,7 @@ toc: true
 media_subpath: /assets/img/intricacies-of-circular-buttons/
 description: >
   Since the release of the Glass appearance in Apple platforms, circular
-  buttons have become commonplace toolbars. However, creating a
+  buttons have become commonplace in toolbars. However, creating a
   circular button anywhere else is not entirely straighforward.
 image:
   path: header@3x.png
