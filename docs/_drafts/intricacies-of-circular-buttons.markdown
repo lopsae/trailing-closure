@@ -148,7 +148,7 @@ HStack {
 ```
 
 {% include color-scheme-img.md
-  alt="Four buttons with a custom style that applies a glass circle shape around each button."
+  alt="Five buttons with a custom style that applies a glass circle shape around each button."
   name="glass-framed-button-style"
 %}
 
@@ -191,7 +191,7 @@ HStack(alignment: .firstTextBaseline) {
 ```
 
 {% include color-scheme-img.md
-  alt="Four buttons with a custom style that applies a glass circle shape around each button, and overlaid with horizontal lines to show the top, baseline, and bottom alignment guides."
+  alt="Five buttons with a custom style that applies a glass circle shape around each button, and overlaid with horizontal lines to show the top, baseline, and bottom alignment guides. The circle shape of each button is slightly off vertically."
   name="glass-framed-button-style-aligned"
 %}
 
@@ -327,7 +327,7 @@ HStack(alignment: .firstTextBaseline, spacing: 20) {
     }
     .border(.blue.secondary, width: 2)
 }
-.font(.title)
+.font(.largeTitle)
 ```
 
 Even if each symbol has different size (in green), the size used for layout is that of the `circle` symbol (in blue):
@@ -344,16 +344,48 @@ Baseline Button Style
 ---------------------
 
 
+Having figured out how to properly position the symbol in the center of another frame, this can be applied to an improved button style that now shows any symbol centered through its baseline:
+
+```swift
+struct GlassBaselinedStyle: ButtonStyle {
+    let length: CGFloat
+    func makeBody(configuration: Configuration) -> some View {
+        Image(systemName: "circle")
+        .hidden() // The circle symbols is never visible, but its layout size remains.
+        .overlay(alignment: .centerFirstTextBaseline) {
+            configuration.label
+            .labelStyle(.iconOnly)
+        }
+        .frame(width: length, height: length)
+        .glassEffect(.regular.interactive(), in: .circle)
+    }
+}
+```
+
+```swift
+HStack(alignment: .firstTextBaseline) {
+    Button("Envelope",  systemImage: "envelope.badge.shield.half.filled", action: {})
+    Button("Hourglass", systemImage: "hourglass.badge.plus", action: {})
+
+    Button("Fish", systemImage: "fish", action: {})
+    .drawAlignmentGuide(.top, length: 360)
+    .drawAlignmentGuide(.firstTextBaseline, length: 360)
+    .drawAlignmentGuide(.bottom, length: 360)
+
+    Button("Car",  systemImage: "car.badge.gearshape", action: {})
+    Button("Lock", systemImage: "lock.open.trianglebadge.exclamationmark.fill", action: {})
+}
+.buttonStyle(GlassBaselinedStyle(length: 60))
+.font(.title)
+```
 
 
+{% include color-scheme-img.md
+  alt="Five buttons with a custom style that applies a glass circle shape around each button, and overlaid with horizontal lines to show the top, baseline, and bottom alignment guides. The circle shape of each button is aligned perfectly between all buttons."
+  name="glass-baselined-button-style-aligned"
+%}
 
----
-
-
-Colophon
-----------
-
-The code examples in this article use Swift X and are rendered using the iPhone 17 Pro simulator.
+-----
 
 
 -----
