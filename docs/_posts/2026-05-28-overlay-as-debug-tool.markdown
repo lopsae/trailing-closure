@@ -328,7 +328,7 @@ Use it to quickly add on your previews (or runtime) a visual to asses the geomet
 
 <div class="colophon" markdown="block">
 
-The code examples in this article where compiled using `Swift 6.2`.
+The code examples in this article were compiled using `Swift 6.2`.
 
 Renderings using `iPhone 17 Pro Simulator` with `iOS 26.5`.
 

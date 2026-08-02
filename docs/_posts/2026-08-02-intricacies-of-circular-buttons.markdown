@@ -10,7 +10,7 @@ media_subpath: /assets/img/intricacies-of-circular-buttons/
 description: >
   Since the release of the Glass appearance in Apple platforms, circular
   buttons have become commonplace in toolbars. However, creating a
-  circular button anywhere else is not entirely straighforward.
+  circular button anywhere else is not entirely straightforward.
 image:
   path: header@3x.png
 ---
@@ -18,7 +18,7 @@ image:
 Framing Buttons
 ---------------
 
-Since iOS 26, buttons placed in the toolbars get automatically a circular glass and icon-only appearance. Outside of the toolbars, the platform APIs seem to provide all the pieces necessary to make similar circular buttons: a [`glass` button style](https://developer.apple.com/documentation/swiftui/primitivebuttonstyle/glass), the [`iconOnly` label style](https://developer.apple.com/documentation/swiftui/labelstyle/icononly), the [`circle` button border shape](https://developer.apple.com/documentation/swiftui/buttonbordershape/circle), and alternatively the [`glassEffect` modifier with a shape](https://developer.apple.com/documentation/swiftui/view/glasseffect(_:in:)). Upon using what seems the obvious combinations, the results end up far from a usable circular button:
+Since iOS 26, buttons placed in the toolbars automatically get a circular glass and icon-only appearance. Outside of the toolbars, the platform APIs seem to provide all the pieces necessary to make similar circular buttons: a [`glass` button style](https://developer.apple.com/documentation/swiftui/primitivebuttonstyle/glass), the [`iconOnly` label style](https://developer.apple.com/documentation/swiftui/labelstyle/icononly), the [`circle` button border shape](https://developer.apple.com/documentation/swiftui/buttonbordershape/circle), and alternatively the [`glassEffect` modifier with a shape](https://developer.apple.com/documentation/swiftui/view/glasseffect(_:in:)). Upon using what seem like the obvious combinations, the results end up far from a usable circular button:
 
 ```swift
 HStack {
@@ -84,7 +84,7 @@ HStack {
 -----
 
 
-To properly use the `circle` shape, the button size needs to be a square, which is then fully filled by the circle. One approach could be to frame the `Image` view through the [`Button(action:label:)` constructor](https://developer.apple.com/documentation/swiftui/button/init(action:label:)) as in the example above. However, for a more reusable approach this is a good case for making a [`ButtonStyle`](https://developer.apple.com/documentation/swiftui/buttonstyle) that sets up the button with the desired configuration in a single go:
+To properly use the `circle` shape, the button size needs to be a square, which is then fully filled by the circle. One approach could be to frame the `Image` view through the [`Button(action:label:)` constructor](https://developer.apple.com/documentation/swiftui/button/init(action:label:)) as in the example above. However, for a more reusable approach, this is a good case for making a [`ButtonStyle`](https://developer.apple.com/documentation/swiftui/buttonstyle) that sets up the button with the desired configuration in a single go:
 
 ```swift
 struct FramedButtonStyle: ButtonStyle {
@@ -97,7 +97,7 @@ struct FramedButtonStyle: ButtonStyle {
 }
 ```
 
-Note that to make this style work, the glass effect is applied direcly to the button. The `buttonBorderShape` modifier stops working because the style is not making use of `ButtonBorderShape` (an issue that will be revisited later) but the button still takes up a square that is properly filled by the glass circle:
+Note that to make this style work, the glass effect is applied directly to the button. The `buttonBorderShape` modifier stops working because the style is not making use of `ButtonBorderShape` (an issue that will be revisited later) but the button still takes up a square that is properly filled by the glass circle:
 
 ```swift
 HStack {
@@ -155,7 +155,7 @@ HStack {
 -----
 
 
-To help visualize the following examples, lets define a handy `View` extension function to draw an specific alignment guide:
+To help visualize the following examples, let's define a handy `View` extension function to draw a specific alignment guide:
 
 ```swift
 private extension View {
@@ -171,7 +171,7 @@ private extension View {
 ```
 
 
-Back to the circle buttons, upon close inspection note that all the symbols with badges look slightly off-center vertically. Aligning all buttons to `firstBaseline` (and drawing the alignment guides) can show that the glass circles are drawn in sliglty different positions:
+Back to the circle buttons, upon close inspection note that all the symbols with badges look slightly off-center vertically. Aligning all buttons to `firstTextBaseline` (and drawing the alignment guides) can show that the glass circles are drawn in slightly different positions:
 
 ```swift
 HStack(alignment: .firstTextBaseline) {
@@ -201,7 +201,7 @@ HStack(alignment: .firstTextBaseline) {
 A Diversion: Inline Symbol Alignment
 ------------------------------------
 
-A detail about symbols and buttons that I find particularly well done: All system and custom symbols are defined around guidelines for the baseline and cap height of each font weigth:
+A detail about symbols and buttons that I find particularly well done: All system and custom symbols are defined around guidelines for the baseline and cap height of each font weight:
 
 ![Example of the shell symbol in a grid of different font sizes and weights.](fossil-shell-export-example@2x.png){: width="600" }
 _Part of the export file for the `fossil.shell` symbol._
@@ -233,7 +233,7 @@ VStack {
 ```
 
 {% include color-scheme-img.md
-  alt="A text with five symbols displayned inline with regular scale, another text with five symbols displayed inline with large scale, and three buttons with their respective symbols: car, envelope, and lock."
+  alt="A text with five symbols displayed inline with regular scale, another text with five symbols displayed inline with large scale, and three buttons with their respective symbols: car, envelope, and lock."
   name="symbols-inline-alignment"
 %}
 
@@ -270,7 +270,7 @@ HStack(alignment: .firstTextBaseline) {
 Aligning by Baseline
 --------------------
 
-Back to the the circular buttons: an interesting issue here is how to align a symbol to a baseline if there is not text to provide said alignment. Buttons with the default styles do not deal with this because the button just takes the size of the symbol, which is the reason the default styles do not work well for circular buttons:
+Back to the circular buttons: an interesting issue here is how to align a symbol to a baseline if there is not text to provide said alignment. Buttons with the default styles do not deal with this because the button just takes the size of the symbol, which is the reason the default styles do not work well for circular buttons:
 
 ```swift
 HStack(alignment: .firstTextBaseline) {
@@ -301,7 +301,7 @@ HStack(alignment: .firstTextBaseline) {
 -----
 
 
-What is needed is a view that can be considered to have already a balanced size and provides a baseline alignment. Since symbols do provide a baseline alignment and the focus is circular buttons, one symbol might fit perfectly: `circle`! This placeholder symbol can be first centered in the circular button, and then the actual symbol aligned to it.
+What is needed is a view that can be considered to already have a balanced size and provides a baseline alignment. Since symbols do provide a baseline alignment and the focus is circular buttons, one symbol might fit perfectly: `circle`! This placeholder symbol can be first centered in the circular button, and then the actual symbol aligned to it.
 
 Enter the wonderful `overlay` modifier, with which the circle provides the layout frame and alignment guide for the overlaid button symbol:
 
@@ -330,7 +330,7 @@ HStack(alignment: .firstTextBaseline, spacing: 20) {
 .font(.largeTitle)
 ```
 
-Even if each symbol has different size (in green), the size used for layout is that of the `circle` symbol (in blue):
+Even if each symbol has a different size (in green), the size used for layout is that of the `circle` symbol (in blue):
 
 {% include color-scheme-img.md
   alt="A hourglass and a car symbol overlaid a circle symbol, the size of the circle symbols outlined in blue, and the size of the other symbols outlined in green."
@@ -351,7 +351,7 @@ struct GlassBaselinedButtonStyle: ButtonStyle {
     let length: CGFloat
     func makeBody(configuration: Configuration) -> some View {
         Image(systemName: "circle")
-        .hidden() // The circle symbols is never visible, but its layout size remains.
+        .hidden() // The circle symbol is never visible, but its layout size remains.
         .overlay(alignment: .centerFirstTextBaseline) {
             configuration.label
             .labelStyle(.iconOnly)
@@ -385,7 +385,7 @@ HStack(alignment: .firstTextBaseline) {
   name="glass-baselined-button-style-aligned"
 %}
 
-`GlassBaselinedButtonStyle` is at last a working button style that will consistenly create circular icon-only buttons with the symbol properly centered in the middle of the button.
+`GlassBaselinedButtonStyle` is at last a working button style that will consistently create circular icon-only buttons with the symbol properly centered in the middle of the button.
 
 -----
 
@@ -393,9 +393,9 @@ HStack(alignment: .firstTextBaseline) {
 Label Style and Border Shapes
 -----------------------------
 
-Some last improvements are still in order. As mentioned perviously, these button styles do not work with [`ButtonBorderShape`](https://developer.apple.com/documentation/swiftui/buttonbordershape), since the border shape has to be applied explictly by the button style in order to work.
+Some last improvements are still in order. As mentioned previously, these button styles do not work with [`ButtonBorderShape`](https://developer.apple.com/documentation/swiftui/buttonbordershape), since the border shape has to be applied explicitly by the button style in order to work.
 
-But first, all the manipulation so far done in the button styles has been specifically to the label. A better and more reusable way to structure this modifications is to contain them in a `LabelStyle` insted:
+But first, all the manipulation so far done in the button styles has been specifically to the label. A better and more reusable way to structure these modifications is to contain them in a `LabelStyle` instead:
 
 ```swift
 struct BaselinedIconLabelStyle: LabelStyle {
@@ -411,7 +411,7 @@ struct BaselinedIconLabelStyle: LabelStyle {
 }
 ```
 
-Same inner workings, but aplied only to a label. On its own it can already achieve a proper circular button by pairing it with a `glassEffect` modifier, since the label alread takes care of providing the appropiate space for the circle shape. The glass effect does not even need to specify the `circle` shape because the default shape (`capsule`) is equivalent to a circle when filling a square:
+Same inner workings, but applied only to a label. On its own it can already achieve a proper circular button by pairing it with a `glassEffect` modifier, since the label takes care of providing the appropriate space for the circle shape. The glass effect does not even need to specify the `circle` shape because the default shape (`capsule`) is equivalent to a circle when filling a square:
 
 ```swift
 HStack(alignment: .firstTextBaseline) {
@@ -446,7 +446,7 @@ struct GlassBorderedButtonStyle: ButtonStyle {
 }
 ```
 
-Now supporting `ButtonBorderShape`, the default `capsule` border shape will produce circular buttons with the configured labels. Other supported button shapes will also work appropiately with the glass effect:
+Now supporting `ButtonBorderShape`, the default `capsule` border shape will produce circular buttons with the configured labels. Other supported button shapes will also work appropriately with the glass effect:
 
 ```swift
 HStack(alignment: .firstTextBaseline) {
@@ -475,7 +475,7 @@ HStack(alignment: .firstTextBaseline) {
 -----
 
 
-The last benefit of this separation of label and button styles is that by applying only the `BaselinedIconLabelStyle`, buttons retain the posibility of using specialized glass effects like `glassEffectUnion` to join several buttons into a shared glass effect:
+The last benefit of this separation of label and button styles is that by applying only the `BaselinedIconLabelStyle`, buttons retain the possibility of using specialized glass effects like `glassEffectUnion` to join several buttons into a shared glass effect:
 
 
 ```swift
@@ -510,7 +510,7 @@ GlassEffectContainer {
 
 -----
 
-And with that all the posibilites for circular glass buttons where covered. The correct sizing of the buttons to fit precisely along system toolbars is left as an excercise to the reader. But at the very least, the symbols will be as perfectly centered as the system toolbar ones.
+And with that all the possibilities for circular glass buttons were covered. The correct sizing of the buttons to fit precisely along system toolbars is left as an exercise to the reader. But at the very least, the symbols will be as perfectly centered as the system toolbar ones.
 
 ```swift
 Button("circle",  systemImage: "circle", action: {})
@@ -532,7 +532,7 @@ Button("circle",  systemImage: "circle", action: {})
 
 <div class="colophon" markdown="block">
 
-The code examples in this article where compiled using `Swift 6.2`.
+The code examples in this article were compiled using `Swift 6.2`.
 
 Renderings using `iPhone 17 Pro Simulator` with `iOS 26.5`.
 
