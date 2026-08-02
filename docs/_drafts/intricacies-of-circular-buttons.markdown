@@ -3,7 +3,7 @@ layout: post
 # date: 2026-05-28 14:30:00 -0700
 title: "The Intricacies of Perfectly Circular Buttons"
 categories: [SwiftUI]
-tags: [swiftui, buttons]
+tags: [swiftui, buttons, overlay, alignments]
 permalink: /:year/:slug
 toc: true
 media_subpath: /assets/img/intricacies-of-circular-buttons/
@@ -340,34 +340,14 @@ Even if each symbol has different size (in green), the size used for layout is t
 -----
 
 
+Baseline Button Style
+---------------------
+
+
+
+
 
 ---
-
-
-SwiftUI API's provide a straightforward way of creating glass buttons with an image and a text. However, trying to create icon-only buttons showcases the way in which the Button view handles its size and shape: The button will take the size of its contents and apply it it a slight padding and a `Capsule` shape.  When creating an icon-only buttons, differen images results in differently sized buttons, which next to each other looks unbalanced, and definitely looks very different from the standard toolbard buttons.
-
-While `Button` is definitely correct in handling the size of its content, it makes a more involved process to create buttons that resemble and play along the default style of Glass buttons in toolbars. This toolbar style is applied automatically when using SwiftUI toolbars, and is not accesible to apply to other buttons in any easy way, for example as a publicly available style.
-
-The gist of the toolbar buttons is: an icon-only label, centered in a `Circle` shape (or `Capsule`, when joined to more that one button) with an interactive Glass effect. Sadly, applying directly a `glassEffect` modifier directly to a button tends to yield uneven results: the effect is applied to the button size, which by default may be only the size of the image, which means we have to modify the image provided to the buttons itself, a job well suited for a `ButtonStyle`.
-
-One approach is to use a custom `ButtonStyle` to hide the label, properly size the button image, and apply the glass effect. The image is first `frame`d in a square that represents the desired minimal size for the icon (so that small icons dont result in smaller buttons, and larger icons overflow properly), and a second `frame` that provides the size of the button for the glass effect.
-
-> How do this works when joining buttons into a shares shape effect?
-
-One issue with this initial implementation is that we are hard-coding the size of both the expected image, and the size of the final button. The final size of the button is one that will have to remain as a magic number, as there is no way to retrieve the size of toolbars other that to measure them. Keep this in mind when implementing buttons that actually sit next to default toolbars, as the sizing may vary due to features like dynamic type size.
-
-The size of the image itself is one we can handle! Measuring a _default_ system image could be an approach, but the setup would be complicated and involve a state heavily tied to view updates, which is frowned upon. Another approach is to use one of the interesting features of `overlay`: the overlaid content is aligned to the size of another view, virtually providing the equivalent of a `frame` based on the size of the owner view:
-
-Treating the system image `circle` as a stand-in for the size of a default system image, we can use that size as the size for our button icon. This also has the added benefit that `font` modifiers that change the size of the font will seamlesly impact both the displayed button icon and the provided size through the hidden `circle` image.
-
-One hidden complexity that results from this custom button style is the alignment of symbols that have decorations like badges around a main symbiol, two key examples are `envelope.shield` and `TODO`, which have bages that protude from the main symbol. When using these in a normal button we can see that system images use a `textBaseline` alignment to make sure that main symbol remains aligned to its text, despite the protuding badges.
-
-If we use our custom button style with symbols using badges, we can see that the centering takes into account the whole size of the image, resulting in icons appearing slightly offset from each other.
-
-Changing the alignement used by out custom style we can make the symbol size start aligned to the text baseline, and then centered to the button size, which results in a more balanced buttons (the button will be centered now on the main symbol component) and properly aligned symbols when displaying buttons next to each other.
-
-
-An implementation of this functionality, along support for the toolbar sizes in iOS, is available in `PreviewUtilities 0.4.0`, as a combination of a custom Button initialized and a button style. Keep in mind that this implementation is likely to move to its own package in the future.
 
 
 Colophon
@@ -384,16 +364,13 @@ The code examples in this article use Swift X and are rendered using the iPhone 
 
 <div class="colophon" markdown="block">
 
-The code examples in this article where compiled using `Swift 6.2` through the `Apple Swift version 6.3.3` compiler.
+The code examples in this article where compiled using `Swift 6.2`.
 
-Renderings using `iPhone 17 Pro Simulator` with `iOS 26.5`, through `Simulator 16.0`.
-
-Some examples use [`PreviewUtilities 0.4.0`](https://github.com/lopsae/preview-utilities/releases/tag/v0.4.0).
+Renderings using `iPhone 17 Pro Simulator` with `iOS 26.5`.
 
 </div>
 
-
 {% include end-caption.md
-  icon="fas fa-ruler-combined"
-  text="TODO."
+  icon="fas fa-shapes"
+  text="In support of buttons of all shapes and sizes."
 %}
