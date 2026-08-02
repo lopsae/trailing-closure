@@ -239,6 +239,62 @@ struct IntricaciesOfCircularButtons {
         }
     }
 
+
+    @Test func defaultButtonSizing() throws {
+        try storage.renderAndStore("default-button-sizing", strategy: .windowHierarchy) {
+            DocumentationIllustration(sizing: .regular, background: .fadedMoltenHorizon) {
+                HStack(alignment: .firstTextBaseline) {
+                    Button("Horizontal", systemImage: "guidepoint.horizontal", action: {})
+                    .labelStyle(.iconOnly)
+                    .buttonStyle(.glass)
+
+                    Button("Vertical", systemImage: "guidepoint.vertical", action: {})
+                    .labelStyle(.iconOnly)
+                    .buttonStyle(.glass)
+
+                    Button("Rainbow", systemImage: "rainbow", action: {})
+                    .labelStyle(.iconOnly)
+                    .buttonStyle(.glass)
+
+                    Button("Bolt", systemImage: "bolt", action: {})
+                    .labelStyle(.iconOnly)
+                    .buttonStyle(.glass)
+                }
+                .font(.title)
+            } // Illustration
+        }
+    }
+
+
+    @Test func aligningOntoCircle() throws {
+        try storage.renderAndStore("aligning-onto-circle", strategy: .windowHierarchy) {
+            DocumentationIllustration(sizing: .regular) {
+                HStack(alignment: .firstTextBaseline, spacing: 20) {
+                    Image(systemName: "circle")
+                        .foregroundStyle(.blue)
+                    .overlay(alignment: .centerFirstTextBaseline) {
+                        Image(systemName: "hourglass.badge.plus")
+                        .border(.green.secondary)
+                    }
+                    .border(.blue.secondary, width: 2)
+
+                    Image(systemName: "circle")
+                    .border(.blue.secondary, width: 2) // Blue size frame is the same for all symbols!
+                    .drawAlignmentGuide(.firstTextBaseline, length: 200)
+
+                    Image(systemName: "circle")
+                    .foregroundStyle(.blue)
+                    .overlay(alignment: .centerFirstTextBaseline) {
+                        Image(systemName: "car.badge.gearshape")
+                        .border(.green.secondary)
+                    }
+                    .border(.blue.secondary, width: 2)
+                }
+                .font(.title)
+            } // Illustration
+        }
+    }
+
 }
 
 
