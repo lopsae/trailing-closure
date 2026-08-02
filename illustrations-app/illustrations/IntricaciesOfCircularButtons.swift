@@ -290,6 +290,43 @@ struct IntricaciesOfCircularButtons {
                     }
                     .border(.blue.secondary, width: 2)
                 }
+                .font(.largeTitle)
+            } // Illustration
+        }
+    }
+
+
+    struct GlassBaselinedStyle: ButtonStyle {
+        let length: CGFloat
+        func makeBody(configuration: Configuration) -> some View {
+            Image(systemName: "circle")
+            .hidden() // The circle symbols is never visible, but its layout size remains.
+            .overlay(alignment: .centerFirstTextBaseline) {
+                configuration.label
+                .labelStyle(.iconOnly)
+            }
+            .frame(width: length, height: length)
+            .glassEffect(.regular.interactive(), in: .circle)
+        }
+    }
+
+
+    @Test func glassBaselinedButtonStyleAligned() throws {
+        try storage.renderAndStore("glass-baselined-button-style-aligned", strategy: .windowHierarchy) {
+            DocumentationIllustration(sizing: .regular, background: .fadedMoltenHorizon) {
+                HStack(alignment: .firstTextBaseline) {
+                    Button("Envelope",  systemImage: "envelope.badge.shield.half.filled", action: {})
+                    Button("Hourglass", systemImage: "hourglass.badge.plus", action: {})
+
+                    Button("Seashell", systemImage: "fossil.shell", action: {})
+                    .drawAlignmentGuide(.top, length: 360)
+                    .drawAlignmentGuide(.firstTextBaseline, length: 360)
+                    .drawAlignmentGuide(.bottom, length: 360)
+
+                    Button("Car",  systemImage: "car.badge.gearshape", action: {})
+                    Button("Lock", systemImage: "lock.open.trianglebadge.exclamationmark.fill", action: {})
+                }
+                .buttonStyle(GlassBaselinedStyle(length: 60))
                 .font(.title)
             } // Illustration
         }
