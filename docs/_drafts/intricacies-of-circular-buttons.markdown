@@ -267,17 +267,77 @@ HStack(alignment: .firstTextBaseline) {
 -----
 
 
-Centering by Baseline
----------------------
+Aligning by Baseline
+--------------------
 
-Back to the circular buttons: Given that these buttons are not displaying next to any text, from which the baseline alignment could be derived, how can the button figure out where is the appropiate baseline is?
+Back the the circular buttons: an interesting issue here is how to align a symbol to a baseline if there is not text to provide said alignment. Buttons with the default styles do not deal with this because the button just takes the size of the symbol, which is the reason the default styles do not work well for circular buttons:
 
-> SNIPPET:
+```swift
+HStack(alignment: .firstTextBaseline) {
+    Button("Horizontal", systemImage: "guidepoint.horizontal", action: {})
+    .labelStyle(.iconOnly)
+    .buttonStyle(.glass)
 
-Part of the issue is that `FramedButtonStyle` is centering the button icon, but different symbols will have different sizes. Symbols with badges or odd shapes will end up with a size that when centered leave the main visual element of the symbol off center:
+    Button("Vertical", systemImage: "guidepoint.vertical", action: {})
+    .labelStyle(.iconOnly)
+    .buttonStyle(.glass)
 
-> SNIPPET:
+    Button("Rainbow", systemImage: "rainbow", action: {})
+    .labelStyle(.iconOnly)
+    .buttonStyle(.glass)
 
+    Button("Bolt", systemImage: "bolt", action: {})
+    .labelStyle(.iconOnly)
+    .buttonStyle(.glass)
+}
+.font(.title)
+```
+
+{% include color-scheme-img.md
+  alt="Four symbols: a horizontal bar, a vertical bar, a rainbow, and a bolt, each as a glass button of different size."
+  name="default-button-sizing"
+%}
+
+-----
+
+
+What is needed is a view that can be considered to have already a balanced size and provides a baseline alignment. Since symbols do provide a baseline alignment and the focus is circular buttons, one symbol might fit perfectly: `circle`! This placeholder symbol can be first centered in the circular button, and then the actual symbol aligned to it.
+
+Enter the wonderful `overlay` modifier, with which the circle provides the layout frame and alignment guide for the overlaid button symbol:
+
+```swift
+HStack(alignment: .firstTextBaseline, spacing: 20) {
+    Image(systemName: "circle")
+        .foregroundStyle(.blue)
+    .overlay(alignment: .centerFirstTextBaseline) {
+        Image(systemName: "hourglass.badge.plus")
+        .border(.green.secondary)
+    }
+    .border(.blue.secondary, width: 2)
+
+    Image(systemName: "circle")
+    .border(.blue.secondary, width: 2) // Blue size frame is the same for all symbols!
+    .drawAlignmentGuide(.firstTextBaseline, length: 200)
+
+    Image(systemName: "circle")
+    .foregroundStyle(.blue)
+    .overlay(alignment: .centerFirstTextBaseline) {
+        Image(systemName: "car.badge.gearshape")
+        .border(.green.secondary)
+    }
+    .border(.blue.secondary, width: 2)
+}
+.font(.title)
+```
+
+Even if each symbol has different size (in green), the size used for layout is that of the `circle` symbol (in blue):
+
+{% include color-scheme-img.md
+  alt="A hourglass and a car symbol overlaid a circle symbol, the size of the circle symbols outlined in blue, and the size of the other symbols outlined in green."
+  name="aligning-onto-circle"
+%}
+
+-----
 
 
 
