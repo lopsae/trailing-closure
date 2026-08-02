@@ -296,7 +296,7 @@ struct IntricaciesOfCircularButtons {
     }
 
 
-    struct GlassBaselinedStyle: ButtonStyle {
+    struct GlassBaselinedButtonStyle: ButtonStyle {
         let length: CGFloat
         func makeBody(configuration: Configuration) -> some View {
             Image(systemName: "circle")
@@ -326,8 +326,117 @@ struct IntricaciesOfCircularButtons {
                     Button("Car",  systemImage: "car.badge.gearshape", action: {})
                     Button("Lock", systemImage: "lock.open.trianglebadge.exclamationmark.fill", action: {})
                 }
-                .buttonStyle(GlassBaselinedStyle(length: 60))
+                .buttonStyle(GlassBaselinedButtonStyle(length: 60))
                 .font(.title)
+            } // Illustration
+        }
+    }
+
+
+    struct BaselinedIconLabelStyle: LabelStyle {
+        let length: CGFloat
+        func makeBody(configuration: Configuration) -> some View {
+            Image(systemName: "circle")
+            .hidden()
+            .overlay(alignment: .centerFirstTextBaseline) {
+                configuration.icon
+            }
+            .frame(width: length, height: length)
+        }
+    }
+
+
+    @Test func baselinedLabelStyle() throws {
+        try storage.renderAndStore("baselined-label-style", strategy: .windowHierarchy) {
+            DocumentationIllustration(sizing: .regular, background: .fadedMoltenHorizon) {
+                HStack(alignment: .firstTextBaseline) {
+                    Button("Flame",  systemImage: "flame", action: {})
+                    .labelStyle(BaselinedIconLabelStyle(length: 60))
+                    .border(.pink.secondary, width: 2)
+
+                    Button("Flame",  systemImage: "flame", action: {})
+                    .labelStyle(BaselinedIconLabelStyle(length: 60))
+                    .buttonStyle(.plain) // To prevent button tint color.
+                    .glassEffect(.regular.interactive())
+                }
+                .font(.title)
+            } // Illustration
+        }
+    }
+
+    struct GlassBorderedButtonStyle: ButtonStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            configuration.label
+            .glassEffect(.regular.interactive(), in: ButtonBorderShape.buttonBorder)
+        }
+    }
+
+    @Test func glassBorderedButtonStyle() throws {
+        try storage.renderAndStore("glass-bordered-button-style", strategy: .windowHierarchy) {
+            DocumentationIllustration(sizing: .regular, background: .fadedMoltenHorizon) {
+                HStack(alignment: .firstTextBaseline) {
+                    Button("Bird",  systemImage: "bird", action: {})
+                    .labelStyle(BaselinedIconLabelStyle(length: 60))
+                    .buttonStyle(GlassBorderedButtonStyle())
+
+                    Button("Ladybug",  systemImage: "ladybug", action: {})
+                    .labelStyle(BaselinedIconLabelStyle(length: 60))
+                    .buttonStyle(GlassBorderedButtonStyle())
+                    .buttonBorderShape(.roundedRectangle)
+
+                    Button("Ant",  systemImage: "ant", action: {})
+                    .labelStyle(BaselinedIconLabelStyle(length: 60))
+                    .buttonStyle(GlassBorderedButtonStyle())
+                    .buttonBorderShape(.roundedRectangle(radius: .zero))
+                }
+                .font(.title)
+            } // Illustration
+        }
+    }
+
+
+    @Test func glassEffectUnionButtons() throws {
+        try storage.renderAndStore("glass-effect-union-buttons", strategy: .windowHierarchy) {
+            DocumentationIllustration(sizing: .regular, background: .fadedMoltenHorizon) {
+                GlassEffectUnionButtons()
+            } // Illustration
+        }
+    }
+
+    struct GlassEffectUnionButtons: View {
+        @Namespace var namespace
+        var body: some View {
+            GlassEffectContainer {
+                HStack(alignment: .firstTextBaseline) {
+                    Button("Tree", systemImage: "tree", action: {})
+                    .labelStyle(BaselinedIconLabelStyle(length: 60))
+                    .buttonStyle(.plain)
+                    .glassEffect(.regular.interactive())
+                    .glassEffectUnion(id: "union", namespace: namespace)
+
+                    Button("Carrot", systemImage: "carrot", action: {})
+                    .labelStyle(BaselinedIconLabelStyle(length: 60))
+                    .buttonStyle(.plain)
+                    .glassEffect(.regular.interactive())
+                    .glassEffectUnion(id: "union", namespace: namespace)
+
+                    Button("Rain", systemImage: "cloud.rain", action: {})
+                    .labelStyle(BaselinedIconLabelStyle(length: 60))
+                    .buttonStyle(GlassBorderedButtonStyle())
+                }
+                .font(.title)
+            }
+        }
+    }
+
+
+    @Test func circleCircularButton() throws {
+        try storage.renderAndStore("circle-circular-button", strategy: .windowHierarchy) {
+            DocumentationIllustration(sizing: .regular, background: .fadedMoltenHorizon) {
+                Button("circle",  systemImage: "circle", action: {})
+                .labelStyle(BaselinedIconLabelStyle(length: 80))
+                .buttonStyle(GlassBorderedButtonStyle())
+                .font(.largeTitle)
             } // Illustration
         }
     }
