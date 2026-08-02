@@ -4,7 +4,7 @@ date: 2026-05-28 14:30:00 -0700
 title: "Overlay as a Visual Debugging Tool"
 categories: [SwiftUI]
 tags: [swiftui, debugging, overlay]
-permalink: /:year/:month/:day/:slug
+permalink: /:year/:slug
 toc: true
 media_subpath: /assets/img/overlay-as-debug-tool/
 description: >
