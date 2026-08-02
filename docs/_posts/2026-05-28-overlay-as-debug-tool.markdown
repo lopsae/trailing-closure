@@ -81,7 +81,7 @@ HStack(spacing: .zero) {
 Overlay content size
 --------------------
 
-The content in an `overlay` is always framed to the size of the owner view, an expanding view will grow to this exact size. For example, adding a `Rectangle` in an overlay reproduces the same behavior as the `border` modifier:
+The content in an `overlay` is always framed to the size of the owner view, and an expanding view will grow to this exact size. For example, adding a `Rectangle` in an overlay reproduces the same behavior as the `border` modifier:
 
 ```swift
 HStack(spacing: .zero) {
@@ -195,7 +195,7 @@ Text("""
 -----
 
 
-When views modify their alignment guides `overlay` uses that adjusted guide, so custom alignments can be easily tracked visually. Again note that the last `border` drawn shows that the resulting frame from the `overlay` modifier is still the size of just the original `Text`:
+When views modify their alignment guides, `overlay` uses that adjusted guide, so custom alignments can be easily tracked visually. Again note that the last `border` drawn shows that the resulting frame from the `overlay` modifier is still the size of just the original `Text`:
 
 ```swift
 Text("""
@@ -231,7 +231,7 @@ Text("""
 Floating content
 ----------------
 
-And this brings us to my favorite surprise out of `overlay`, a product of how it handles its content and alignments: By modifying the alignment of the overlaid content it is possible to create floating content around the owner view. Debug visuals can then _float_ outside of the debugged view, without blocking it at all:
+And this brings us to my favorite surprise out of `overlay`, a product of how it handles its content and alignments: by modifying the alignment of the overlaid content, it is possible to create floating content around the owner view. Debug visuals can then _float_ outside of the debugged view, without blocking it at all:
 
 ```swift
 RoundedRectangle(cornerRadius: 8)
@@ -299,7 +299,7 @@ _Example illustration along its own adornments._
 Debug Overlay
 -------------
 
-All these `overlay` features became the basis for implementing [`DebugOverlayModifier`](https://lopsae.github.io/preview-utilities/v0.4.0/documentation/previewutilities/debugoverlaymodifier), one of the main tools in the [PreviewUtilities](https://lopsae.github.io/preview-utilities/v0.4.0/documentation/previewutilities) package. This modifier wraps a visualization of the view's geometry all in a handy `overlay`, all ready to display with a single line:
+All these `overlay` features became the basis for implementing [`DebugOverlayModifier`](https://lopsae.github.io/preview-utilities/v0.4.0/documentation/previewutilities/debugoverlaymodifier), one of the main tools in the [PreviewUtilities](https://lopsae.github.io/preview-utilities/v0.4.0/documentation/previewutilities) package. This modifier wraps a visualization of the view's geometry all in a handy `overlay`, ready to display with a single line:
 
 
 
@@ -318,7 +318,7 @@ HStack(spacing: .zero) {
   name="debug-overlay-example"
 %}
 
-Use it to quickly add on your previews (or runtime) a visual to asses the geometry of any view, without messing with the layout. I have found it a fantastic tool, and it gave me a playful appreciation of the power of a humble `overlay`.
+Use it to quickly add to your previews (or runtime) a visual to assess the geometry of any view, without messing with the layout. I have found it a fantastic tool, and it gave me a playful appreciation of the power of a humble `overlay`.
 
 -----
 
