@@ -29,30 +29,51 @@ struct IntricaciesOfCircularButtons {
     }
 
 
-//    @Test func header() throws {
-//        try storage.renderAndStore("header") {
-//            // FIXME: Store into a sizing property.
-//            DocumentationIllustration(size: [600 , 315], drawsBorder: false) {
-//                RoundedRectangle(cornerRadius: 8)
-//                .fill(.teal.gradient)
-//                .frame(width: 360, height: 200)
-//                // Illustration adornments.
-//                .overlay(alignment: .trailing) {
-//                    HStack(alignment: .top, spacing: 4) {
-//                        Rectangle()
-//                            .fill(.red.secondary)
-//                            .frame(width: 2)
-//                        Text("Debugging Caption")
-//                            .font(.caption)
-//                            .foregroundStyle(.tertiary)
-//                            .frame(width: 100, alignment: .leading)
-//                    }
-//                    .padding(.leading, 8)
-//                    .alignmentGuide(.trailing) { $0[.leading] }
-//                }
-//            }
-//        }
-//    }
+    struct HeaderView: View {
+        @Namespace var namespace
+        var body: some View {
+            GlassEffectContainer {
+                HStack(alignment: .firstTextBaseline) {
+                    let length: CGFloat = 70
+                    Button("Cloud", systemImage: "smoke", action: {})
+                    .labelStyle(BaselinedIconLabelStyle(length: length))
+                    .buttonStyle(GlassBorderedButtonStyle())
+
+                    Button("Bolt", systemImage: "bolt", action: {})
+                    .labelStyle(BaselinedIconLabelStyle(length: length))
+                    .buttonStyle(GlassBorderedButtonStyle())
+
+                    Button("Leaf", systemImage: "leaf", action: {})
+                    .labelStyle(BaselinedIconLabelStyle(length: length))
+                    .buttonStyle(GlassBorderedButtonStyle())
+
+
+                    Button("Sun", systemImage: "sun.max", action: {})
+                    .labelStyle(BaselinedIconLabelStyle(length: length))
+                    .buttonStyle(.plain)
+                    .glassEffect(.regular.interactive())
+                    .glassEffectUnion(id: "union", namespace: namespace)
+
+                    Button("Moon", systemImage: "moon", action: {})
+                    .labelStyle(BaselinedIconLabelStyle(length: length))
+                    .buttonStyle(.plain)
+                    .glassEffect(.regular.interactive())
+                    .glassEffectUnion(id: "union", namespace: namespace)
+                }
+                .font(.largeTitle)
+            }
+        }
+    }
+
+
+    @Test func header() throws {
+        try storage.renderAndStore("header", strategy: .windowHierarchy) {
+            // FIXME: Store into a sizing property.
+            DocumentationIllustration(size: [600 , 315], drawsBorder: false, background: .fadedMoltenHorizon) {
+                HeaderView()
+            }
+        }
+    }
 
 
     @Test func existingModifiers() throws {
@@ -398,12 +419,12 @@ struct IntricaciesOfCircularButtons {
     @Test func glassEffectUnionButtons() throws {
         try storage.renderAndStore("glass-effect-union-buttons", strategy: .windowHierarchy) {
             DocumentationIllustration(sizing: .regular, background: .fadedMoltenHorizon) {
-                GlassEffectUnionButtons()
+                GlassEffectUnionButtonsView()
             } // Illustration
         }
     }
 
-    struct GlassEffectUnionButtons: View {
+    struct GlassEffectUnionButtonsView: View {
         @Namespace var namespace
         var body: some View {
             GlassEffectContainer {
