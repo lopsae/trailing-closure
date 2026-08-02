@@ -154,10 +154,11 @@ struct IntricaciesOfCircularButtons {
         try storage.renderAndStore("glass-framed-button-style", strategy: .windowHierarchy) {
             DocumentationIllustration(sizing: .regular, background: .fadedMoltenHorizon) {
                 HStack {
-                    Button("Fish", systemImage: "fish", action: {})
-                    Button("Envelope", systemImage: "envelope.badge.shield.half.filled", action: {})
-                    Button("Car", systemImage: "car.badge.gearshape", action: {})
-                    Button("Lock", systemImage: "lock.open.trianglebadge.exclamationmark.fill", action: {})
+                    Button("Envelope",  systemImage: "envelope.badge.shield.half.filled", action: {})
+                    Button("Hourglass", systemImage: "hourglass.badge.plus", action: {})
+                    Button("Fish",      systemImage: "fish", action: {})
+                    Button("Car",       systemImage: "car.badge.gearshape", action: {})
+                    Button("Lock",      systemImage: "lock.open.trianglebadge.exclamationmark.fill", action: {})
                 }
                 .buttonStyle(GlassFramedButtonStyle(length: 60))
                 .font(.title)
@@ -170,16 +171,16 @@ struct IntricaciesOfCircularButtons {
         try storage.renderAndStore("glass-framed-button-style-aligned", strategy: .windowHierarchy) {
             DocumentationIllustration(sizing: .regular, background: .fadedMoltenHorizon) {
                 HStack(alignment: .firstTextBaseline) {
-                    Button("Envelope", systemImage: "envelope.badge.shield.half.filled", action: {})
-                    Button("Car", systemImage: "car.badge.gearshape", action: {})
-                    Button("Lock", systemImage: "lock.open.trianglebadge.exclamationmark.fill", action: {})
+                    Button("Envelope",  systemImage: "envelope.badge.shield.half.filled", action: {})
+                    Button("Hourglass", systemImage: "hourglass.badge.plus", action: {})
 
-                    let alignmentGuideRect = Rectangle().fill(.pink.secondary).frame(width: 260, height: 2)
                     Button("Fish", systemImage: "fish", action: {})
-                    // Alignment guide visualization.
-                    .overlay(alignment: .topTrailing) { alignmentGuideRect }
-                    .overlay(alignment: .trailingFirstTextBaseline) { alignmentGuideRect }
-                    .overlay(alignment: .bottomTrailing) { alignmentGuideRect }
+                    .drawAlignmentGuide(.top, length: 360)
+                    .drawAlignmentGuide(.firstTextBaseline, length: 360)
+                    .drawAlignmentGuide(.bottom, length: 360)
+
+                    Button("Car",  systemImage: "car.badge.gearshape", action: {})
+                    Button("Lock", systemImage: "lock.open.trianglebadge.exclamationmark.fill", action: {})
                 }
                 .buttonStyle(GlassFramedButtonStyle(length: 60))
                 .font(.title)
@@ -187,4 +188,67 @@ struct IntricaciesOfCircularButtons {
         }
     }
 
+
+    @Test func symbolsInlineAlignment() throws {
+        try storage.renderAndStore("symbols-inline-alignment", strategy: .windowHierarchy) {
+            DocumentationIllustration(sizing: .regular) {
+                VStack {
+                    let envelope  = Image(systemName: "envelope.badge.shield.half.filled")
+                    let hourglass = Image(systemName: "hourglass.badge.plus")
+                    let shell     = Image(systemName: "fossil.shell")
+                    let car       = Image(systemName: "car.badge.gearshape")
+                    let lock      = Image(systemName: "lock.open.trianglebadge.exclamationmark.fill")
+                    Text("Regular \(envelope) \(hourglass) \(shell) \(car) \(lock) symbols")
+                    .drawAlignmentGuide(.firstTextBaseline)
+
+                    Text("Large \(envelope) \(hourglass) \(shell) \(car) \(lock) symbols")
+                    .imageScale(.large)
+                    .drawAlignmentGuide(.firstTextBaseline)
+
+                    HStack(alignment: .firstTextBaseline) {
+                        Button("Car", systemImage: "car.badge.gearshape", action: {})
+                        Button("Envelope", systemImage: "envelope.badge.shield.half.filled", action: {})
+                            .drawAlignmentGuide(.firstTextBaseline, length: 300)
+                        Button("Lock", systemImage: "lock.open.trianglebadge.exclamationmark.fill", action: {})
+                    }
+                }
+                .font(.title3)
+            } // Illustration
+        }
+    }
+
+
+    @Test func framedSymbolsWithBaselines() throws {
+        try storage.renderAndStore("framed-symbols-with-baselines", strategy: .windowHierarchy) {
+            DocumentationIllustration(sizing: .regular) {
+                HStack(alignment: .firstTextBaseline) {
+                    Image(systemName: "envelope.badge.shield.half.filled")
+                        .border(.green.secondary, width: 2)
+                    Image(systemName: "hourglass.badge.plus")
+                        .border(.green.secondary, width: 2)
+                    Image(systemName: "fossil.shell")
+                        .drawAlignmentGuide(.firstTextBaseline, length: 300)
+                        .border(.green.secondary, width: 2)
+                    Image(systemName: "car.badge.gearshape")
+                        .border(.green.secondary, width: 2)
+                    Image(systemName: "lock.open.trianglebadge.exclamationmark.fill")
+                        .border(.green.secondary, width: 2)
+                }
+                .font(.title)
+            } // Illustration
+        }
+    }
+
+}
+
+
+private extension View {
+    func drawAlignmentGuide(_ verticalAlignment: VerticalAlignment, length: CGFloat? = nil) -> some View {
+        let alignment = Alignment(horizontal: .center, vertical: verticalAlignment)
+        return self.overlay(alignment: alignment) {
+            Rectangle()
+            .fill(.red.secondary)
+            .frame(width: length, height: 2)
+        }
+    }
 }
