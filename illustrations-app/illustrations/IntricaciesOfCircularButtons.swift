@@ -321,7 +321,7 @@ struct IntricaciesOfCircularButtons {
         let length: CGFloat
         func makeBody(configuration: Configuration) -> some View {
             Image(systemName: "circle")
-            .hidden() // The circle symbols is never visible, but its layout size remains.
+            .hidden() // The circle symbol is never visible, but its layout size remains.
             .overlay(alignment: .centerFirstTextBaseline) {
                 configuration.label
                 .labelStyle(.iconOnly)
