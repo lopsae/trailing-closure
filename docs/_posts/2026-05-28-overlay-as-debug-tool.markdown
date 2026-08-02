@@ -4,7 +4,7 @@ date: 2026-05-28 14:30:00 -0700
 title: "Overlay as a Visual Debugging Tool"
 categories: [SwiftUI]
 tags: [swiftui, debugging, overlay]
-permalink: /:year/:month/:day/:slug
+permalink: /:year/:slug
 toc: true
 media_subpath: /assets/img/overlay-as-debug-tool/
 description: >
@@ -16,7 +16,7 @@ image:
 Debugging tools
 ---------------
 
-If you have spent any time working with SwiftUI, you have probably reached a situation where a view is laying out in an unexpected manner, some padding looks off, or the alignments are misbehaving. One of the most fundamental tools for adding a visual indicator to a specific view is the handy [`border`](https://developer.apple.com/documentation/swiftui/view/border(_:width:)) modifier, which will draw a border around any view, handy for outlining its actual frame:
+If you have spent any time working with SwiftUI, you have probably reached a situation where a view is laying out in an unexpected manner, some padding looks off, or the alignments are misbehaving. One of the most fundamental tools for adding a visual indicator to a specific view is the handy [`border`](https://developer.apple.com/documentation/swiftui/view/border(_:width:)) modifier, which draws a border around any view outlining its actual frame:
 
 ```swift
 HStack(spacing: .zero) {
@@ -81,7 +81,7 @@ HStack(spacing: .zero) {
 Overlay content size
 --------------------
 
-The content in an `overlay` is always framed to the size of the owner view, an expanding view will grow to this exact size. For example, adding a `Rectangle` in an overlay reproduces the same behavior as the `border` modifier:
+The content in an `overlay` is always framed to the size of the owner view, and an expanding view will grow to this exact size. For example, adding a `Rectangle` in an overlay reproduces the same behavior as the `border` modifier:
 
 ```swift
 HStack(spacing: .zero) {
@@ -195,7 +195,7 @@ Text("""
 -----
 
 
-When views modify their alignment guides `overlay` uses that adjusted guide, so custom alignments can be easily tracked visually. Again note that the last `border` drawn shows that the resulting frame from the `overlay` modifier is still the size of just the original `Text`:
+When views modify their alignment guides, `overlay` uses that adjusted guide, so custom alignments can be easily tracked visually. Again note that the last `border` drawn shows that the resulting frame from the `overlay` modifier is still the size of just the original `Text`:
 
 ```swift
 Text("""
@@ -231,7 +231,7 @@ Text("""
 Floating content
 ----------------
 
-And this brings us to my favorite surprise out of `overlay`, a product of how it handles its content and alignments: By modifying the alignment of the overlaid content it is possible to create floating content around the owner view. Debug visuals can then _float_ outside of the debugged view, without blocking it at all:
+And this brings us to my favorite surprise out of `overlay`, a product of how it handles its content and alignments: by modifying the alignment of the overlaid content, it is possible to create floating content around the owner view. Debug visuals can then _float_ outside of the debugged view, without blocking it at all:
 
 ```swift
 RoundedRectangle(cornerRadius: 8)
@@ -299,7 +299,9 @@ _Example illustration along its own adornments._
 Debug Overlay
 -------------
 
-All these `overlay` features became the basis for implementing [`DebugOverlayModifier`](https://lopsae.com/preview-utilities/documentation/previewutilities/), one of the main tools in the [PreviewUtilities](https://github.com/lopsae/preview-utilities) package. This modifier wraps a visualization of the view's geometry all in a handy `overlay`, all ready to display with a single line:
+All these `overlay` features became the basis for implementing [`DebugOverlayModifier`](https://lopsae.github.io/preview-utilities/v0.4.0/documentation/previewutilities/debugoverlaymodifier), one of the main tools in the [PreviewUtilities](https://lopsae.github.io/preview-utilities/v0.4.0/documentation/previewutilities) package. This modifier wraps a visualization of the view's geometry all in a handy `overlay`, ready to display with a single line:
+
+
 
 ```swift
 // import PreviewUtilities
@@ -316,9 +318,24 @@ HStack(spacing: .zero) {
   name="debug-overlay-example"
 %}
 
-Use it to quickly add on your previews (or runtime) a visual to asses the geometry of any view, without messing with the layout. I have found it a fantastic tool, and it gave me a playful appreciation of the power of a humble `overlay`.
+Use it to quickly add to your previews (or runtime) a visual to assess the geometry of any view, without messing with the layout. I have found it a fantastic tool, and it gave me a playful appreciation of the power of a humble `overlay`.
 
 -----
+
+
+## Colophon
+{: .colophon}
+
+<div class="colophon" markdown="block">
+
+The code examples in this article were compiled using `Swift 6.2`.
+
+Renderings using `iPhone 17 Pro Simulator` with `iOS 26.5`.
+
+Some examples use [`PreviewUtilities 0.4.0`](https://github.com/lopsae/preview-utilities/releases/tag/v0.4.0).
+
+</div>
+
 
 {% include end-caption.md
   icon="fas fa-ruler-combined"

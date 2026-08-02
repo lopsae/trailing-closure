@@ -55,3 +55,11 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
+
+
+# Github deploy workflow overrides these values by creating a
+# _config-build.yml file.
+build_date: Local Build Day, 2026, 10:00 PDT
+build_run_id: local_run
+build_run_number: 47
+build_branch: local_branch
