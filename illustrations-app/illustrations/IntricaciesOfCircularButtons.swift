@@ -274,7 +274,7 @@ struct IntricaciesOfCircularButtons {
                         .foregroundStyle(.blue)
                     .overlay(alignment: .centerFirstTextBaseline) {
                         Image(systemName: "hourglass.badge.plus")
-                        .border(.green.secondary)
+                        .border(.green.secondary, width: 2)
                     }
                     .border(.blue.secondary, width: 2)
 
@@ -286,7 +286,7 @@ struct IntricaciesOfCircularButtons {
                     .foregroundStyle(.blue)
                     .overlay(alignment: .centerFirstTextBaseline) {
                         Image(systemName: "car.badge.gearshape")
-                        .border(.green.secondary)
+                        .border(.green.secondary, width: 2)
                     }
                     .border(.blue.secondary, width: 2)
                 }
