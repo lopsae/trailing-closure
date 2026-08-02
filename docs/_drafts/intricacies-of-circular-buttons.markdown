@@ -137,10 +137,11 @@ struct GlassFramedButtonStyle: ButtonStyle {
 
 ```swift
 HStack {
-    Button("Fish", systemImage: "fish", action: {})
-    Button("Envelope", systemImage: "envelope.badge.shield.half.filled", action: {})
-    Button("Car", systemImage: "car.badge.gearshape", action: {})
-    Button("Lock", systemImage: "lock.open.trianglebadge.exclamationmark.fill", action: {})
+    Button("Envelope",  systemImage: "envelope.badge.shield.half.filled", action: {})
+    Button("Hourglass", systemImage: "hourglass.badge.plus", action: {})
+    Button("Fish",      systemImage: "fish", action: {})
+    Button("Car",       systemImage: "car.badge.gearshape", action: {})
+    Button("Lock",      systemImage: "lock.open.trianglebadge.exclamationmark.fill", action: {})
 }
 .buttonStyle(GlassFramedButtonStyle(length: 60))
 .font(.title)
@@ -154,20 +155,36 @@ HStack {
 -----
 
 
-Upon close inspection note that all the symbols with badges look slightly off-center vertically. Aligning all buttons to `firstBaseline` (and adding some overlays to draw the alignment guides) can show that the glass circles are drawn in sliglty different positions:
+To help visualize the following examples, lets define a handy `View` extension function to draw an specific alignment guide:
+
+```swift
+private extension View {
+    func drawAlignmentGuide(_ verticalAlignment: VerticalAlignment, length: CGFloat? = nil) -> some View {
+        let alignment = Alignment(horizontal: .center, vertical: verticalAlignment)
+        return self.overlay(alignment: alignment) {
+            Rectangle()
+            .fill(.red.secondary)
+            .frame(width: length, height: 2)
+        }
+    }
+}
+```
+
+
+Back to the circle buttons, upon close inspection note that all the symbols with badges look slightly off-center vertically. Aligning all buttons to `firstBaseline` (and drawing the alignment guides) can show that the glass circles are drawn in sliglty different positions:
 
 ```swift
 HStack(alignment: .firstTextBaseline) {
-    Button("Envelope", systemImage: "envelope.badge.shield.half.filled", action: {})
-    Button("Car", systemImage: "car.badge.gearshape", action: {})
-    Button("Lock", systemImage: "lock.open.trianglebadge.exclamationmark.fill", action: {})
+    Button("Envelope",  systemImage: "envelope.badge.shield.half.filled", action: {})
+    Button("Hourglass", systemImage: "hourglass.badge.plus", action: {})
 
-    let alignmentGuideRect = Rectangle().fill(.pink.secondary).frame(width: 260, height: 2)
     Button("Fish", systemImage: "fish", action: {})
-    // Alignment guide visualization.
-    .overlay(alignment: .topTrailing) { alignmentGuideRect }
-    .overlay(alignment: .trailingFirstTextBaseline) { alignmentGuideRect }
-    .overlay(alignment: .bottomTrailing) { alignmentGuideRect }
+    .drawAlignmentGuide(.top, length: 360)
+    .drawAlignmentGuide(.firstTextBaseline, length: 360)
+    .drawAlignmentGuide(.bottom, length: 360)
+
+    Button("Car",  systemImage: "car.badge.gearshape", action: {})
+    Button("Lock", systemImage: "lock.open.trianglebadge.exclamationmark.fill", action: {})
 }
 .buttonStyle(GlassFramedButtonStyle(length: 60))
 .font(.title)
@@ -181,7 +198,79 @@ HStack(alignment: .firstTextBaseline) {
 -----
 
 
-This is one detail about buttons that I find particularly well done: All system symbols contain a text baseline alignment guide appropriate for the symbol, and buttons (and `Text` when presenting inline symbols) use it to align the symbol with the text.
+A Diversion: Inline Symbol Alignment
+------------------------------------
+
+A detail about symbols and buttons that I find particularly well done: All system and custom symbols are defined around guidelines for the baseline and cap height of each font weigth:
+
+![Example of the shell symbol in a grid of different font sizes and weights.](fossil-shell-export-example@2x.png){: width="600" }
+_Part of the export file for the `fossil.shell` symbol._
+
+This information is used to determine the symbol size and position relative to surrounding text (and the font and image scale settings currently applied to the symbol view). When symbols are displayed along text, for example inline in `Text` or in buttons, their baseline alignment comes into play:
+
+```swift
+VStack {
+    let envelope  = Image(systemName: "envelope.badge.shield.half.filled")
+    let hourglass = Image(systemName: "hourglass.badge.plus")
+    let shell     = Image(systemName: "fossil.shell")
+    let car       = Image(systemName: "car.badge.gearshape")
+    let lock      = Image(systemName: "lock.open.trianglebadge.exclamationmark.fill")
+    Text("Regular \(envelope) \(hourglass) \(shell) \(car) \(lock) symbols")
+    .drawAlignmentGuide(.firstTextBaseline)
+
+    Text("Large \(envelope) \(hourglass) \(shell) \(car) \(lock) symbols")
+    .imageScale(.large)
+    .drawAlignmentGuide(.firstTextBaseline)
+
+    HStack(alignment: .firstTextBaseline) {
+        Button("Car", systemImage: "car.badge.gearshape", action: {})
+        Button("Envelope", systemImage: "envelope.badge.shield.half.filled", action: {})
+            .drawAlignmentGuide(.firstTextBaseline, length: 300)
+        Button("Lock", systemImage: "lock.open.trianglebadge.exclamationmark.fill", action: {})
+    }
+}
+.font(.title3)
+```
+
+{% include color-scheme-img.md
+  alt="A text with five symbols displayned inline with regular scale, another text with five symbols displayed inline with large scale, and three buttons with their respective symbols: car, envelope, and lock."
+  name="symbols-inline-alignment"
+%}
+
+-----
+
+
+This means that symbols are expected to be aligned not by the raw size of their image (which sometimes may even leave part of the symbol outside in order to keep the symbol horizontally centered) but instead by their text baseline:
+
+```swift
+HStack(alignment: .firstTextBaseline) {
+    Image(systemName: "envelope.badge.shield.half.filled")
+        .border(.green.secondary, width: 2)
+    Image(systemName: "hourglass.badge.plus")
+        .border(.green.secondary, width: 2)
+    Image(systemName: "fossil.shell")
+        .drawAlignmentGuide(.firstTextBaseline, length: 300)
+        .border(.green.secondary, width: 2)
+    Image(systemName: "car.badge.gearshape")
+        .border(.green.secondary, width: 2)
+    Image(systemName: "lock.open.trianglebadge.exclamationmark.fill")
+        .border(.green.secondary, width: 2)
+}
+.font(.title)
+```
+
+{% include color-scheme-img.md
+  alt="Five symbols aligned by their text baseline and displaying their frame: an envelope, and hourglass, a shell, a car, and a lock."
+  name="framed-symbols-with-baselines"
+%}
+
+-----
+
+
+Centering by Baseline
+---------------------
+
+Back to the circular buttons: Given that these buttons are not displaying next to any text, from which the baseline alignment could be derived, how can the button figure out where is the appropiate baseline is?
 
 > SNIPPET:
 
