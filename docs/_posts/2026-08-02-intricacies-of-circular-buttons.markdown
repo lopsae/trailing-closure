@@ -1,6 +1,6 @@
 ---
 layout: post
-date: 2026-08-02 1:30:00 -0700
+date: 2026-08-02 9:30:00 -0700
 title: "The Intricacies of Perfectly Circular Buttons"
 categories: [SwiftUI]
 tags: [swiftui, buttons, overlay, alignments]
@@ -206,7 +206,7 @@ A detail about symbols and buttons that I find particularly well done: All syste
 ![Example of the shell symbol in a grid of different font sizes and weights.](fossil-shell-export-example@2x.png){: width="600" }
 _Part of the export file for the `fossil.shell` symbol._
 
-This information is used to determine the symbol size and position relative to surrounding text (and the font and image scale settings currently applied to the symbol view). When symbols are displayed along text, for example inline in `Text` or in buttons, their baseline alignment comes into play:
+This information is used to determine the symbol size and position relative to surrounding text, taking into account also font and image scale modifiers applied to the view hierarchy. When symbols are displayed along text, for example inline in `Text` or in buttons, their baseline alignment comes into play:
 
 ```swift
 VStack {
@@ -240,7 +240,7 @@ VStack {
 -----
 
 
-This means that symbols are expected to be aligned not by the raw size of their image (which sometimes may even leave part of the symbol outside in order to keep the symbol horizontally centered) but instead by their text baseline:
+This means that symbols are expected to be aligned not by the raw size of their image but instead by their text baseline. The frame of the symbol sometimes even leaves parts outside in order to keep the symbol body horizontally centered:
 
 ```swift
 HStack(alignment: .firstTextBaseline) {
@@ -270,7 +270,7 @@ HStack(alignment: .firstTextBaseline) {
 Aligning by Baseline
 --------------------
 
-Back the the circular buttons: an interesting issue here is how to align a symbol to a baseline if there is not text to provide said alignment. Buttons with the default styles do not deal with this because the button just takes the size of the symbol, which is the reason the default styles do not work well for circular buttons:
+Back to the the circular buttons: an interesting issue here is how to align a symbol to a baseline if there is not text to provide said alignment. Buttons with the default styles do not deal with this because the button just takes the size of the symbol, which is the reason the default styles do not work well for circular buttons:
 
 ```swift
 HStack(alignment: .firstTextBaseline) {
@@ -311,7 +311,7 @@ HStack(alignment: .firstTextBaseline, spacing: 20) {
         .foregroundStyle(.blue)
     .overlay(alignment: .centerFirstTextBaseline) {
         Image(systemName: "hourglass.badge.plus")
-        .border(.green.secondary)
+        .border(.green.secondary, width: 2)
     }
     .border(.blue.secondary, width: 2)
 
@@ -323,7 +323,7 @@ HStack(alignment: .firstTextBaseline, spacing: 20) {
     .foregroundStyle(.blue)
     .overlay(alignment: .centerFirstTextBaseline) {
         Image(systemName: "car.badge.gearshape")
-        .border(.green.secondary)
+        .border(.green.secondary, width: 2)
     }
     .border(.blue.secondary, width: 2)
 }
@@ -395,7 +395,7 @@ Label Style and Border Shapes
 
 Some last improvements are still in order. As mentioned perviously, these button styles do not work with [`ButtonBorderShape`](https://developer.apple.com/documentation/swiftui/buttonbordershape), since the border shape has to be applied explictly by the button style in order to work.
 
-But first, all the manipulation so far done in the button styles has been specifically to the label. A better and more reusable way to structure this label modifications is to contain them in a `LabelStyle` insted:
+But first, all the manipulation so far done in the button styles has been specifically to the label. A better and more reusable way to structure this modifications is to contain them in a `LabelStyle` insted:
 
 ```swift
 struct BaselinedIconLabelStyle: LabelStyle {
@@ -411,7 +411,7 @@ struct BaselinedIconLabelStyle: LabelStyle {
 }
 ```
 
-Same inner workings, but aplied only to a label. On its own it can already achieve a proper circular button by pairing it with a `glassEffect` modifier, since the label alread takes care of providing the appropiate space for circle shape. The glass effect does not even need to specify the `circle` shape because the default shape (`capsule`) is equivalent to a circle when filling a square:
+Same inner workings, but aplied only to a label. On its own it can already achieve a proper circular button by pairing it with a `glassEffect` modifier, since the label alread takes care of providing the appropiate space for the circle shape. The glass effect does not even need to specify the `circle` shape because the default shape (`capsule`) is equivalent to a circle when filling a square:
 
 ```swift
 HStack(alignment: .firstTextBaseline) {
