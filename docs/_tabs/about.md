@@ -18,4 +18,6 @@ Some of their work is available in [GitHub](https://github.com/lopsae).
 <em style="font-style: normal; font-size: 70%">Deployed on {{ site.build_date }}</em>
 <br/>
 <em style="font-style: normal; font-size: 70%">{{ site.build_run_id }} ({{ site.build_run_number }})</em>
+<br/>
+<em style="font-style: normal; font-size: 70%">{{ site.build_branch }}</em>
 </p>
