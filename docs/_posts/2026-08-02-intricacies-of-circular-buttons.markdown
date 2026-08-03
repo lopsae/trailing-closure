@@ -303,7 +303,7 @@ HStack(alignment: .firstTextBaseline) {
 
 What is needed is a view that can be considered to already have a balanced size and provides a baseline alignment. Since symbols do provide a baseline alignment and the focus is circular buttons, one symbol might fit perfectly: `circle`! This placeholder symbol can be first centered in the circular button, and then the actual symbol aligned to it.
 
-Enter the wonderful `overlay` modifier, with which the circle provides the layout frame and alignment guide for the overlaid button symbol:
+Enter the [wonderful `overlay` modifier]({% post_url 2026-05-28-overlay-as-debug-tool %}), with which the circle provides the layout frame and alignment guide for the overlaid button symbol:
 
 ```swift
 HStack(alignment: .firstTextBaseline, spacing: 20) {
