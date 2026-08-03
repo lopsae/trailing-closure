@@ -20,7 +20,7 @@ struct IntricaciesOfCircularButtons {
         self.storage = try .init(
             filePath: #filePath,
             droppingComponents: 3, // filename, illustrations, illustration-app
-            appendingComponents: ["illustrations", "intricacies-of-circular-buttons"]
+            appendingComponents: ["docs", "assets", "img", "intricacies-of-circular-buttons"]
         ) {
             // onImageStored
             cgImage, filename in
@@ -34,32 +34,22 @@ struct IntricaciesOfCircularButtons {
         var body: some View {
             GlassEffectContainer {
                 HStack(alignment: .firstTextBaseline) {
-                    let length: CGFloat = 70
                     Button("Cloud", systemImage: "smoke", action: {})
-                    .labelStyle(BaselinedIconLabelStyle(length: length))
-                    .buttonStyle(GlassBorderedButtonStyle())
-
-                    Button("Bolt", systemImage: "bolt", action: {})
-                    .labelStyle(BaselinedIconLabelStyle(length: length))
-                    .buttonStyle(GlassBorderedButtonStyle())
-
-                    Button("Leaf", systemImage: "leaf", action: {})
-                    .labelStyle(BaselinedIconLabelStyle(length: length))
-                    .buttonStyle(GlassBorderedButtonStyle())
-
+                    Button("Rain", systemImage: "drop", action: {})
+                    Button("Wind", systemImage: "wind", action: {})
 
                     Button("Sun", systemImage: "sun.max", action: {})
-                    .labelStyle(BaselinedIconLabelStyle(length: length))
                     .buttonStyle(.plain)
                     .glassEffect(.regular.interactive())
                     .glassEffectUnion(id: "union", namespace: namespace)
 
                     Button("Moon", systemImage: "moon", action: {})
-                    .labelStyle(BaselinedIconLabelStyle(length: length))
                     .buttonStyle(.plain)
                     .glassEffect(.regular.interactive())
                     .glassEffectUnion(id: "union", namespace: namespace)
                 }
+                .labelStyle(BaselinedIconLabelStyle(length: 70))
+                .buttonStyle(GlassBorderedButtonStyle())
                 .font(.largeTitle)
             }
         }
