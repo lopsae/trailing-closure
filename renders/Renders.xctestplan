@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "7919F8F3-FEEC-42B6-9D83-846523D93D2E",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "Renders",
+        "name" : "Renders"
+      }
+    }
+  ],
+  "version" : 1
+}
