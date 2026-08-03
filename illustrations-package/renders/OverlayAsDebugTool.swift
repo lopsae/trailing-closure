@@ -18,8 +18,8 @@ struct OverlayAsDebugTool {
     init() throws {
         self.storage = try .init(
             filePath: #filePath,
-            droppingComponents: 2, // filename, renders
-            appendingComponents: ["illustrations"]
+            droppingComponents: 3, // filename, renders, illustrations-package
+            appendingComponents: ["docs", "assets", "img"]
         ) {
             // onImageStored
             cgImage, filename in
@@ -46,7 +46,7 @@ struct OverlayAsDebugTool {
                             .frame(width: 2)
                         Text("Debugging Caption")
                             .font(.caption)
-                            .foregroundStyle(.tertiary)
+                            .foregroundStyle(.secondary)
                             .frame(width: 100, alignment: .leading)
                     }
                     .padding(.leading, 8)
