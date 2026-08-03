@@ -1,5 +1,5 @@
 {
-  "originHash" : "76d5c0bd59c2b9d5aff84426e1f868ad1cb1d56f4df971ba3be3ffbfc5899d31",
+  "originHash" : "69ccc6eac5f5f979c2cd061fbfc33826e591edeb56d80c5c791a7f78f177f334",
   "pins" : [
     {
       "identity" : "preview-utilities",
@@ -7,7 +7,7 @@
       "location" : "https://github.com/lopsae/preview-utilities.git",
       "state" : {
         "branch" : "feature/debug-alignment-guide-modifier",
-        "revision" : "deb5909e8b82acef2bc837d78b6558089d373536"
+        "revision" : "412499eadcbc03204c76af65329c3e08787d6732"
       }
     }
   ],

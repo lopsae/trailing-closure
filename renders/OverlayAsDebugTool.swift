@@ -33,6 +33,7 @@ struct OverlayAsDebugTool {
             "overlay-as-debug-tool", "header",
             usesFullComponentName: false
         ) {
+            // FIXME: Store into a sizing property.
             DocumentationIllustration(size: [600 , 315], drawsBorder: false) {
                 RoundedRectangle(cornerRadius: 8)
                 .fill(.teal.gradient)
@@ -61,7 +62,7 @@ struct OverlayAsDebugTool {
             "overlay-as-debug-tool", "border-modifier",
             usesFullComponentName: false
         ) {
-            DocumentationIllustration(height: 160) {
+            DocumentationIllustration(sizing: .regular) {
                 HStack(spacing: .zero) {
                     Circle().fill(.gray.tertiary)
                     Circle().fill(.green)
@@ -84,7 +85,7 @@ struct OverlayAsDebugTool {
             "overlay-as-debug-tool", "overlay-as-label",
             usesFullComponentName: false
         ) {
-            DocumentationIllustration(height: 160) {
+            DocumentationIllustration(sizing: .regular) {
                 HStack(spacing: .zero) {
                     Circle().fill(.gray.tertiary)
 
@@ -109,7 +110,7 @@ struct OverlayAsDebugTool {
             "overlay-as-debug-tool", "overlay-as-border",
             usesFullComponentName: false
         ) {
-            DocumentationIllustration(height: 160) {
+            DocumentationIllustration(sizing: .regular) {
                 HStack(spacing: .zero) {
                     Circle().fill(.gray.tertiary)
 
@@ -134,7 +135,7 @@ struct OverlayAsDebugTool {
             "overlay-as-debug-tool", "overlay-as-geometry",
             usesFullComponentName: false
         ) {
-            DocumentationIllustration(height: 160) {
+            DocumentationIllustration(sizing: .regular) {
                 HStack(spacing: .zero) {
                     Circle().fill(.gray.tertiary)
 
@@ -164,7 +165,7 @@ struct OverlayAsDebugTool {
             "overlay-as-debug-tool", "overlay-overflow",
             usesFullComponentName: false
         ) {
-            DocumentationIllustration(height: 160) {
+            DocumentationIllustration(sizing: .regular) {
                 HStack(spacing: .zero) {
                     Circle().fill(.gray.tertiary)
 
@@ -192,7 +193,7 @@ struct OverlayAsDebugTool {
             "overlay-as-debug-tool", "first-text-baseline",
             usesFullComponentName: false
         ) {
-            DocumentationIllustration(height: 160) {
+            DocumentationIllustration(sizing: .regular) {
                 Text("""
                     The fence we walked between the years
                     Did balance us serene
@@ -213,7 +214,7 @@ struct OverlayAsDebugTool {
             "overlay-as-debug-tool", "multiple-alignments",
             usesFullComponentName: false
         ) {
-            DocumentationIllustration(height: 160) {
+            DocumentationIllustration(sizing: .regular) {
                 Text("""
                     We ached and almost touched that stuff
                     Our reach was never quite enough
@@ -244,7 +245,7 @@ struct OverlayAsDebugTool {
             "overlay-as-debug-tool", "floating-content",
             usesFullComponentName: false
         ) {
-            DocumentationIllustration(height: 160) {
+            DocumentationIllustration(sizing: .regular) {
                 RoundedRectangle(cornerRadius: 8)
                 .fill(.teal.gradient)
                 .stroke(.indigo.gradient, lineWidth: 4)
@@ -266,7 +267,7 @@ struct OverlayAsDebugTool {
             "overlay-as-debug-tool", "illustration-example",
             usesFullComponentName: false
         ) {
-            DocumentationIllustration(height: 160) {
+            DocumentationIllustration(sizing: .regular) {
                 Text("""
                     In the green
                     of leaf
@@ -304,7 +305,7 @@ struct OverlayAsDebugTool {
             "overlay-as-debug-tool", "debug-overlay-example",
             usesFullComponentName: false
         ) {
-            DocumentationIllustration(height: 160) {
+            DocumentationIllustration(sizing: .regular) {
                 HStack(spacing: .zero) {
                     Text("view")
                     Text(".debugOverlay()")

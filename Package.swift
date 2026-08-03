@@ -17,7 +17,8 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/lopsae/preview-utilities.git", branch: "feature/documentation-second-batch")
+        .package(url: "https://github.com/lopsae/preview-utilities.git", branch: "feature/debug-alignment-guide-modifier")
+//        .package(url: "https://github.com/lopsae/preview-utilities.git", "0.4.0"..<"1.0.0")
     ],
     targets: [
         .target(

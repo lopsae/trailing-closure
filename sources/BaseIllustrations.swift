@@ -10,8 +10,10 @@ import SwiftUI
 
 public struct BaseIllustrations {
 
+    // MARK: Name Illustration
+
     public static var nameIllustration: DocumentationIllustration {
-        DocumentationIllustration(height: 160) {
+        DocumentationIllustration(sizing: .regular) {
             let showAlignmentGuides = false
 
             ZStack(alignment: .center) {
@@ -23,8 +25,7 @@ public struct BaseIllustrations {
                             .frame(width: 200, height: 2)
                     }
                 }
-                // TODO: add and use use .hide(when:) trait
-//                .debugOverlay(.hairline)
+                .debugOverlay(.hairline, .visible(false))
 
                 let openBrace = Text("{")
                 .font(.system(.title, design: .monospaced))
@@ -48,6 +49,9 @@ public struct BaseIllustrations {
         }
     }
 
+
+    
+    // MARK: Event Card
 
     // International card size is (85 mm x 55 mm).
     // Standard US card size is 3.5" x 2" (88.9 mm x 50.8 mm)
@@ -90,14 +94,21 @@ public struct BaseIllustrations {
                             .monospaced()
                     }
                     .font(.caption)
-                    // Alignment guide.
-//                    .overlay(alignment: .bottomTrailing) {
-//                        Rectangle().fill(.red.secondary)
-//                            .frame(width: 2, height: 200)
-//                    }
                 }
+                .debugAlignmentGuide(horizontal: .trailing, .extendLength(20))
             }
             .padding()
+        }
+    }
+
+
+    // MARK: experiments
+
+
+    public static var experiments: DocumentationIllustration {
+        DocumentationIllustration(height: 300) {
+            Text("for quick experiments...")
+            .font(.system(.title, design: .serif).italic())
         }
     }
 
@@ -107,11 +118,16 @@ public struct BaseIllustrations {
 // MARK: - Previews
 
 
-#Preview("name", traits: .docsIllustration) {
+#Preview("Name", traits: .docsIllustration) {
     BaseIllustrations.nameIllustration
 }
 
 
-#Preview("event-card", traits: .docsIllustration) {
+#Preview("Event Card", traits: .docsIllustration) {
     BaseIllustrations.eventCard
+}
+
+
+#Preview("Experiments", traits: .docsIllustration) {
+    BaseIllustrations.experiments
 }
