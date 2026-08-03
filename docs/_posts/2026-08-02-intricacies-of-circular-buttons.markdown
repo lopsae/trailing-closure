@@ -275,21 +275,12 @@ Back to the circular buttons: an interesting issue here is how to align a symbol
 ```swift
 HStack(alignment: .firstTextBaseline) {
     Button("Horizontal", systemImage: "guidepoint.horizontal", action: {})
-    .labelStyle(.iconOnly)
-    .buttonStyle(.glass)
-
-    Button("Vertical", systemImage: "guidepoint.vertical", action: {})
-    .labelStyle(.iconOnly)
-    .buttonStyle(.glass)
-
-    Button("Rainbow", systemImage: "rainbow", action: {})
-    .labelStyle(.iconOnly)
-    .buttonStyle(.glass)
-
-    Button("Bolt", systemImage: "bolt", action: {})
-    .labelStyle(.iconOnly)
-    .buttonStyle(.glass)
+    Button("Vertical",   systemImage: "guidepoint.vertical", action: {})
+    Button("Rainbow",    systemImage: "rainbow", action: {})
+    Button("Bolt",       systemImage: "bolt", action: {})
 }
+.labelStyle(.iconOnly)
+.buttonStyle(.glass)
 .font(.title)
 ```
 
@@ -513,7 +504,7 @@ GlassEffectContainer {
 And with that all the possibilities for circular glass buttons were covered. The correct sizing of the buttons to fit precisely along system toolbars is left as an exercise to the reader. But at the very least, the symbols will be as perfectly centered as the system toolbar ones.
 
 ```swift
-Button("circle",  systemImage: "circle", action: {})
+Button("Circle",  systemImage: "circle", action: {})
 .labelStyle(BaselinedIconLabelStyle(length: 80))
 .buttonStyle(GlassBorderedButtonStyle())
 .font(.largeTitle)
