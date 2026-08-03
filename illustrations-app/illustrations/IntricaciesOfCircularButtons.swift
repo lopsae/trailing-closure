@@ -266,21 +266,12 @@ struct IntricaciesOfCircularButtons {
             DocumentationIllustration(sizing: .regular, background: .fadedMoltenHorizon) {
                 HStack(alignment: .firstTextBaseline) {
                     Button("Horizontal", systemImage: "guidepoint.horizontal", action: {})
-                    .labelStyle(.iconOnly)
-                    .buttonStyle(.glass)
-
-                    Button("Vertical", systemImage: "guidepoint.vertical", action: {})
-                    .labelStyle(.iconOnly)
-                    .buttonStyle(.glass)
-
-                    Button("Rainbow", systemImage: "rainbow", action: {})
-                    .labelStyle(.iconOnly)
-                    .buttonStyle(.glass)
-
-                    Button("Bolt", systemImage: "bolt", action: {})
-                    .labelStyle(.iconOnly)
-                    .buttonStyle(.glass)
+                    Button("Vertical",   systemImage: "guidepoint.vertical", action: {})
+                    Button("Rainbow",    systemImage: "rainbow", action: {})
+                    Button("Bolt",       systemImage: "bolt", action: {})
                 }
+                .labelStyle(.iconOnly)
+                .buttonStyle(.glass)
                 .font(.title)
             } // Illustration
         }
@@ -454,7 +445,7 @@ struct IntricaciesOfCircularButtons {
     @Test func circleCircularButton() throws {
         try storage.renderAndStore("circle-circular-button", strategy: .windowHierarchy) {
             DocumentationIllustration(sizing: .regular, background: .fadedMoltenHorizon) {
-                Button("circle",  systemImage: "circle", action: {})
+                Button("Circle",  systemImage: "circle", action: {})
                 .labelStyle(BaselinedIconLabelStyle(length: 80))
                 .buttonStyle(GlassBorderedButtonStyle())
                 .font(.largeTitle)
