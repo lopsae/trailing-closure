@@ -259,6 +259,8 @@ HStack(alignment: .firstTextBaseline) {
 .font(.title)
 ```
 
+Note that the badges of some symbols sometimes peeks outside of the symbol boundaries.
+
 {% include color-scheme-img.md
   alt="Five symbols aligned by their text baseline and displaying their frame: an envelope, and hourglass, a shell, a car, and a lock."
   name="framed-symbols-with-baselines"
@@ -275,21 +277,12 @@ Back to the circular buttons: an interesting issue here is how to align a symbol
 ```swift
 HStack(alignment: .firstTextBaseline) {
     Button("Horizontal", systemImage: "guidepoint.horizontal", action: {})
-    .labelStyle(.iconOnly)
-    .buttonStyle(.glass)
-
-    Button("Vertical", systemImage: "guidepoint.vertical", action: {})
-    .labelStyle(.iconOnly)
-    .buttonStyle(.glass)
-
-    Button("Rainbow", systemImage: "rainbow", action: {})
-    .labelStyle(.iconOnly)
-    .buttonStyle(.glass)
-
-    Button("Bolt", systemImage: "bolt", action: {})
-    .labelStyle(.iconOnly)
-    .buttonStyle(.glass)
+    Button("Vertical",   systemImage: "guidepoint.vertical", action: {})
+    Button("Rainbow",    systemImage: "rainbow", action: {})
+    Button("Bolt",       systemImage: "bolt", action: {})
 }
+.labelStyle(.iconOnly)
+.buttonStyle(.glass)
 .font(.title)
 ```
 
@@ -303,7 +296,7 @@ HStack(alignment: .firstTextBaseline) {
 
 What is needed is a view that can be considered to already have a balanced size and provides a baseline alignment. Since symbols do provide a baseline alignment and the focus is circular buttons, one symbol might fit perfectly: `circle`! This placeholder symbol can be first centered in the circular button, and then the actual symbol aligned to it.
 
-Enter the wonderful `overlay` modifier, with which the circle provides the layout frame and alignment guide for the overlaid button symbol:
+Enter the [wonderful `overlay` modifier]({% post_url 2026-05-28-overlay-as-debug-tool %}), with which the circle provides the layout frame and alignment guide for the overlaid button symbol:
 
 ```swift
 HStack(alignment: .firstTextBaseline, spacing: 20) {
@@ -513,7 +506,7 @@ GlassEffectContainer {
 And with that all the possibilities for circular glass buttons were covered. The correct sizing of the buttons to fit precisely along system toolbars is left as an exercise to the reader. But at the very least, the symbols will be as perfectly centered as the system toolbar ones.
 
 ```swift
-Button("circle",  systemImage: "circle", action: {})
+Button("Circle",  systemImage: "circle", action: {})
 .labelStyle(BaselinedIconLabelStyle(length: 80))
 .buttonStyle(GlassBorderedButtonStyle())
 .font(.largeTitle)
