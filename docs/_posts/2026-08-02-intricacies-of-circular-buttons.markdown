@@ -259,7 +259,7 @@ HStack(alignment: .firstTextBaseline) {
 .font(.title)
 ```
 
-Note that the badges of some symbols sometimes peeks outside of the symbol boundaries.
+Note that the badges of some symbols peek outside of the symbol boundaries.
 
 {% include color-scheme-img.md
   alt="Five symbols aligned by their text baseline and displaying their frame: an envelope, and hourglass, a shell, a car, and a lock."
